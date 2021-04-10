@@ -1,28 +1,29 @@
 import React, { useState, useMemo} from 'react';
 import TinderCard from 'react-tinder-card';
 import './Game.css';
+import img from '../assets/news-img.jpeg';
 
 
 const db = [
     {
       name: 'Richard Hendricks',
-      url: '../assets/logo192.png'
+      url: img
     },
     {
       name: 'Erlich Bachman',
-      url: '../assets/logo192.png'
+      url: img
     },
     {
       name: 'Monica Hall',
-      url: '../assets/logo192.png'
+      url: img
     },
     {
       name: 'Jared Dunn',
-      url: '../assets/logo192.png'
+      url: img
     },
     {
       name: 'Dinesh Chugtai',
-      url: '../assets/logo192.png'
+      url: img
     }
   ]
 
@@ -31,7 +32,7 @@ const db = [
 
 
 function Game() {
-    const [characters, setCharacters] = useState(db)
+  const [characters, setCharacters] = useState(db)
   const [lastDirection, setLastDirection] = useState()
 
   const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
@@ -60,23 +61,22 @@ function Game() {
 
   return (
     <div>
-      <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
-      <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-      <h1>React Tinder Card</h1>
       <div className='cardContainer'>
         {characters.map((character, index) =>
-          <TinderCard ref={childRefs[index]} className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-              <h3>{character.name}</h3>
+          <TinderCard ref={childRefs[index]} className='swipe' preventSwipe={['up', 'down']} key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+            <div className='card p-2'>
+              <img src={img} />
+              <h4 className="my-4">Vacina rejeitada pelos países ricos pode servir para contrariar “o desequilíbrio chocante” no abastecimento aos países pobres</h4>
+              <p className="text-justify px-2">Os casos raros de coágulos causados pela vacina da AstraZeneca podem ser uma boa notícia para os países mais pobres, onde em média só uma pessoa em mais de 500 já foi vacinada.</p>
             </div>
           </TinderCard>
         )}
       </div>
-      <div className='buttons'>
-        <button onClick={() => swipe('left')}>Swipe left!</button>
-        <button onClick={() => swipe('right')}>Swipe right!</button>
+      <div className='buttons d-none d-md-block'>
+        <button onClick={() => swipe('left')}>Verdadeira</button>
+        <button onClick={() => swipe('right')}>Falsa</button>
       </div>
-      {lastDirection ? <h2 key={lastDirection} className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'>Swipe a card or press a button to get started!</h2>}
+      {/* {lastDirection ? <h2 key={lastDirection} className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'>Swipe a card or press a button to get started!</h2>} */}
     </div>
   )
   }
