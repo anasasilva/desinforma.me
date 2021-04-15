@@ -1,0 +1,6 @@
+newspaper3k>=0.2.8
+spacy>=2.2.4
+pymongo>=3.10.1
+loguru>=0.4.1
+python-slugify>=4.0.0
+tqdm>=4.45.0

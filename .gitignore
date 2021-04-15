@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+data_extraction/.ipynb_checkpoints/
+
+data_extraction/__pycache__/
