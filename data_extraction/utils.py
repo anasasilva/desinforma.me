@@ -19,7 +19,6 @@ def arquivo_date_str(dt: str):
 def try_request(endpoint, params={}, timeout=30, attempts=10):
     r = None
     for i in range(attempts):
-        print(endpoint)
         try:
             r = requests.get(endpoint, params=params, timeout=timeout + (i * 5))
             if r.status_code == 404: return False
