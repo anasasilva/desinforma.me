@@ -3,7 +3,8 @@ from loguru import logger
 import requests, json, os, re
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
-
+import spacy
+ner = spacy.load("pt_core_news_md", disable=['tok2vec', 'morphologizer', 'parser', 'attribute_ruler', 'lemmatizer'])
 
 
 ########### Utils for Arquivo.pt request ###########
@@ -78,7 +79,7 @@ title_patterns_sub = [
     (re.compile(r"\"+"), "\""),
     (re.compile(r"^\"+(.*?)\"+$"), "\1")]
 
-single = ["Expresso | ", "Visão | ", "dn - DN", "Cm ao Minuto - Correio da Manhã", " - Cm ao Minuto", " - Blogue DN", "Sol - ", " | Visão", "SOL : ", "Mais Sobre: ", " | Expresso", "Opinião: ", "Opinião. ", "a Sério", " - Tv Media", "JORNAL PUBLICO: ", "POL | Espaço Público | "]
+single = ["Expresso | ", "Visão | ", "dn - DN", "Cm ao Minuto - Correio da Manhã", " - Cm ao Minuto", " - Blogue DN", "Sol - ", " | Visão", "SOL : ", "Mais Sobre: ", " | Expresso", " | PÚBLICO", "Opinião: ", "Opinião. ", "a Sério", " - Tv Media", "JORNAL PUBLICO: ", "POL | Espaço Público | ", " | Futebol"]
 bases = ["Sociedade", "Opinião", "Galerias", "Revistas", "Política", "Politica", "Tecnologia", "Tv & Media", "TV & Media", "Economia", "Bolsa", "Especiais", "Mundo", "Portugal", "Comentário", "Comentario", "Desporto", "Lusofonia", "Cultura", "Vida", "Angola", "Globo", "Farpas", "Investimento", "Liderança", "Energia"]
 fins = ["DN", "PUBLICO.PT", "PÚBLICO", "CM", "Correio da Manhã", "Expresso.pt", "Sol", "Jornal de Notícias", "Visao.pt", "JN Live", "JN"]
 forbidden_titles = {"DN - Diário de Notícias", "Object moved", "Meu JN", "Ficha Técnica", "Keydown.Dismiss", "Bs.Carousel", "V2.6", "Jwplayer.Vr", "Mouseup.Dismiss", "Piwik.Event", "Provider.Cast", "Submit.Validate", "Opinião", "Últimas Notícias"} | set(fins)
@@ -118,11 +119,13 @@ def clean_news_title_garbage(title):
 
 def clean_response_item(item):
     # Clean up the title 
+    item["original_title"] = item["title"] 
     item["title"] = clean_news_title_garbage(item["title"])
+    item["title"] = item["title"].split(" |")[0] # RM98 change...
     if item["title"] == " ": return
 
     # Clean properties name
-    item["original"] = item["originalURL"]
+    item["original_url"] = item["originalURL"]
     del item["originalURL"]
     item["url"] = item["linkToNoFrame"]
     del item["linkToNoFrame"]
@@ -130,7 +133,7 @@ def clean_response_item(item):
     del item["tstamp"]
 
     # Get article's domain
-    item["website"] = urlparse(item["original"]).netloc
+    item["website"] = urlparse(item["original_url"]).netloc
     
     return item
 
@@ -200,6 +203,7 @@ def is_duplicate(e1, e2):
 
 
 def handle_duplicate_entities(entities):
+    duplicates = dict()
     
     for label in entities:
         del_entities = []
@@ -216,6 +220,10 @@ def handle_duplicate_entities(entities):
                 
                 if not res: continue
                 staying, deleting = res
+                if label in duplicates.keys():
+                    duplicates[label].append((staying['_id'], deleting['_id']))
+                else:
+                    duplicates[label] = [(staying['_id'], deleting['_id'])]
                 
                 entities[label][staying["_id"]] += entities[label][deleting["_id"]]
                 del_entities.append(deleting["_id"])
@@ -224,7 +232,33 @@ def handle_duplicate_entities(entities):
         for ent in del_entities:
             del entities[label][ent]
                     
-    return entities
+    return entities, duplicates
+
+def organize_entities(text, duplicates=None):
+    entities = dict()
+    for ent in ner(text).ents:
+        if ent.label_ not in entities.keys():
+            entities[ent.label_] = {}
+
+        if ent.text not in entities[ent.label_].keys():
+            entities[ent.label_][ent.text] = [(ent.start_char, ent.end_char)]
+        else:
+            entities[ent.label_][ent.text] += [(ent.start_char, ent.end_char)]
+    
+    if duplicates is None:
+        # Get entities without duplicates and all the duplicates made.
+        entities, duplicates = handle_duplicate_entities(entities)
+    else:
+        # Force duplicates described on the variable duplicates
+        for ent_label in duplicates:
+            if ent_label in entities.keys(): 
+                for (staying, deleting) in duplicates[ent_label]:
+                    if deleting in entities[ent_label].keys():
+                        entities[ent_label][staying] = entities[ent_label][deleting]
+                        del entities[ent_label][deleting]
+                        logger.info("FDUP [%s, %s] : %s" % (staying, deleting, staying))
+    
+    return entities, duplicates
 
 
 
