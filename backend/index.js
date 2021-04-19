@@ -4,6 +4,6 @@ const app = require("./app");
 
 const port = process.env.PORT || 8000;
 
-app.listen(port);
-
-console.log(`Web server started at port ${port}`);
+app.listen(port, function () {
+    console.log(`Web server started at port ${port}`);
+});

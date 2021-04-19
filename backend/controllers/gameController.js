@@ -1,6 +1,6 @@
 const News = require('../models/news');
 
-async function getGame(req, res) {
+async function getGame(req, res, next) {
   return res.json({});
 }
 
