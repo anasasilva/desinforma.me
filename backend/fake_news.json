@@ -14,9 +14,8 @@
                 {
                     "original_entity_name": "FC Mourinha",
                     "replaced_entity_name": "Famalicão"
-                }
-            ],
-            "entities_replaced_summary": [
+                    
+                },
                 {
                     "original_entity_name": "Fábio Oliveira",
                     "replaced_entity_name": "Carlos Carvalhal"
