@@ -137,10 +137,11 @@ const db = [
       url: img,
       real: false
     }
-  ]
+]
 
-  const alreadyRemoved = []
-  let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
+const alreadyRemoved = []
+let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
+
 
 function Game() {
   const [activeNews, setActiveNews] = useState(db)
@@ -149,12 +150,29 @@ function Game() {
   const [playing, setPlaying] = useState(true)
   const [maxPointsMsg, setMaxPointsMsg] = useState("")
 
-  const history = useHistory();
-
   let childRefs = useMemo(() => Array(nrNews).fill(0).map(i => React.createRef()), [nrNews])
 
-  const swiped = (idToDelete) => {
-    alreadyRemoved.push(idToDelete)
+  const history = useHistory();
+
+  const swiped = (dir, news) => {
+
+    alreadyRemoved.push(news.id)
+
+    if ((dir === 'left' && !news.real) || (dir === 'right' && news.real)) {
+      setPoints(prevPoints => prevPoints + 1);
+    }
+    else {
+      let maxPoints = parseInt(localStorage.getItem('record-fake'));
+
+      if (!maxPoints || (maxPoints && maxPoints < points)) {
+        localStorage.setItem('record-fake', points);
+        setMaxPointsMsg("Novo Recorde!");
+      }
+      else{
+          setMaxPointsMsg("Recorde: " + maxPoints)
+      }
+      setPlaying(false);
+    }
   }
 
   const outOfFrame = (id) => {
@@ -175,7 +193,6 @@ function Game() {
       const index = activeNews.map(news => news.id).indexOf(toBeRemoved) // Find the index of which to make the reference to
 
       if (real == cardsLeft[cardsLeft.length - 1].real) {
-        setPoints(points + 1);
         alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
         childRefs[index].current.swipe(dir) // Swipe the card!
       }
@@ -201,7 +218,7 @@ function Game() {
         <div className='swipe card card-shadow p-2'/>
         
         {playing ? activeNews.map((news, index) =>
-          <TinderCard ref={childRefs[index]} className='swipe' preventSwipe={['up', 'down']} key={news.id} onSwipe={() => swiped(news.id)} onCardLeftScreen={() => outOfFrame(news.id)}>
+          <TinderCard ref={childRefs[index]} className='swipe' preventSwipe={['up', 'down']} key={news.id} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame(news.id)}>
             <div className='card p-2'>
               <img src={img} />
               <h4 className="my-4">{news.title}</h4>

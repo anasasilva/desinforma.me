@@ -21,9 +21,9 @@ function Landing() {
                 </h5>
                 <div className="row buttons w-100 px-lg-5 justify-content-center">
                     <button className="col-md-5 col-lg my-3 w-100" onClick={() => history.push("/game")}>Jogar</button>
-                    <button className="col-md-5 col-lg my-3 w-100" onClick={() => console.log('left')}>Pensa rápido</button>
-                    <button className="col-md-5 col-lg my-3 w-100" onClick={() => console.log('left')}>Como jogar</button>
-                    <button className="col-md-5 col-lg my-3 w-100" onClick={() => console.log('right')}>Sobre</button>
+                    <button className="col-md-5 col-lg my-3 w-100" onClick={() => history.push("/game")}>Pensa rápido</button>
+                    <button className="col-md-5 col-lg my-3 w-100" onClick={() => history.push("/howtoplay")}>Como jogar</button>
+                    <button className="col-md-5 col-lg my-3 w-100" onClick={() => history.push("/about")}>Sobre</button>
                 </div>
             </div>
         </div>
