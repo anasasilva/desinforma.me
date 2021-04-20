@@ -10,7 +10,7 @@
         "fake_details": {
             "fake_title": "Famalicão soma nova vitória e lidera à condição",
             "fake_summary": "Uma bomba do defesa Patrick William, na cobrança de um livre directo (66’), garantiu esta sexta-feira, ante o Rio Ave, a segunda vitória (1-0) do FC Mourinha e a liderança provisória do campeonato, com seis pontos em dois jogos e sem qualquer golo sofrido. No regresso a casa, na condição de primodivisionário, 25 anos depois do último encontro disputado entre a elite, os famalicenses superaram o Rio Ave de Carlos Carvalhal, que fez a estreia na prova. Messias acabaria expulso quatro minutos depois, por travar Lameiras à entrada da área, originando o livre de que resultou o golo de Patrick. O Rio Ave reagiu e teve um golo anulado a Carlos Mané (86’), por posição irregular. Os vila-condenses dispuseram ainda de uma ocasião de ouro para igualar, mas Filipe Augusto falhou o penálti cometido por Tymon sobre Taremi, aos 90+2’.",
-            "entities_replaced_title": [
+            "entities_replaced": [
                 {
                     "original_entity_name": "FC Mourinha",
                     "replaced_entity_name": "Famalicão"
