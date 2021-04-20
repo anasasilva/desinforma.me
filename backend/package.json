@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "start": "node index.js",
-    "serve": "nodemon index.js"
+    "serve": "nodemon index.js",
+    "import-news": "node import_news.js",
+    "clear-db": "node clear_db.js"
   },
   "author": "",
   "license": "ISC",
