@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const game = require("./game");
+const news = require("./news");
 
-router.use("/game", game);
+router.use("/news", news);
 
 module.exports = router;
