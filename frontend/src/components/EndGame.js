@@ -5,7 +5,10 @@ function EndGame(props) {
   const { points, maxPointsMsg } = props;
 
   return (
-    <div className='swipe card card-shadow p-4 bg-error d-flex flex-column justify-content-around'>
+    <>
+
+<div className='swipe card card-shadow p-2'/>
+    <div className='swipe card p-4 bg-error d-flex flex-column justify-content-around'>
       <h1 className="font-points mt-2">{points}</h1>
       <h3>{maxPointsMsg}</h3>
       <div>
@@ -27,6 +30,7 @@ function EndGame(props) {
         </div>
       </div>
     </div>
+    </>
   )
   }
 
