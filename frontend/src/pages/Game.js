@@ -199,7 +199,7 @@ function Game() {
       else {
         let maxPoints = parseInt(localStorage.getItem('record-fake'));
 
-        if (!maxPoints || (maxPoints && maxPoints < points)) {
+        if (maxPoints && maxPoints < points && points) {
           localStorage.setItem('record-fake', points);
           setMaxPointsMsg("Novo Recorde!");
         }
@@ -215,27 +215,25 @@ function Game() {
     <div>
       <div className={'cardContainer ' +  (!playing ? " flipped" : "")}>
         <div className="front">
-        <div className='swipe card card-shadow p-2'/>
-        
-        {playing ? activeNews.map((news, index) =>
-          <TinderCard ref={childRefs[index]} className='swipe' preventSwipe={['up', 'down']} key={news.id} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame(news.id)}>
-            <div className='card p-2'>
-              <img src={img} />
-              <h4 className="my-4">{news.title}</h4>
-              <p className="text-justify px-2">{news.text}</p>
-            </div>
-          </TinderCard>
-          )
-          :
-          <></>
-      }
+          <div className='swipe card card-shadow p-2'/>
+          {playing ? activeNews.map((news, index) =>
+            <TinderCard ref={childRefs[index]} className='swipe' preventSwipe={['up', 'down']} key={news.id} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame(news.id)}>
+              <div className='card p-2'>
+                <img className="game-img" src={img} />
+                <h4 className="my-4">{news.title}</h4>
+                <p className="text-justify px-2">{news.text}</p>
+              </div>
+            </TinderCard>
+            )
+            :
+            <></>
+          }
         </div>
         <div className="back">
           {
             !playing ? <EndGame points={points} maxPointsMsg={maxPointsMsg} /> : <></>
           }
         </div>
-
       </div>
       {
         playing ? 
