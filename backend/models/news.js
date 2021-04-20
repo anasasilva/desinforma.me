@@ -21,21 +21,18 @@ const NewsSchema = new Schema({
         'type': Boolean,
         'index': true
     },
-    fakeDetails: { // nullable
-        fakeTitle: String,
-        fakeSummary: String,
-        entitiesReplacedTitle: [
-            {
-                originalEntityName: String,
-                replacedEntityName: String,
-            }
-        ],
-        entitiesReplacedSummary: [
-            {
-                originalEntityName: String,
-                replacedEntityName: String,
-            }
-        ]
+    fakeDetails: {
+        required: false,
+        type: {
+            fakeTitle: String,
+            fakeSummary: String,
+            entitiesReplaced: [
+                {
+                    originalEntityName: String,
+                    replacedEntityName: String,
+                }
+            ]
+        }
     }
 });
 

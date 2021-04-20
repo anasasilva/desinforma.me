@@ -1,6 +1,6 @@
-const News = require('../models/news');
+const { News } = require('../models');
 
-async function getGame(req, res, next) {
+async function getGame(req, res) {
   return res.json({});
 }
 
