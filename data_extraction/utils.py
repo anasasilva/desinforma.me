@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import spacy
 ner = spacy.load("pt_core_news_md", disable=['tok2vec', 'morphologizer', 'parser', 'attribute_ruler', 'lemmatizer'])
-
+IGNORE_ENT = ['querer', 'dia de reis', 'brexit']
 
 ########### Utils for Arquivo.pt request ###########
 
@@ -237,6 +237,8 @@ def handle_duplicate_entities(entities):
 def organize_entities(text, duplicates=None):
     entities = dict()
     for ent in ner(text).ents:
+        if ent.label_.lower() in IGNORE_ENT: continue
+              
         if ent.label_ not in entities.keys():
             entities[ent.label_] = {}
 
