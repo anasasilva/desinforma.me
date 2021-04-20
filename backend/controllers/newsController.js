@@ -1,9 +1,9 @@
 const { News } = require('../models');
 
-async function getGame(req, res) {
+async function getNews(req, res) {
   return res.json({});
 }
 
 module.exports = {
-  getGame,
+  getNews
 };
