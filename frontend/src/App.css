@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+
+
+.buttons {
+  margin: 20px;
+  display: flex;
+}
+
+.buttons button {
+  flex-shrink: 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  background-color: rgba(24, 63, 110, 0.9);
+  transition: 200ms;
+  margin: 0 10px;
+  font-weight: bolder;
+  width: 160px;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+}
+
+.logo-size {
+  width: 15rem !important;
+}
+
+.white {
+  color: white;
+}
+
+.white:hover {
+  color: white;
+}
+
+a {
+  display:block;
+  text-align:right;
+}
