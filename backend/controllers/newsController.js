@@ -27,7 +27,7 @@ async function getNews(req, res) {
         news[j] = temp;
     }
 
-    return res.json({ news });
+    return res.json(news);
 }
 
 module.exports = {
