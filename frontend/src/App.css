@@ -78,3 +78,50 @@ a {
   display:block;
   text-align:right;
 }
+
+
+.bg-light {
+    background-color: transparent!important;
+}
+
+
+.text-error-under {
+    text-decoration: underline wavy hotpink;
+}
+  
+.hover-toggle:hover .hover-hide,
+.hover-toggle .hover-show {
+    display: none;
+    transition: opacity 5s ease-out;
+    transition-delay: 5s;
+    -webkit-transition: 5s;
+    opacity: 0;
+}
+
+
+.hover-toggle .hover-hide,
+.hover-toggle:hover .hover-show {
+    display: inline-block;
+    opacity: 1;
+    -webkit-transition: 5s;
+    transition: opacity 5s ease-out;
+}
+
+.border-5 {
+    border-width:5px !important;
+}
+
+.stamp {
+    right: -55px;   
+    font-size: x-large;
+    transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+}
+
+.div-bottom {
+    position: absolute;
+    bottom: 0;
+}
