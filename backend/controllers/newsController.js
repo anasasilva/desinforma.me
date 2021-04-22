@@ -17,10 +17,17 @@ async function getNews(req, res) {
         exclude_with_ids: exclude_news_with_ids
     });
 
-    return res.json({
-        real_news,
-        fake_news
-    });
+    news = real_news.concat(fake_news);
+
+    // To shuffle the array of news
+    for (let i = news.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = news[i];
+        news[i] = news[j];
+        news[j] = temp;
+    }
+
+    return res.json({ news });
 }
 
 module.exports = {
