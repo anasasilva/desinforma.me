@@ -9,13 +9,14 @@ const importNews = async () => {
             'originalTitle': newsRaw['original_title'],
             'url': newsRaw['url'],
             'originalUrl': newsRaw['original_url'],
-            'imageUrl': newsRaw['image_url'],
+            'imageUrl': newsRaw['image'],
             'textSummary': newsRaw['summary'],
             'isFake': isFake,
             'fakeDetails': isFake ?
                 {
                     'fakeTitle': newsRaw['fake_details']['fake_title'],
                     'fakeSummary': newsRaw['fake_details']['fake_summary'],
+                    'fakeImageUrl': newsRaw['fake_details']['fake_image_url'],
                     'entitiesReplaced': newsRaw['fake_details']['entities_replaced'].map((entity) => ({
                         'originalEntityName': entity['original_entity_name'],
                         'replacedEntityName': entity['replaced_entity_name'],
@@ -43,8 +44,13 @@ const importNews = async () => {
         await createNews(news, false) ? total_new++ : total_duplicate++;
     }
 
+    let x = 0;
     for (const news of fake_news) {
-        await createNews(news, true) ? total_new++ : total_duplicate++;
+        if (x % 2 == 0)
+            await createNews(news, true) ? total_new++ : total_duplicate++;
+        else 
+            await createNews(news, false) ? total_new++ : total_duplicate++
+        x++;
     }
 
     return {
