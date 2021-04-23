@@ -1,6 +1,6 @@
-import React, { useState, useMemo} from 'react';
+import React, { useState, useMemo, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
-
+import axios from 'axios';
 import TinderCard from 'react-tinder-card';
 import './Game.css';
 import img from '../assets/news-img.jpeg';
@@ -140,25 +140,48 @@ const db = [
 ]
 
 const alreadyRemoved = []
-let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
+let cardsState = [] // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
 
 
 function Game() {
-  const [activeNews, setActiveNews] = useState(db)
-  const [nrNews, setNrNews] = useState(db.length)
+  const [activeNews, setActiveNews] = useState([])
   const [points, setPoints] = useState(0)
   const [playing, setPlaying] = useState(true)
   const [maxPointsMsg, setMaxPointsMsg] = useState("")
-
-  let childRefs = useMemo(() => Array(nrNews).fill(0).map(i => React.createRef()), [nrNews])
+  const [loading, setLoading] = useState(false)
 
   const history = useHistory();
 
+  useEffect(() => {
+    db_request();
+  }, [])
+
+  const db_request = () => {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/news`, {
+      count_real: 10,
+      count_fake: 10,
+      exclude_news_with_ids: alreadyRemoved
+    })
+    .then(function (response) {
+
+      let newNews = response.data;
+      newNews = newNews.map(obj => ({ ...obj, childRef: React.createRef() }));
+
+      setActiveNews(oldActiveNews => [ ...newNews, ...oldActiveNews])
+      setLoading(false);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+  }
+
+
   const swiped = (dir, news) => {
 
-    alreadyRemoved.push(news.id)
+    alreadyRemoved.push(news._id)
 
-    if ((dir === 'left' && !news.real) || (dir === 'right' && news.real)) {
+    if ((dir === 'left' && !news.real) || (dir === 'right' && news.real) || true) {
       setPoints(prevPoints => prevPoints + 1);
     }
     else {
@@ -176,25 +199,24 @@ function Game() {
   }
 
   const outOfFrame = (id) => {
-    charactersState = charactersState.filter(news => news.id !== id)
 
-    if (charactersState.length < alreadyRemoved.length + 6) {
-      setActiveNews([ ...scnd_db, ...charactersState])
-      setNrNews(charactersState.length + scnd_db.length)
+    if (activeNews.length < alreadyRemoved.length + 6) {
+      db_request();
     }
-    else
-      setActiveNews(charactersState)
+    else 
+      setActiveNews(oldNews => oldNews.filter(news => news._id  !== id))
   }
 
   const swipe = (dir, real) => {
-    const cardsLeft = activeNews.filter(news => !alreadyRemoved.includes(news.id))
-    if (cardsLeft.length) {
-      const toBeRemoved = cardsLeft[cardsLeft.length - 1].id // Find the card object to be removed
-      const index = activeNews.map(news => news.id).indexOf(toBeRemoved) // Find the index of which to make the reference to
+    const cardsLeft = activeNews.filter(news => !alreadyRemoved.includes(news._id))
 
-      if (real == cardsLeft[cardsLeft.length - 1].real) {
+    if (cardsLeft.length) {
+      const toBeRemoved = cardsLeft[cardsLeft.length - 1]._id // Find the card object to be removed
+      // const index = activeNews.map(news => news._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
+
+      if (real == cardsLeft[cardsLeft.length - 1].real || true) {
         alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-        childRefs[index].current.swipe(dir) // Swipe the card!
+        cardsLeft[cardsLeft.length - 1].childRef.current.swipe(dir) // Swipe the card!
       }
       else {
         let maxPoints = parseInt(localStorage.getItem('record-fake'));
@@ -211,17 +233,24 @@ function Game() {
     }
   }
 
+  if (loading)
+  {
+    return (<>Hello world</>);
+  }
+
+  else{
+
   return (
     <div>
       <div className={'cardContainer ' +  (!playing ? " flipped" : "")}>
         <div className="front">
           <div className='swipe card card-shadow p-2'/>
           {playing ? activeNews.map((news, index) =>
-            <TinderCard ref={childRefs[index]} className='swipe' preventSwipe={['up', 'down']} key={news.id} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame(news.id)}>
+            <TinderCard ref={news.childRef} className='swipe' preventSwipe={['up', 'down']} key={index} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame(news._id)}>
               <div className='card p-2'>
-                <img className="game-img" src={img} />
+                {/* <img className="game-img" src={img} /> */}
                 <h4 className="my-4">{news.title}</h4>
-                <p className="text-justify px-2">{news.text}</p>
+                <p className="text-justify px-2">{news.textSummary}</p>
               </div>
             </TinderCard>
             )
@@ -253,6 +282,7 @@ function Game() {
       }
     </div>
   )
+  }
   }
 
 export default Game;
