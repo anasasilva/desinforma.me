@@ -38,7 +38,7 @@
 }
 
 
-/* .buttons {
+.buttons {
   margin: 20px;
   display: flex;
 }
@@ -56,7 +56,7 @@
   font-weight: bolder;
   width: 160px;
   box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
-} */
+}
 
 .buttons button:hover {
   transform: scale(1.05);
@@ -151,7 +151,7 @@ a {
 .stamp[data-type="genuine"]:after {
     color: green;
     border-color: green;
-    content: 'Notícia Genuina';
+    content: 'Notícia Verídica';
 }
 
 

@@ -60,7 +60,7 @@ function Landing() {
                         numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
                         optio, eaque rerum!  
                     </p>
-                    <div className="row buttons justify-content-center mt-md-0 mt-5 row">
+                    <div className="row  justify-content-center mt-md-0 mt-5 row">
                         <button type="button" className="btn btn-primary col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold" 
                             onClick={() => history.push("/game")}>Jogar</button>
                         <button type="button" className="btn btn-success col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold"
@@ -69,7 +69,7 @@ function Landing() {
                 </div>
         
                 
-                <div className="col-xl-6 col-12 mx-auto d-none d-xl-flex cardContainer hover-toggle">
+                <div className="col-xl-6 col-12 mx-auto d-none d-xl-flex cardContainer  hover-toggle">
                     <TinderCard preventSwipe={['up', 'down', 'left', 'right']}
                          className="no-select" style={{zIndex: 1}}>
 

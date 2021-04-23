@@ -1,13 +1,15 @@
-import React, { useState, useMemo, useEffect} from 'react';
+import React, { useState, useCallback, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
+
 import TinderCard from 'react-tinder-card';
+import axios from 'axios';
 import './Game.css';
-import img from '../assets/news-img.jpeg';
 import EndGame from '../components/EndGame';
+import CardContent from '../components/CardContent';
 
 
 const alreadyRemoved = []
+const debug = false;
 
 function Game() {
   const [activeNews, setActiveNews] = useState([])
@@ -30,8 +32,6 @@ function Game() {
 
     if (previousGameNews)
       excludeIds = [...excludeIds, ...previousGameNews]
-
-    console.log(previousGameNews);
 
     axios.post(`${process.env.REACT_APP_API_URL}/api/news`, {
       count_real: 10,
@@ -73,16 +73,16 @@ function Game() {
 
   }
 
-  const swiped = (dir, news) => {
+  const swiped = useCallback((dir, news) => {
 
     if (!alreadyRemoved.includes(news._id))
       alreadyRemoved.push(news._id)
 
     // left = fake news; right = true news
-    if ((dir === 'left' && !news.isFake) || (dir === 'right' && news.isFake)) {
+    if (((dir === 'left' && !news.isFake) || (dir === 'right' && news.isFake)) && !debug) {
       showEndGame();
     }
-  }
+  });
 
   const outOfFrame = () => {
 
@@ -97,7 +97,7 @@ function Game() {
     const index = activeNews.map(news => news._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
 
     if (cardsLeft.length) {
-      if (isFake != cardsLeft[cardsLeft.length - 1].isFake) {
+      if (isFake != cardsLeft[cardsLeft.length - 1].isFake && !debug) {
         showEndGame();
       }
       else if (!alreadyRemoved.includes(toBeRemoved)){
@@ -125,11 +125,7 @@ function Game() {
               {
                 return (
                   <TinderCard ref={news.childRef} className='swipe' preventSwipe={['up', 'down']} key={index} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame()}>
-                    <div className='card p-2'>
-                      {/* <img className="game-img" src={img} /> */}
-                      <h4 className="my-4">{news.title}</h4>
-                      <p className="text-justify px-2">{news.textSummary}</p>
-                    </div>
+                    <CardContent news={news} />
                   </TinderCard>
                 )
               }
