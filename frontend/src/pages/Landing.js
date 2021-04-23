@@ -36,7 +36,7 @@ function Landing() {
             </nav>
             
             <div className="h-100 row align-items-center">
-                <div className="col-lg-6 col-12 mr-xl-5">
+                <div className="col-lg-6 col-12 w-100 m-0"> {/* mr-xl-5 em vez de w-100 m-0 */}
                     <h1 className="my-3 d-none d-lg-block text-lg-left" style={{fontSize: "4rem"}}>
                         <span className="font-weight-light">Des</span>
                         <strong className="text-success">informa</strong>.
@@ -68,7 +68,7 @@ function Landing() {
                             <img className="hover-hide" src={mrs} />
                             <img className="hover-show" src={cr7} />
                             <h5 className="text-left my-4 px-2">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO"/>? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
-                            <p className="text-justify px-2">
+                            <p className="text-justify px-2 ">
                                 Com a Juventus a protagonizar época aquém das expectativas, Andrea Agnelli, presidente do clube de Turim, veio a terreiro garantir que 
                                 nunca se arrependeu da aposta na contratação de <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo"/> ao Real Madrid, no verão de 2018, 
                                 por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo"/>. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em 
@@ -100,7 +100,7 @@ function Landing() {
             </div>*/}
             <nav className="navbar fixed-bottom transparent navbar-light">
                 <small className="font-weight-light mx-auto mb-0">
-                    Em colaborção com o <a href="https://arquivo.pt/" className="d-inline" target="_blank">Arquivo.pt</a>. <br className="d-md-none"/> Made with <FontAwesomeIcon icon={faHeart} color="red"/> by <a href="https://github.com/anasasilva" className="d-inline" target="_blanck">Ana</a>
+                    Em colaboração com o <a href="https://arquivo.pt/" className="d-inline" target="_blank">Arquivo.pt</a>. <br className="d-md-none"/> Made with <FontAwesomeIcon icon={faHeart} color="red"/> by <a href="https://github.com/anasasilva" className="d-inline" target="_blanck">Ana</a>
                     , <a href="https://github.com/Erroler" className="d-inline" target="_blank">Fábio</a>
                     , and <a href="https://github.com/RMoura98" className="d-inline" target="_blank">Ricardo</a>.
                 </small>
