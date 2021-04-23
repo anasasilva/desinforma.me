@@ -1,4 +1,4 @@
-import React, { useState, useMemo} from 'react';
+import React, { useState, useMemo, useEffect} from 'react';
 import { useHistory, Link } from "react-router-dom";
 
 import logo_arquivo from "../assets/arquivo.png";
@@ -13,22 +13,24 @@ import ChangedEntity from '../components/ChangedEntity';
 
 function Landing() {
     const history = useHistory();
+    const showFakeStamp = () => document.querySelector('.stamp[data-type="fake"]').classList.add('ready');
+    useEffect(() => setTimeout(showFakeStamp, 1000))
     
     return (
         <div className="container d-block my-3">
-            <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <nav className="navbar navbar-expand-md navbar-light bg-light">
 
                 <Link to="/" className="navbar-brand">
                     <img src={logo} width="30" height="30" className="d-inline-block align-top" alt={"logo"}/> 
-                    <span class="ml-3">Desinforma-me</span>
+                    <span className="ml-3">Desinforma-me</span>
                 </Link>
             
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
                             <Link to="/howtoplay" className="mr-3 nav-link">Instruções</Link>
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to="/about" className="nav-link">Sobre</Link>
                         </li>
                     </ul>
@@ -74,8 +76,8 @@ function Landing() {
                                 por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo"/>. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em 
                                 entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
                             </p>
-                            <div className="hover-hide border border-5  border-danger text-danger font-weight-bolder w-50 mx-auto p-2 position-absolute stamp">Notícia Falsa</div>
-                            <div className="hover-show border border-5 border-success text-success font-weight-bolder w-50 mx-auto p-2 position-absolute stamp">Notícia Verdadeira</div>
+                            <div className="hover-hide stamp" data-type="fake"/>
+                            <div className="hover-show ready stamp" data-type="genuine"/>
                             <div className="div-bottom w-100">
                                 <small className="justify-content-center text-bottom">Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
                             </div>

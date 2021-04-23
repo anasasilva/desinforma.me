@@ -92,26 +92,19 @@ a {
 .hover-toggle:hover .hover-hide,
 .hover-toggle .hover-show {
     display: none;
-    transition: opacity 5s ease-out;
-    transition-delay: 5s;
-    -webkit-transition: 5s;
-    opacity: 0;
 }
 
 
 .hover-toggle .hover-hide,
 .hover-toggle:hover .hover-show {
     display: inline-block;
-    opacity: 1;
-    -webkit-transition: 5s;
-    transition: opacity 5s ease-out;
 }
 
 .border-5 {
     border-width:5px !important;
 }
 
-.stamp {
+/* .stamp {
     right: -55px;   
     font-size: x-large;
     transform: rotate(30deg);
@@ -119,7 +112,48 @@ a {
     -moz-transform: rotate(30deg);
     -ms-transform: rotate(30deg);
     -o-transform: rotate(30deg);
+} */
+
+
+.stamp:after {
+    border-radius: .3em;
+    font-size: 50px;
+    border: solid 0.1em;
+    font-weight: bold;
+    line-height: 1;
+    opacity: 0;
+    position: absolute;
+    padding: .1em .5em;
+    top: 0%;
+    /* left: 50%; */
+    text-transform: uppercase;
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transform: rotate(-2deg) scale(5);
+    transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    /* z-index: -1; */
+    pointer-events: none;
 }
+
+.stamp.ready:after {
+    opacity: .75;
+    transform: rotate(35deg) scale(1);
+}
+
+.stamp[data-type="fake"]:after {    
+    color: red;
+    border-color: red;
+    content: 'Notícia Falsa';
+}
+
+.stamp[data-type="genuine"]:after {
+    color: green;
+    border-color: green;
+    content: 'Notícia Genuina';
+}
+
+
+  
 
 .div-bottom {
     position: absolute;
