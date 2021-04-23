@@ -14,10 +14,14 @@ import ChangedEntity from '../components/ChangedEntity';
 function Landing() {
     const history = useHistory();
     const showFakeStamp = () => document.querySelector('.stamp[data-type="fake"]').classList.add('ready');
-    useEffect(() => setTimeout(showFakeStamp, 1000))
+    const shakeCard = () => document.querySelector('.cardContainer > div').classList.add('shake-image');
+    useEffect(() => {
+        setTimeout(showFakeStamp, 1000);
+        setTimeout(shakeCard, 3000);
+    });
     
     return (
-        <div className="container d-block my-3">
+        <div className="container d-block my-3" style={{paddingBottom: "72px"}}>
             <nav className="navbar navbar-expand-md navbar-light bg-light">
 
                 <Link to="/" className="navbar-brand">
@@ -37,14 +41,14 @@ function Landing() {
                 </div>
             </nav>
             
-            <div className="h-100 row align-items-center">
-                <div className="col-lg-6 col-12 w-100 m-0"> {/* mr-xl-5 em vez de w-100 m-0 */}
-                    <h1 className="my-3 d-none d-lg-block text-lg-left" style={{fontSize: "4rem"}}>
+            <div className="h-100 row align-items-center mx-auto">
+                <div className="col-xl-6 col-12 w-100 m-0"> {/* mr-xl-5 em vez de w-100 m-0 */}
+                    <h1 className="my-3 d-none d-md-block text-md-left" style={{fontSize: "4rem"}}>
                         <span className="font-weight-light">Des</span>
                         <strong className="text-success">informa</strong>.
                         <span className="">me</span>
                     </h1>
-                    <h1 className="my-3 d-lg-none text-lg-left" style={{fontSize: "3rem"}}>
+                    <h1 className="my-3 d-md-none text-md-left" style={{ fontSize: "9vw"}}>
                         <span className="font-weight-light">Des</span>
                         <strong className="text-success">informa</strong>.
                         <span className="">me</span>
@@ -56,17 +60,23 @@ function Landing() {
                         numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
                         optio, eaque rerum!  
                     </p>
-                    <div className="row buttons justify-content-center mt-md-0 mt-5">
-                        <button className="col-md-5 col-lg my-3 w-100" onClick={() => history.push("/game")}>Jogar</button>
-                        <button className="col-md-5 col-lg my-3 w-100" onClick={() => history.push("/game")}>Pensa rápido</button>
+                    <div className="row buttons justify-content-center mt-md-0 mt-5 row">
+                        <button type="button" className="btn btn-primary col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold" 
+                            onClick={() => history.push("/game")}>Jogar</button>
+                        <button type="button" className="btn btn-success col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold"
+                            onClick={() => history.push("/game")}>Pensa rápido</button>
                     </div>
                 </div>
-
+        
                 
-                <div className="col-md-6 col-12 mx-auto d-none d-lg-flex cardContainer hover-toggle">
+                <div className="col-xl-6 col-12 mx-auto d-none d-xl-flex cardContainer hover-toggle">
                     <TinderCard preventSwipe={['up', 'down', 'left', 'right']}
-                        flickOnSwipe="false">
-                        <div className='card p-2 h-100'>
+                         className="no-select" style={{zIndex: 1}}>
+
+                            <div className="hover-hide stamp" data-type="fake"   style={{zIndex: 1}}/>
+                            <div className="hover-show ready stamp" data-type="genuine"   style={{zIndex: 1}}/>
+                        
+                        {/* <div className='card p-2 h-100'  style={{zIndex: 1}}>
                             <img className="hover-hide" src={mrs} />
                             <img className="hover-show" src={cr7} />
                             <h5 className="text-left my-4 px-2">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO"/>? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
@@ -78,8 +88,22 @@ function Landing() {
                             </p>
                             <div className="hover-hide stamp" data-type="fake"/>
                             <div className="hover-show ready stamp" data-type="genuine"/>
-                            <div className="div-bottom w-100">
-                                <small className="justify-content-center text-bottom">Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
+                            <div className="div-bottom w-100" style={{zIndex: 100}}>
+                                <small className="justify-content-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
+                            </div>
+                        </div> */}
+                        <div className="card p-0 h-100 overflow-hidden"  style={{zIndex: -1}}>
+                            <img className="hover-hide" src={mrs} />
+                            <img className="hover-show" src={cr7} />
+                            <h5 className="text-left my-4 px-4">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO"/>? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
+                            <p className="text-justify px-4 ">
+                                Com a Juventus a protagonizar época aquém das expectativas, Andrea Agnelli, presidente do clube de Turim, veio a terreiro garantir que 
+                                nunca se arrependeu da aposta na contratação de <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo"/> ao Real Madrid, no verão de 2018, 
+                                por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo"/>. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em 
+                                entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
+                            </p>
+                            <div className="div-bottom w-100" style={{zIndex: 100}}>
+                                <small className="justify-content-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
                             </div>
                         </div>
                     </TinderCard>
