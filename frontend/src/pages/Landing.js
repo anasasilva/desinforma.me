@@ -9,37 +9,21 @@ import TinderCard from 'react-tinder-card';
 import mrs from '../assets/mrs.jpg';
 import cr7 from '../assets/cr7.jpg';
 import ChangedEntity from '../components/ChangedEntity';
+import Navbar from '../components/Navbar';
 
 
 function Landing() {
     const history = useHistory();
     const showFakeStamp = () => document.querySelector('.stamp[data-type="fake"]').classList.add('ready');
-    const shakeCard = () => document.querySelector('.cardContainer > div').classList.add('shake-image');
+    const shakeCard = () => document.querySelector('#home-card > div').classList.add('shake-image');
     useEffect(() => {
         setTimeout(showFakeStamp, 1000);
         setTimeout(shakeCard, 3000);
     });
     
     return (
-        <div className="container d-block my-3" style={{paddingBottom: "72px"}}>
-            <nav className="navbar navbar-expand-md navbar-light bg-light">
-
-                <Link to="/" className="navbar-brand">
-                    <img src={logo} width="30" height="30" className="d-inline-block align-top" alt={"logo"}/> 
-                    <span className="ml-3">Desinforma-me</span>
-                </Link>
-            
-                <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <Link to="/howtoplay" className="mr-3 nav-link">Instruções</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/about" className="nav-link">Sobre</Link>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+        <div className="container d-block my-3 center" style={{paddingBottom: "72px"}}>
+            <Navbar />
             
             <div className="h-100 row align-items-center mx-auto">
                 <div className="col-xl-6 col-12 w-100 m-0"> {/* mr-xl-5 em vez de w-100 m-0 */}
@@ -69,7 +53,7 @@ function Landing() {
                 </div>
         
                 
-                <div className="col-xl-6 col-12 mx-auto d-none d-xl-flex cardContainer  hover-toggle">
+                <div id="home-card" className="col-xl-6 col-12 mx-auto d-none d-xl-flex cardContainer  hover-toggle">
                     <TinderCard preventSwipe={['up', 'down', 'left', 'right']}
                          className="no-select" style={{zIndex: 1}}>
 

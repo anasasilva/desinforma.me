@@ -11,7 +11,7 @@
     /* background: linear-gradient(#183F6E, #e7c091); */
   }
   
-  #root > div {
+  .center {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,10 +41,6 @@
   
   h2 {
     color: #fff;
-  }
-  
-  .swipe {
-    position: absolute;
   }
   
   .cardContainer {
@@ -141,4 +137,19 @@
 
   .game-img {
     opacity: 0.3;
+  }
+
+  .preview {
+    height: 85vh;
+    overflow-y: scroll;
+  }
+
+  .cardContainer.card-preview {
+    height: auto !important;
+    width: auto;
+  }
+
+  .card-preview .card {
+    height: auto !important;
+    width: 10em !important;
   }
