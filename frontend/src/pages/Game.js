@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Carousel from 'react-bootstrap/Carousel'
 import { useHistory } from "react-router-dom";
 
 import TinderCard from 'react-tinder-card';
 import axios from 'axios';
-import './Game.css';
+import '../styling/Game.css';
 import EndGame from '../components/EndGame';
 import CardContent from '../components/CardContent';
-import Navbar from '../components/Navbar';
 
 
 const alreadyRemoved = []
@@ -77,7 +75,7 @@ function Game() {
 
   const swiped = (dir, news) => {
 
-    if (!alreadyRemoved.includes(news._id)){
+    if (!alreadyRemoved.includes(news._id)) {
       alreadyRemoved.push(news._id)
     }
 
@@ -120,10 +118,6 @@ function Game() {
 
     return (
       <div className="container d-block my-3">
-
-        <div className="d-none d-md-block" >
-          <Navbar />
-        </div>
         <div className="pt-md-4">
           <div className=" center">
             <div className={'cardContainer ' + (!playing ? " flipped" : "")}>
