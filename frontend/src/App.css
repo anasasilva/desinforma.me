@@ -162,7 +162,7 @@ a {
 
 .shake-image {
     /* Start the shake animation and make the animation last for 0.5 seconds */
-    animation: shake-animation 5s;
+    animation: shake-animation 10s;
   
     /* When the animation is finished, start again */
     animation-iteration-count: infinite;
@@ -170,8 +170,9 @@ a {
   
 @keyframes shake-animation {
     0% { transform:translate(0,0) rotate(0deg);}
-   25% { transform:translate(5px,0) rotate(-1deg);}
-   50% { transform:translate(0,0) rotate(0deg); }
-   75% { transform:translate(5px,0) rotate(1deg);}
+   2% { transform:translate(5px,0) rotate(-1deg);}
+   4% { transform:translate(0,0) rotate(0deg); }
+   6% { transform:translate(5px,0) rotate(1deg);}
+   8% { transform:translate(0,0) rotate(0deg);}
    100% { transform:translate(0,0) rotate(0deg);}
 }
