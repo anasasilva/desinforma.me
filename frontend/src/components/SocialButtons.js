@@ -17,10 +17,9 @@ import {
 function SocialButtons(props) {
 
     const { 
-        url = "www.desinforma.me", 
+        url = "https://www.desinforma.me/", 
         text="Olhem o meu novo score!", 
         iconSize=32 
-
     } = props;
 
 
