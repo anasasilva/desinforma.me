@@ -10,7 +10,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider resetCSS={false}>
       <App />
     </ChakraProvider>
   </React.StrictMode>,

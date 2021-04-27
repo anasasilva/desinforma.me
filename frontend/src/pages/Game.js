@@ -2,63 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 import TinderCard from 'react-tinder-card';
-import axios from 'axios';
 import '../styling/Game.css';
 import EndGame from '../components/EndGame';
 import CardContent from '../components/CardContent';
+import NewsService from '../services/NewsService';
 
 
 const alreadyRemoved = []
 const debug = false;
 
-function Game() {
-  const [activeNews, setActiveNews] = useState([])
-  const [playing, setPlaying] = useState(true)
-  const [maxPointsMsg, setMaxPointsMsg] = useState("")
-  const [loading, setLoading] = useState(true)
-
-  const previousGameNews = JSON.parse(localStorage.getItem("previous-fake"));
-
+const Game = () => {
+  const [activeNews, setActiveNews] = useState([]);
+  const [playing, setPlaying] = useState(true);
+  const [maxPointsMsg, setMaxPointsMsg] = useState("");
   const history = useHistory();
 
-  useEffect(() => {
-    db_request();
-  }, [])
-
-  const db_request = () => {
-
-    let excludeIds = activeNews.map(news => news._id);
-
-    if (previousGameNews)
-      excludeIds = [...excludeIds, ...previousGameNews]
-
-    axios.post(`${process.env.REACT_APP_API_URL}/api/news`, {
-      count_real: 5,
-      count_fake: 5,
-      exclude_news_with_ids: excludeIds
-    })
-      .then(function (response) {
-
-        let newNews = response.data;
-        newNews = newNews.map(obj => ({ ...obj, childRef: React.createRef() }));
-
-        setActiveNews(oldActiveNews => [...newNews, ...oldActiveNews])
-        setLoading(false);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
+  const fetchNews = async () => {
+    const news = await NewsService.fetchNews();
+    const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
+    setActiveNews([...activeNews, ...newsWithChildRef]);
+    NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
   }
 
   const showEndGame = () => {
 
     const points = alreadyRemoved.length;
-
-    if (previousGameNews)
-      localStorage.setItem("previous-fake", JSON.stringify([...activeNews.map(news => news._id), ...previousGameNews]))
-    else
-      localStorage.setItem("previous-fake", JSON.stringify(activeNews.map(news => news._id)))
 
     let maxPoints = parseInt(localStorage.getItem('record-fake'));
 
@@ -87,7 +55,7 @@ function Game() {
 
   const outOfFrame = () => {
     if (activeNews.length < alreadyRemoved.length + 6) {
-      db_request();
+      fetchNews();
     }
   }
 
@@ -107,10 +75,13 @@ function Game() {
     }
   }
 
-  if (loading) {
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
+  if (activeNews.length === 0) {
     return (
-      <div>Hello world!</div>
+      <div>Loading!</div>
     );
   }
 

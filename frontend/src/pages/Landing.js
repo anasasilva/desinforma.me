@@ -3,7 +3,7 @@ import HomeCard from '../components/landing/HomeCard';
 import HeroText from '../components/landing/HeroText';
 
 
-function Landing() {
+const Landing = () => {
 
     return (
         <div className="container d-block my-3 center" style={{ paddingBottom: "72px" }}>

@@ -25,18 +25,22 @@ const MenuIcon = () => ( // Icone de abrir a navbar em telemovel (hamburguer).
     </svg>
 );
 
-const NavContents = ({ show = true }) => (
-    <Flex
-        align="center"
-        justify={['center', 'space-between', 'flex-end', 'flex-end']}
-        direction={['column', 'row', 'row', 'row']}
-        pt={[4, 4, 2, 2]}
-        display={show ? "flex" : "none"}
-    >
-        <NavbarItem to="/como-jogar">Como Jogar</NavbarItem>
-        <NavbarItem to="/sobre">Sobre</NavbarItem>
-        <NavbarItem to="/novo-jogo" isLast>
-            <Button
+const NavContents = ({ show = true }) => {
+
+    const primaryBtnClass = useBreakpointValue({ base: "btn-dark", md: "btn-primary" });
+
+    return (
+        <Flex
+            align="center"
+            justify={['center', 'space-between', 'flex-end', 'flex-end']}
+            direction={['column', 'row', 'row', 'row']}
+            pt={[4, 4, 2, 2]}
+            display={show ? "flex" : "none"}
+        >
+            <NavbarItem to="/como-jogar">Como Jogar</NavbarItem>
+            <NavbarItem to="/sobre">Sobre</NavbarItem>
+            <NavbarItem to="/novo-jogo" isLast>
+                {/* <Button
                 size="sm"
                 rounded="md"
                 color={['blue.600', 'blue.600', 'white', 'white']}
@@ -46,10 +50,12 @@ const NavContents = ({ show = true }) => (
                 }}
             >
                 Novo Jogo
-                    </Button>
-        </NavbarItem>
-    </Flex>
-)
+                    </Button> */}
+                <ReactLink className={"btn " + primaryBtnClass} to={'/jogo'}>Novo Jogo</ReactLink>
+            </NavbarItem>
+        </Flex>
+    )
+}
 
 const NavbarItem = ({ children, isLast, to = '/' }) => {
 
@@ -64,6 +70,7 @@ const NavbarItem = ({ children, isLast, to = '/' }) => {
             <Text
                 display="block"
                 fontSize="lg"
+                mb={1}
             >
                 <Link as={ReactLink} to={to} textDecoration="none !important" _focus={{ boxShadow: "none !important" }}>{children}</Link>
             </Text>
@@ -76,7 +83,7 @@ const Navbar = props => {
     const [show, setShow] = useState(false);
     const toggleMenu = () => setShow(!show);
 
-    const displayCollapse = useBreakpointValue({ base: "block", md: "none" })
+    const displayCollapse = useBreakpointValue({ base: "block", md: "none" });
 
     return (
         <Flex
