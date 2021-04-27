@@ -3,6 +3,7 @@ import TinderCard from "react-tinder-card";
 import mrs from '../../assets/mrs.jpg';
 import cr7 from '../../assets/cr7.jpg';
 import ChangedEntity from '../ChangedEntity';
+import catSleeping from '../../assets/cat-sleeping.gif'
 
 const HomeCard = () => {
 
@@ -17,15 +18,15 @@ const HomeCard = () => {
     });
 
     const onCardLeftScreen = (myIdentifier) => {
-        setTimeout(() => {
-            let homeCard = document.querySelector('#home-card > div');
-            homeCard.style.transform="";
-            homeCard.style.display="";
-        }, 500);
+        let homeCard = document.querySelector('#home-card > div');
+        homeCard.style.display="";
+        homeCard.style.transform="";
     }
 
     return (
         <div id="home-card" className="col-xl-4 offset-0 offset-xl-1 col-12 d-none d-xl-flex cardContainer hover-toggle p-0">
+            {/* https://www.pinterest.com/pin/740208888726895103/ */}
+            <img className="img-fluid position-absolute w-50 fixed-bottom" src={catSleeping}  style={{ zIndex: -1, left: "25%"}} />
             <TinderCard flickOnSwipe={true} onCardLeftScreen={onCardLeftScreen} ref={cardRef}
                 className="no-select" style={{ zIndex: 1 }}>
 
@@ -34,8 +35,8 @@ const HomeCard = () => {
                 <div  className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
                     <img className="hover-hide img-fluid" src={mrs} />
                     <img className="hover-show img-fluid" src={cr7} />
-                    <h5 className="text-left my-4 px-4">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO" />? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
-                    <p className="text-justify px-4 ">
+                    <h5 className="text-left my-4 px-3 small font-weight-bold">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO" />? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
+                    <p className="text-justify px-3 small">
                         Com a Juventus a protagonizar época aquém das expectativas, Andrea Agnelli, presidente do clube de Turim, veio a terreiro garantir que
                                 nunca se arrependeu da aposta na contratação de <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" /> ao Real Madrid, no verão de 2018,
                                 por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" />. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em
