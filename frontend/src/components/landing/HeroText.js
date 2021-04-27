@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const HeroText = () => {
     return (
         <div className="col-xl-7 col-12 w-100 m-0">
-            <h1 className="my-3 text-md-left" style={{ fontSize: "3.6rem" }}>
+            <h1 className="my-3 text-md-left" style={{ fontSize: "3.6rem", textShadow: '1px 1px 0 #cccccc70, 2px 2px 0 #ccc, 3px 3px 0 #4444442e, 2px 2px 0 #44444452, 2px 2px 0 #4444441f' }}>
                 <span className="blue-secondary">Des</span>
                 <span className="text-primary">informa</span>
                 <span className="blue-secondary">.me</span>

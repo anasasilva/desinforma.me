@@ -17,12 +17,12 @@ const HomeCard = () => {
 
     return (
         <div id="home-card" className="col-xl-4 offset-0 offset-xl-1 col-12 d-none d-xl-flex cardContainer hover-toggle p-0">
-            <TinderCard preventSwipe={['up', 'down', 'left', 'right']}
+            <TinderCard flickOnSwipe={true}
                 className="no-select" style={{ zIndex: 1 }}>
 
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
                 <div className="hover-show ready stamp" data-type="genuine" style={{ zIndex: 1 }} />
-                <div className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1 }}>
+                <div className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
                     <img className="hover-hide img-fluid" src={mrs} />
                     <img className="hover-show img-fluid" src={cr7} />
                     <h5 className="text-left my-4 px-4">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO" />? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
