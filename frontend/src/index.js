@@ -3,16 +3,11 @@ import ReactDOM from 'react-dom';
 import './styling/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import {
-  ChakraProvider
-} from '@chakra-ui/react';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider resetCSS={false}>
       <App />
-    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -84,6 +84,19 @@ a {
     background-color: transparent!important;
 }
 
+@media(max-width: 768px) {
+    .top-navbar.navbar-light {
+        background-color: #3182CE !important;
+    }
+    .navbar-logo {
+        height: 60px;
+    }
+}
+
+.navbar-logo {
+    height: 100px;
+}
+
 
 .text-error-under {
     text-decoration: underline wavy red;

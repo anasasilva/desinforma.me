@@ -16,10 +16,7 @@ const HeroText = () => {
             </h1>
 
             <p className="text-justify font-weight-light ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                optio, eaque rerum!
+            Vem descobrir se tens o que é preciso para não ser enganado por Fake News! <br/> Mete à prova o teu conhecimento!
                     </p>
             <div className="row justify-content-center mt-md-0 mt-5 row">
                 <Link to={'/jogo'} className="btn btn-primary col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
