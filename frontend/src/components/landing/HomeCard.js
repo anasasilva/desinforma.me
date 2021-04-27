@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import TinderCard from "react-tinder-card";
 import mrs from '../../assets/mrs.jpg';
 import cr7 from '../../assets/cr7.jpg';
@@ -7,6 +7,7 @@ import ChangedEntity from '../ChangedEntity';
 const HomeCard = () => {
 
     const [showFakeStamp, setShowFakeStamp] = useState(false)
+    const cardRef = useRef();
 
     //const showFakeStamp = () => document.querySelector('.stamp[data-type="fake"]').classList.add('ready');
     //const shakeCard = () => document.querySelector('#home-card > div').classList.add('shake-image');
@@ -15,14 +16,22 @@ const HomeCard = () => {
         //setTimeout(shakeCard, 3000);
     });
 
+    const onCardLeftScreen = (myIdentifier) => {
+        setTimeout(() => {
+            let homeCard = document.querySelector('#home-card > div');
+            homeCard.style.transform="";
+            homeCard.style.display="";
+        }, 500);
+    }
+
     return (
         <div id="home-card" className="col-xl-4 offset-0 offset-xl-1 col-12 d-none d-xl-flex cardContainer hover-toggle p-0">
-            <TinderCard flickOnSwipe={true}
+            <TinderCard flickOnSwipe={true} onCardLeftScreen={onCardLeftScreen} ref={cardRef}
                 className="no-select" style={{ zIndex: 1 }}>
 
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
                 <div className="hover-show ready stamp" data-type="genuine" style={{ zIndex: 1 }} />
-                <div className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
+                <div  className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
                     <img className="hover-hide img-fluid" src={mrs} />
                     <img className="hover-show img-fluid" src={cr7} />
                     <h5 className="text-left my-4 px-4">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO" />? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
