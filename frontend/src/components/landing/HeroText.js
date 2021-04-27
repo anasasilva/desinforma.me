@@ -10,7 +10,7 @@ const HeroText = () => {
                 <span className="blue-secondary">.me</span>
             </h1>
             <p className="lead text-justify text-lg-left">
-                Todos os dias são milhares de notícias falsas espalham-se nas redes sociais como um virus. Achas que as consegues identificar? Mete à prova o teu conhecimento num jogo divertido!                    </p>
+                Todos os dias milhares de notícias falsas espalham-se nas redes sociais como um vírus. Achas que as consegues identificar? Mete à prova o teu conhecimento num jogo divertido!                    </p>
             <div className="d-inline flex-column flex-md-row mt-md-0 mt-5">
                 <Link to={'/jogo'} className="btn btn-primary col-md-5 col-lg mr-3 my-3 py-3 py-md-2 w-50">
                     Novo Jogo
