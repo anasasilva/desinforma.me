@@ -1,27 +1,22 @@
 import axios from 'axios';
 
 class NewsService {
-    static async fetchNews({ countReal = 5, countFake = 5, currentNewsIds = [] } = {}) {
+    static fetchNews({ countReal = 10, countFake = 10, currentNewsIds = [] } = {}) {
 
         const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
         let excludeIds = [...currentNewsIds, ...previousGameNewsIds];
 
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/news`, {
-                count_real: countReal,
-                count_fake: countFake,
-                exclude_news_with_ids: excludeIds
-            })
-            return response.data;
-        }
-        catch (err) {
-            console.error(err);
-            return [];
-        }
+        return axios.post(`${process.env.REACT_APP_API_URL}/api/news`, {
+            count_real: countReal,
+            count_fake: countFake,
+            exclude_news_with_ids: excludeIds
+        })
     }
 
     static async setNewsAsSeen(newsIds = []) {
-        localStorage.setItem("previously-seen", JSON.stringify(newsIds))
+        const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
+        const allIds = [...newsIds, ...previousGameNewsIds];
+        localStorage.setItem("previously-seen", JSON.stringify(allIds))
     }
 }
 

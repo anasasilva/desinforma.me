@@ -13,11 +13,17 @@ const Game = () => {
   const [activeNews, setActiveNews] = useState([]);
   const history = useHistory();
 
-  const fetchNews = async () => {
-    const news = await NewsService.fetchNews();
-    const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
-    setActiveNews([...activeNews, ...newsWithChildRef]);
-    NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
+  const fetchNews = () => {
+    NewsService.fetchNews()
+    .then((response) => {
+      const news = response.data;
+      const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
+      setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
+      NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   const gotoEndGame = () => {
@@ -84,26 +90,22 @@ const Game = () => {
 
     return (
       <div className="container container-game d-block my-3">
-        <div className="pt-md-4">
-          <div className=" center">
-            <div className='cardContainer'>
-              <div className="front">
-                <div className='card card-shadow p-2 position-absolute' />
-                {activeNews.map((news, index) => {
-                  if (!alreadyRemoved.includes(news._id)) {
-                    return (
-                      <TinderCard ref={news.childRef} className='position-absolute' preventSwipe={['up', 'down']} key={index} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame()}>
-                        <CardContent news={news} />
-                      </TinderCard>
-                    )
-                  }
-                })}
-              </div>
-            </div>
-            <div className='buttons d-none d-md-block'>
-              <button onClick={() => swipe('left', true)}>Falsa</button>
-              <button onClick={() => swipe('right', false)}>Verdadeira</button>
-            </div>
+        <div className=" center">
+          <div className='cardContainer mt-2'>
+              <div className='tinder-card card-shadow p-2 position-absolute' />
+              {activeNews.map((news, index) => {
+                if (!alreadyRemoved.includes(news._id)) {
+                  return (
+                    <TinderCard ref={news.childRef} className='position-absolute' preventSwipe={['up', 'down']} key={index} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame()}>
+                      <CardContent news={news} />
+                    </TinderCard>
+                  )
+                }
+              })}
+          </div>
+          <div className='buttons d-none d-md-block'>
+            <button onClick={() => swipe('left', true)}>Falsa</button>
+            <button onClick={() => swipe('right', false)}>Verdadeira</button>
           </div>
         </div>
       </div>

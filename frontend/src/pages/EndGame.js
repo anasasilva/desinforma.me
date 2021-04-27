@@ -1,9 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router";
-import EndGameCard from "../components/game/EndGameCard";
 
 const EndGame = (props) => {
-    console.log("here");
 
     const history = props.history;
 
@@ -25,8 +23,27 @@ const EndGame = (props) => {
         <div className="container container-game d-block my-3 pt-md-4">
             <div className=" center">
                 <div className='cardContainer'>
-                    <div className='card card-shadow p-2'>
-                        <EndGameCard points={points} maxPointsMsg={maxPointsMessage} />
+                    <div className='tinder-card card-shadow p-2 bg-error'>
+                        <h1 className="font-points mt-2">{points}</h1>
+                        <h3>{maxPointsMessage}</h3>
+                        <div>
+                            <h5 className="text-left">Notícias Verdadeiras</h5>
+                            <div className="news-box">
+                                <a
+                                    className="text-left white text-decoration-underline text-truncate"
+                                    href="https://www.publico.pt/2021/04/20/local/noticia/pj-fez-buscas-camara-lisboa-causa-processos-urbanisticos-1959288">
+                                    PJ faz buscas na Câmara de Lisboa por suspeitas de corrupção no Urbanismo
+                  </a>
+                            </div>
+                            <h5 className="text-left">Notícias Falsas</h5>
+                            <div className="news-box">
+                                <a
+                                    className="text-left white text-decoration-underline text-truncate"
+                                    href="https://www.publico.pt/2021/04/20/local/noticia/pj-fez-buscas-camara-lisboa-causa-processos-urbanisticos-1959288">
+                                    PJ faz buscas na Câmara de Lisboa por suspeitas de corrupção no Urbanismo
+                  </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='buttons d-none d-md-block'>
