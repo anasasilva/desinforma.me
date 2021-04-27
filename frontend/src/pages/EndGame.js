@@ -29,6 +29,10 @@ const EndGame = (props) => {
                         <EndGameCard points={points} maxPointsMsg={maxPointsMessage} />
                     </div>
                 </div>
+                <div className='buttons d-none d-md-block'>
+                    <button onClick={() => history.push('/')}>Voltar</button>
+                    <button onClick={() => history.push('/jogo')}>Novo Jogo</button>
+                </div>
             </div>
         </div>
     )
