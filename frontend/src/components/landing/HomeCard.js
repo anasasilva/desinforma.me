@@ -19,15 +19,22 @@ const HomeCard = () => {
 
     const onCardLeftScreen = (myIdentifier) => {
         let homeCard = document.querySelector('#home-card > div');
-        homeCard.style.display="";
-        homeCard.style.transform="";
+        setTimeout(() => {
+            homeCard.style.transform="scale(0)";
+            homeCard.style.transitionDuration = ".4s";
+            homeCard.style.display="";
+        }, 1400);
+        setTimeout(() => {
+            homeCard.style.transform="";
+        }, 1450);
+        
     }
 
     return (
         <div id="home-card" className="col-xl-4 offset-0 offset-xl-1 col-12 d-none d-xl-flex cardContainer hover-toggle p-0">
             {/* https://www.pinterest.com/pin/740208888726895103/ */}
             <img className="img-fluid position-absolute w-50 fixed-bottom" src={catSleeping}  style={{ zIndex: -1, left: "25%"}} />
-            <TinderCard flickOnSwipe={true} onCardLeftScreen={onCardLeftScreen} ref={cardRef}
+            <TinderCard  flickOnSwipe={true} onCardLeftScreen={onCardLeftScreen} ref={cardRef}
                 className="no-select" style={{ zIndex: 1 }}>
 
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
