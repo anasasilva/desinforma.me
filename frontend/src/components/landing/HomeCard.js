@@ -16,15 +16,15 @@ const HomeCard = () => {
     });
 
     return (
-        <div id="home-card" className="col-xl-6 col-12 mx-auto d-none d-xl-flex cardContainer  hover-toggle">
+        <div id="home-card" className="col-xl-4 offset-0 offset-xl-1 col-12 d-none d-xl-flex cardContainer hover-toggle p-0">
             <TinderCard preventSwipe={['up', 'down', 'left', 'right']}
                 className="no-select" style={{ zIndex: 1 }}>
 
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
                 <div className="hover-show ready stamp" data-type="genuine" style={{ zIndex: 1 }} />
                 <div className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1 }}>
-                    <img className="hover-hide" src={mrs} />
-                    <img className="hover-show" src={cr7} />
+                    <img className="hover-hide img-fluid" src={mrs} />
+                    <img className="hover-show img-fluid" src={cr7} />
                     <h5 className="text-left my-4 px-4">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO" />? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
                     <p className="text-justify px-4 ">
                         Com a Juventus a protagonizar época aquém das expectativas, Andrea Agnelli, presidente do clube de Turim, veio a terreiro garantir que
@@ -33,7 +33,7 @@ const HomeCard = () => {
                                 entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
                             </p>
                     <div className="div-bottom w-100" style={{ zIndex: 100 }}>
-                        <small className="justify-content-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
+                        <small className="d-block text-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
                     </div>
                 </div>
             </TinderCard>

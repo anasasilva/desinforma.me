@@ -37,7 +37,6 @@
   }
 }
 
-
 .buttons {
   margin: 20px;
   display: flex;
@@ -55,7 +54,7 @@
   margin: 0 10px;
   font-weight: bolder;
   width: 160px;
-  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
 }
 
 .buttons button:hover {
@@ -75,117 +74,145 @@
 }
 
 a {
-  display:block;
-  text-align:right;
+  display: block;
+  text-align: right;
 }
-
 
 .bg-light {
-    background-color: transparent!important;
-}
-
-@media(max-width: 768px) {
-    .top-navbar.navbar-light {
-        background-color: #3182CE !important;
-    }
-    .navbar-logo {
-        height: 60px;
-    }
+  background-color: transparent !important;
 }
 
 .navbar-logo {
-    height: 100px;
+  height: 100px;
 }
 
+@media (max-width: 768px) {
+  .top-navbar.navbar-light {
+    background-color: #3182ce !important;
+  }
+  .navbar-logo {
+    height: 60px !important;
+  }
+  .navbar-nav a {
+    color: white !important;
+  }
+  .navbar-nav .active-underline {
+    background-color: white !important;
+  }
+}
 
 .text-error-under {
-    text-decoration: underline wavy red;
-}
-  
-.hover-toggle:hover .hover-hide,
-.hover-toggle .hover-show {
-    display: none;
+  text-decoration: underline wavy #dc3434;
 }
 
+.hover-toggle:hover .hover-hide,
+.hover-toggle .hover-show {
+  display: none;
+}
 
 .hover-toggle .hover-hide,
 .hover-toggle:hover .hover-show {
-    display: inline-block;
+  display: inline-block;
 }
 
 .border-5 {
-    border-width:5px !important;
+  border-width: 5px !important;
 }
 
 .stamp:after {
-    border-radius: .3em;
-    font-size: 50px;
-    border: solid 0.1em;
-    font-weight: bold;
-    line-height: 1;
-    opacity: 0;
-    position: absolute;
-    padding: .1em .5em;
-    width: 75%;
-    top: 0%;
-    text-transform: uppercase;
-    opacity: 0;
-    transform-origin: 50% 50%;
-    transform: rotate(-2deg) scale(5);
-    transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    pointer-events: none;
+  border-radius: 0.3em;
+  font-size: 50px;
+  border: solid 0.1em;
+  font-weight: bold;
+  line-height: 1;
+  opacity: 0;
+  position: absolute;
+  padding: 0.1em 0.5em;
+  width: 75%;
+  top: 0%;
+  right: -30%;
+  text-transform: uppercase;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  transform: rotate(-2deg) scale(5);
+  transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  pointer-events: none;
 }
 
 .no-pointer-events {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .no-select {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .stamp.ready:after {
-    opacity: .75;
-    transform: rotate(35deg) scale(.8);
+  text-align: center;
+  opacity: 1;
+  transform: rotate(35deg) scale(0.8);
 }
 
-.stamp[data-type="fake"]:after {    
-    color: red;
-    border-color: red;
-    content: 'Notícia Falsa';
+.stamp[data-type="fake"]:after {
+  color: #dc3434;
+  border-color: #dc3434;
+  content: "Notícia Falsa";
 }
 
 .stamp[data-type="genuine"]:after {
-    color: green;
-    border-color: green;
-    content: 'Notícia Verídica';
+  color: #279841;
+  border-color: #279841;
+  content: "Notícia Verídica";
 }
 
-
 .div-bottom {
-    position: absolute;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .shake-image {
-    /* Start the shake animation and make the animation last for 0.5 seconds */
-    animation: shake-animation 10s;
-  
-    /* When the animation is finished, start again */
-    animation-iteration-count: infinite;
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake-animation 10s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
 }
-  
+
 @keyframes shake-animation {
-    0% { transform:translate(0,0) rotate(0deg);}
-   2% { transform:translate(5px,0) rotate(-1deg);}
-   4% { transform:translate(0,0) rotate(0deg); }
-   6% { transform:translate(5px,0) rotate(1deg);}
-   8% { transform:translate(0,0) rotate(0deg);}
-   100% { transform:translate(0,0) rotate(0deg);}
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  2% {
+    transform: translate(5px, 0) rotate(-1deg);
+  }
+  4% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  6% {
+    transform: translate(5px, 0) rotate(1deg);
+  }
+  8% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.text-primary {
+  color: #4299e1 !important;
+}
+
+.blue-secondary {
+  color: #2c5282 !important;
+}
+
+.green-secondary {
+  color: #279841 !important;
 }

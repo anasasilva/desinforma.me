@@ -16,7 +16,7 @@ function App() {
     return (
         <Router>
             <Helmet>
-                <title>Desinforma.me 🎮</title>
+                <title>Desinforma.me | O jogo das Fake News</title>
             </Helmet>
             <Layout>
                 <Switch>

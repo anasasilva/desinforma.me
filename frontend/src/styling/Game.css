@@ -1,5 +1,5 @@
 #root {
-  text-align: center;
+  /* text-align: center; */
   /*display: flex; tava a causar problemas com background da navbar */
   justify-content: center;
   max-width: 100vw;
@@ -30,7 +30,7 @@
 }
 
 .row > * {
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 /* h1 {
@@ -85,8 +85,8 @@ h2 {
 
 .card {
   background-color: #fff;
-  width: 90vw;
-  max-width: 500px;
+  /* width: 90vw;
+  max-width: 500px; */
   height: 34em;
   overflow-y: scroll;
 }
@@ -166,4 +166,8 @@ h2 {
 .card-preview .card {
   height: auto !important;
   width: 10em !important;
+}
+
+.container-game {
+  text-align: center;
 }

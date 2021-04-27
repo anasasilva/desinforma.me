@@ -83,7 +83,7 @@ const Game = () => {
   else {
 
     return (
-      <div className="container d-block my-3">
+      <div className="container container-game d-block my-3">
         <div className="pt-md-4">
           <div className=" center">
             <div className='cardContainer'>

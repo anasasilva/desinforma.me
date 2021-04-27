@@ -8,8 +8,8 @@ const Logo = () => {
 
     return (
         <Link to="/" className="">
-            <img src={navbarWhiteBackground} class="navbar-logo d-none d-md-flex" alt="navbar brand"/>
-            <img src={navbarBlueBackground} class="navbar-logo d-md-none" alt="navbar brand"/>
+            <img src={navbarWhiteBackground} class="navbar-logo d-none d-md-flex" alt="navbar brand" />
+            <img src={navbarBlueBackground} class="navbar-logo d-md-none" alt="navbar brand" />
         </Link>
     )
 }

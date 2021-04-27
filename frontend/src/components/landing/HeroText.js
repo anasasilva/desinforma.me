@@ -3,28 +3,21 @@ import { Link } from 'react-router-dom';
 
 const HeroText = () => {
     return (
-        <div className="col-xl-6 col-12 w-100 m-0"> {/* mr-xl-5 em vez de w-100 m-0 */}
-            <h1 className="my-3 d-none d-md-block text-md-left" style={{ fontSize: "4rem" }}>
-                <span className="font-weight-light">Des</span>
-                <strong className="text-success">informa</strong>.
-                        <span className="">me</span>
+        <div className="col-xl-7 col-12 w-100 m-0">
+            <h1 className="my-3 text-md-left" style={{ fontSize: "3.6rem" }}>
+                <span className="blue-secondary">Des</span>
+                <span className="text-primary">informa</span>
+                <span className="blue-secondary">.me</span>
             </h1>
-            <h1 className="my-3 d-md-none text-md-left" style={{ fontSize: "9vw" }}>
-                <span className="font-weight-light">Des</span>
-                <strong className="text-success">informa</strong>.
-                        <span className="">me</span>
-            </h1>
-
-            <p className="text-justify font-weight-light ">
-            Vem descobrir se tens o que é preciso para não ser enganado por Fake News! <br/> Mete à prova o teu conhecimento!
-                    </p>
-            <div className="row justify-content-center mt-md-0 mt-5 row">
-                <Link to={'/jogo'} className="btn btn-primary col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
-                    Jogar
+            <p className="lead text-justify text-lg-left">
+                Todos os dias são milhares de notícias falsas espalham-se nas redes sociais como um virus. Achas que as consegues identificar? Mete à prova o teu conhecimento num jogo divertido!                    </p>
+            <div className="d-inline flex-column flex-md-row mt-md-0 mt-5">
+                <Link to={'/jogo'} className="btn btn-primary col-md-5 col-lg mr-3 my-3 py-3 py-md-2 w-50">
+                    Novo Jogo
                 </Link>
-                <Link to={'/jogo'} className="btn btn-success col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
-                    Pensa rápido
-                </Link>
+                {/* <Link to={'/jogo'} className="btn btn-secondary col-md-5 col-lg my-3 py-3 py-md-2 w-100">
+                    Como Jogar
+                </Link> */}
             </div>
         </div>
     )

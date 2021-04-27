@@ -22,7 +22,7 @@ const EndGame = (props) => {
     }
 
     return (
-        <div className="container d-block my-3 pt-md-4">
+        <div className="container container-game d-block my-3 pt-md-4">
             <div className=" center">
                 <div className='cardContainer'>
                     <div className='card card-shadow p-2'>

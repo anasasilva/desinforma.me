@@ -6,8 +6,8 @@ function ChangedEntity(props) {
 
   return (
     <>
-        <span className="text-error-under hover-hide">{ created }</span>
-        <span className="text-success hover-show font-weight-bold">{ original }</span>
+      <span className="text-error-under hover-hide">{created}</span>
+      <span className="green-secondary hover-show font-weight-bold">{original}</span>
     </>
   )
 }
