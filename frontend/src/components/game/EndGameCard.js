@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function EndGame(props) {
+function EndGameCard(props) {
 
   const { points, maxPointsMsg } = props;
 
@@ -33,4 +33,4 @@ function EndGame(props) {
   )
 }
 
-export default EndGame;
+export default EndGameCard;

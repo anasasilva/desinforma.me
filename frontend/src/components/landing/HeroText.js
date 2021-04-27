@@ -22,10 +22,10 @@ const HeroText = () => {
                 optio, eaque rerum!
                     </p>
             <div className="row justify-content-center mt-md-0 mt-5 row">
-                <Link to={'/game'} className="btn btn-primary col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
+                <Link to={'/jogo'} className="btn btn-primary col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
                     Jogar
                 </Link>
-                <Link to={'/game'} className="btn btn-success col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
+                <Link to={'/jogo'} className="btn btn-success col-md-5 col-lg mx-3 my-3 py-3 py-md-2 w-100 font-weight-bold">
                     Pensa rápido
                 </Link>
             </div>

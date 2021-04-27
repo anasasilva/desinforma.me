@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-
 import TinderCard from 'react-tinder-card';
 import '../styling/Game.css';
-import EndGame from '../components/EndGame';
 import CardContent from '../components/CardContent';
 import NewsService from '../services/NewsService';
 
@@ -13,8 +11,6 @@ const debug = false;
 
 const Game = () => {
   const [activeNews, setActiveNews] = useState([]);
-  const [playing, setPlaying] = useState(true);
-  const [maxPointsMsg, setMaxPointsMsg] = useState("");
   const history = useHistory();
 
   const fetchNews = async () => {
@@ -24,20 +20,19 @@ const Game = () => {
     NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
   }
 
-  const showEndGame = () => {
+  const gotoEndGame = () => {
 
     const points = alreadyRemoved.length;
+    const maxPoints = parseInt(localStorage.getItem('record-points')) || 0;
 
-    let maxPoints = parseInt(localStorage.getItem('record-fake'));
+    if (points > maxPoints) {
+      localStorage.setItem('record-points', points);
+    }
 
-    if (!maxPoints || (maxPoints && maxPoints < points)) {
-      localStorage.setItem('record-fake', points);
-      setMaxPointsMsg("Novo Recorde!");
-    }
-    else {
-      setMaxPointsMsg("Recorde: " + maxPoints)
-    }
-    setPlaying(false);
+    history.push({
+      pathname: '/fim-jogo',
+      state: { points, maxPoints }
+    });
 
   }
 
@@ -49,7 +44,7 @@ const Game = () => {
 
     // left = fake news; right = true news
     if (((dir === 'left' && !news.isFake) || (dir === 'right' && news.isFake)) && !debug) {
-      showEndGame();
+      gotoEndGame();
     }
   };
 
@@ -66,7 +61,7 @@ const Game = () => {
 
     if (cardsLeft.length) {
       if (isFake != cardsLeft[cardsLeft.length - 1].isFake && !debug) {
-        showEndGame();
+        gotoEndGame();
       }
       else if (!alreadyRemoved.includes(toBeRemoved)) {
         alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
@@ -91,10 +86,10 @@ const Game = () => {
       <div className="container d-block my-3">
         <div className="pt-md-4">
           <div className=" center">
-            <div className={'cardContainer ' + (!playing ? " flipped" : "")}>
+            <div className='cardContainer'>
               <div className="front">
                 <div className='card card-shadow p-2 position-absolute' />
-                {playing ? activeNews.map((news, index) => {
+                {activeNews.map((news, index) => {
                   if (!alreadyRemoved.includes(news._id)) {
                     return (
                       <TinderCard ref={news.childRef} className='position-absolute' preventSwipe={['up', 'down']} key={index} onSwipe={(dir) => swiped(dir, news)} onCardLeftScreen={() => outOfFrame()}>
@@ -102,34 +97,13 @@ const Game = () => {
                       </TinderCard>
                     )
                   }
-                }
-                )
-                  :
-                  <></>
-                }
-              </div>
-              <div className="back">
-                {
-                  !playing ? <EndGame points={alreadyRemoved.length} maxPointsMsg={maxPointsMsg} /> : <></>
-                }
+                })}
               </div>
             </div>
-            {
-              playing ?
-                (
-                  <div className='buttons d-none d-md-block'>
-                    <button onClick={() => swipe('left', true)}>Falsa</button>
-                    <button onClick={() => swipe('right', false)}>Verdadeira</button>
-                  </div>
-                )
-                :
-                (
-                  <div className='buttons d-none d-md-block'>
-                    <button onClick={() => history.goBack()}>Voltar</button>
-                    <button onClick={() => history.go(0)}>Novo Jogo</button>
-                  </div>
-                )
-            }
+            <div className='buttons d-none d-md-block'>
+              <button onClick={() => swipe('left', true)}>Falsa</button>
+              <button onClick={() => swipe('right', false)}>Verdadeira</button>
+            </div>
           </div>
         </div>
       </div>
