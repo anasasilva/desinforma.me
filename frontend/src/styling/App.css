@@ -156,6 +156,34 @@ a {
   pointer-events: none;
 }
 
+.placeholder {
+    background-color: #b0c0c7;
+    animation-name: shine;
+    animation-duration: 2.4s;
+    animation-iteration-count: infinite;
+}
+.text-title-placeholder {
+    height: 15px;
+    margin-bottom: 15px;
+}
+
+.text-placeholder {
+    height: 10px;
+    margin-bottom: 10px;
+}
+
+@keyframes shine {
+    0% { 
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.35;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

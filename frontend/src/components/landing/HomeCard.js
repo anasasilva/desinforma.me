@@ -19,6 +19,7 @@ const HomeCard = () => {
 
     const onCardLeftScreen = (myIdentifier) => {
         let homeCard = document.querySelector('#home-card > div');
+        if (homeCard === null) return;
         setTimeout(() => {
             homeCard.style.transform="scale(0)";
             homeCard.style.transitionDuration = ".4s";
@@ -35,27 +36,52 @@ const HomeCard = () => {
     return (
         <div id="home-card" className="col-xl-4 offset-0 offset-xl-1 col-12 d-none d-xl-flex cardContainer hover-toggle p-0">
             {/* https://www.pinterest.com/pin/740208888726895103/ */}
-            <img className="img-fluid position-absolute w-50 fixed-bottom" src={catSleeping}  style={{ zIndex: -1, left: "25%"}} />
+            <img className="img-fluid position-absolute w-50 fixed-bottom" src={catSleeping}  style={{ zIndex: -1, left: "25%"}} alt="cat"/>
+            
             <TinderCard  flickOnSwipe={true} onCardLeftScreen={onCardLeftScreen} ref={cardRef}
                 className="no-select" style={{ zIndex: 1 }}>
 
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
                 <div className="hover-show ready stamp" data-type="genuine" style={{ zIndex: 1 }} />
                 <div  className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
-                    <img className="hover-hide img-fluid" src={mrs} />
-                    <img className="hover-show img-fluid" src={cr7} />
+                    <img className="hover-hide img-fluid" src={mrs} alt="Marcelo Rebelo de Sousa"/>
+                    <img className="hover-show img-fluid" src={cr7} alt="Cristiano Ronaldo"/>
                     <h5 className="text-left my-4 px-3 small font-weight-bold">«<ChangedEntity created="MARCELO REBELO DE SOUSA" original="CRISTIANO RONALDO" />? SE VOLTASSE ATRÁS NO TEMPO FARIA A MESMA COISA»</h5>
                     <p className="text-justify px-3 small">
                         Com a Juventus a protagonizar época aquém das expectativas, Andrea Agnelli, presidente do clube de Turim, veio a terreiro garantir que
-                                nunca se arrependeu da aposta na contratação de <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" /> ao Real Madrid, no verão de 2018,
-                                por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" />. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em
-                                entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
-                            </p>
+                        nunca se arrependeu da aposta na contratação de <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" /> ao Real Madrid, no verão de 2018,
+                        por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" />. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em
+                        entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
+                    </p>
                     <div className="div-bottom w-100" style={{ zIndex: 100 }}>
                         <small className="d-block text-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
                     </div>
                 </div>
             </TinderCard>
+
+
+
+            {/* <div className="no-select"/>
+                <div className="card p-0 h-100 overflow-hidden  w-100" style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 10px 50px -12px" }}>
+                    <div className="placeholder w-100 mb-4" style={{minHeight: "208.531px"}}/>
+
+                    <div className="mx-3 mb-4">
+                        <div className="placeholder text-title-placeholder" />
+                        <div className="placeholder w-50 text-title-placeholder" />
+                    </div>
+
+                    <div className="mx-3 mb-4">
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder w-25" />
+                    </div>
+                </div> */}
         </div>
     )
 }
