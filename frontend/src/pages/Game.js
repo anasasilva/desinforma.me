@@ -16,6 +16,7 @@ const Game = () => {
   const fetchNews = () => {
     NewsService.fetchNews()
     .then((response) => {
+      console.log(response);
       const news = response.data;
       const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
       setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
@@ -82,7 +83,15 @@ const Game = () => {
 
   if (activeNews.length === 0) {
     return (
-      <div>Loading!</div>
+      <div className="container container-game d-block my-3">
+        <div className=" center">
+          <div className='cardContainer mt-2'>
+              <div className='tinder-card card-shadow p-2 position-absolute align-items-center d-flex justify-content-center'>
+                <div className="spinner-border" role="status"/>
+              </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
