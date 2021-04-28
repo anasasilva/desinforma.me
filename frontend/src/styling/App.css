@@ -37,6 +37,19 @@
   }
 }
 
+#landing-title {
+  font-size: min(3.6rem, 10vw);
+  text-shadow: 1px 1px 0 #cccccc70, 2px 2px 0 #ccc, 3px 3px 0 #4444442e,
+    2px 2px 0 #44444452, 2px 2px 0 #4444441f;
+}
+
+@media (max-width: 768px) {
+  #landing-title {
+    text-shadow: 1px 1px 0 #cccccc3a, 2px 2px 0 rgba(204, 204, 204, 0.575),
+      3px 3px 0 #44444410, 2px 2px 0 #44444419, 2px 2px 0 #4444440b;
+  }
+}
+
 .buttons {
   margin: 20px;
   display: flex;
