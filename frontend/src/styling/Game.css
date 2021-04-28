@@ -140,6 +140,19 @@
   height: auto;
 }
 
+.img-div-sm {
+  /* max-height: 5rem; */
+  width: fit-content;
+  min-height: 5rem;
+  /* overflow-y: hidden; */
+}
+
+.img-div-sm > img {
+  height: 5rem;
+  width: auto;
+  min-width: 7.5rem;
+}
+
 .preview {
   height: 85vh;
   overflow-y: scroll;
@@ -157,4 +170,16 @@
 
 .container-game {
   text-align: center;
+}
+
+.h-end-game {
+  height: 80vh;
+}
+
+.red-shadow {
+  box-shadow: 0px 0px 7px 0px rgba(255, 0, 0, 0.6);
+}
+
+.green-shadow {
+  box-shadow: 0px 0px 7px 0px rgba(0, 153, 36, 0.6);
 }

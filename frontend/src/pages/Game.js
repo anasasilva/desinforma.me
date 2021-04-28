@@ -16,7 +16,6 @@ const Game = () => {
   const fetchNews = () => {
     NewsService.fetchNews()
     .then((response) => {
-      console.log(response);
       const news = response.data;
       const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
       setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
@@ -28,17 +27,13 @@ const Game = () => {
   }
 
   const gotoEndGame = () => {
-
-    const points = alreadyRemoved.length;
-    const maxPoints = parseInt(localStorage.getItem('record-points')) || 0;
-
-    if (points > maxPoints) {
-      localStorage.setItem('record-points', points);
-    }
+    
+    const allNewStr = JSON.stringify(activeNews)
+    const removedStr = JSON.stringify(alreadyRemoved)
 
     history.push({
       pathname: '/fim-jogo',
-      state: { points, maxPoints }
+      state: { allNewStr, removedStr }
     });
 
   }
@@ -83,7 +78,7 @@ const Game = () => {
 
   if (activeNews.length === 0) {
     return (
-      <div className="container container-game d-block my-3">
+      <div className="container container-game d-block mb-3">
         <div className=" center">
           <div className='cardContainer mt-2'>
               <div className='tinder-card card-shadow p-2 position-absolute align-items-center d-flex justify-content-center'>
@@ -98,7 +93,7 @@ const Game = () => {
   else {
 
     return (
-      <div className="container container-game d-block my-3">
+      <div className="container container-game d-block mb-3">
         <div className=" center">
           <div className='cardContainer mt-2'>
               <div className='tinder-card card-shadow p-2 position-absolute' />
