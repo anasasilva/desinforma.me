@@ -19,7 +19,6 @@ const HomeCard = () => {
 
     const onCardLeftScreen = (myIdentifier) => {
         let homeCard = document.querySelector('#home-card > div');
-        console.log(homeCard);  
         setTimeout(() => {
             homeCard.style.transform="scale(0)";
             homeCard.style.transitionDuration = ".4s";
