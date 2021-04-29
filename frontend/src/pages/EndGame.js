@@ -12,18 +12,19 @@ const EndGame = (props) => {
     }
 
     const data = props.history.location.state;
-    const { allNewStr, removedStr, duration } = data;
+    const { allNewStr, removedStr, gameDuration } = data;
     const allNews = JSON.parse(allNewStr);
     const answeredNews = JSON.parse(removedStr);
 
     const trueNews = allNews.filter(news => answeredNews.includes(news._id) && !news.isFake);
     const fakeNews = allNews.filter(news => answeredNews.includes(news._id) && news.isFake);
 
-    const nrFake = fakeNews.length;
-    const nrTrue = trueNews.length;
-
     const points = answeredNews.length;
     const maxPoints = parseInt(localStorage.getItem('record-points')) || 0;
+
+    const totalSeconds = Math.floor(gameDuration / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
     if (points > maxPoints) {
         localStorage.setItem('record-points', points);
@@ -45,10 +46,10 @@ const EndGame = (props) => {
                 {/* <span className="blue-secondary">.me</span> */}
             </h1>
             <div className="d-flex justify-content-around w-75 mt-4 mb-2">
-                <h5><GiSandsOfTime className="mr-2"/>Tempo: {duration}</h5>
+                <h5><GiSandsOfTime className="mr-2"/>Tempo: {minutes}:{seconds}</h5>
                 <h5><GiTrophyCup className="mr-2" /> {maxPointsMessage}</h5>
-                <h5><GiCheckMark className="mr-2" />{nrTrue} Notícias verídicas</h5>
-                <h5><GiCrossMark className="mr-2" />{nrFake} Notícias falsas</h5>
+                <h5><GiCheckMark className="mr-2" />{trueNews.length} Notícias verídicas</h5>
+                <h5><GiCrossMark className="mr-2" />{fakeNews.length} Notícias falsas</h5>
             </div>
             <div className="row w-100 mt-4">
                 <div className="col-6" >

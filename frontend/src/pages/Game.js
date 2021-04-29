@@ -11,8 +11,8 @@ const debug = false;
 
 const Game = () => {
   const [activeNews, setActiveNews] = useState([]);
+  const [startTime, setStartTime] = useState(0);
   const history = useHistory();
-  let startTime;
 
   const fetchNews = () => {
     NewsService.fetchNews()
@@ -20,7 +20,7 @@ const Game = () => {
       const news = response.data;
       const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
       setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
-      startTime = performance.now();
+      setStartTime(performance.now());
     })
     .catch((error) => {
       console.log(error);
@@ -62,7 +62,7 @@ const Game = () => {
 
   const swipe = (dir, isFake) => {
     const cardsLeft = activeNews.filter(news => !alreadyRemoved.includes(news._id))
-    
+
     if (cardsLeft.length) {
       const toBeRemoved = cardsLeft[cardsLeft.length - 1]._id // Find the card object to be removed
       const index = activeNews.map(news => news._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
