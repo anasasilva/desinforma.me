@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 import SmallCard from '../components/SmallCard';
+import { GiSandsOfTime, GiTrophyCup, GiCheckMark, GiCrossMark } from "react-icons/gi";
 
 const EndGame = (props) => {
 
@@ -11,17 +12,19 @@ const EndGame = (props) => {
     }
 
     const data = props.history.location.state;
-    const { allNewStr, removedStr } = data;
+    const { allNewStr, removedStr, gameDuration } = data;
     const allNews = JSON.parse(allNewStr);
     const answeredNews = JSON.parse(removedStr);
 
-    const newsToUse = allNews.filter(news => answeredNews.includes(news._id));
-
-    const nrFake = newsToUse.filter(news => news.isFake).length;
-    const nrTrue = newsToUse.length - nrFake;
+    const trueNews = allNews.filter(news => answeredNews.includes(news._id) && !news.isFake);
+    const fakeNews = allNews.filter(news => answeredNews.includes(news._id) && news.isFake);
 
     const points = answeredNews.length;
     const maxPoints = parseInt(localStorage.getItem('record-points')) || 0;
+
+    const totalSeconds = Math.floor(gameDuration / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
     if (points > maxPoints) {
         localStorage.setItem('record-points', points);
@@ -36,21 +39,35 @@ const EndGame = (props) => {
 
     return (
         <div className="d-flex align-items-center flex-column justify-content-start h-end-game">
-            <h1>{points} acertadas</h1>
-            <div className="d-flex justify-content-around w-75 my-3">
-                <p>Tempo: 4 minutos</p>
-                <p>{maxPointsMessage}</p>
-                <p>{nrTrue} Notícias verdadeiras</p>
-                <p>{nrFake} Notícias falsas</p>
+
+            <h1 id="landing-title">
+                <span className="blue-secondary">{points}</span>
+                <span className="text-primary"> acertadas</span>
+                {/* <span className="blue-secondary">.me</span> */}
+            </h1>
+            <div className="d-flex justify-content-around w-75 mt-4 mb-2">
+                <h5><GiSandsOfTime className="mr-2"/>Tempo: {minutes}:{seconds}</h5>
+                <h5><GiTrophyCup className="mr-2" /> {maxPointsMessage}</h5>
+                <h5><GiCheckMark className="mr-2" />{trueNews.length} Notícias verídicas</h5>
+                <h5><GiCrossMark className="mr-2" />{fakeNews.length} Notícias falsas</h5>
             </div>
-            <div className="row w-100">
-                    {newsToUse.map((news, index) => {
+            <div className="row w-100 mt-4">
+                <div className="col-6" >
+                    <div className="hover-show ready stamp sm-stamp" data-type="genuine" />
+                    {trueNews.map((news, index) => {
                     return (
-                        <div className="col-6 my-2" key={index}>
-                            <SmallCard news={news} />
-                        </div>
+                            <SmallCard news={news} key={index} />
                     )
                 })}
+                </div>
+                <div className="col-6" >
+                    <div className="hover-show ready stamp sm-stamp" data-type="fake" />
+                    {fakeNews.map((news, index) => {
+                    return (
+                            <SmallCard news={news} key={index} />
+                    )
+                })}
+                </div>
 
             </div>
         </div>

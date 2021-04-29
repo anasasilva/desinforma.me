@@ -141,16 +141,14 @@
 }
 
 .img-div-sm {
-  /* max-height: 5rem; */
-  width: fit-content;
-  min-height: 5rem;
-  /* overflow-y: hidden; */
+  height: 5rem;  
+  min-width: 7.5rem;
+  overflow-x: hidden;
 }
 
 .img-div-sm > img {
-  height: 5rem;
+  max-height: 5rem;
   width: auto;
-  min-width: 7.5rem;
 }
 
 .preview {
@@ -182,4 +180,24 @@
 
 .green-shadow {
   box-shadow: 0px 0px 7px 0px rgba(0, 153, 36, 0.6);
+}
+
+.green-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  width: 5rem;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(0, 153, 36, 0.5) 100%);
+}
+
+.red-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 5rem;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 0, 0, 0.5) 100%);
 }
