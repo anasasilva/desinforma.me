@@ -6,7 +6,7 @@ function SmallCard(props) {
 
   if (news.isFake) {
     return (
-      <div className="card red-shadow">
+      <div className="card my-3 red-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
             <img src={news.fakeDetails.fakeImageUrl} />
@@ -20,7 +20,7 @@ function SmallCard(props) {
   }
   else {
     return (
-      <div className="card green-shadow">
+      <div className="card my-3 green-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
           <img src={news.imageUrl} />

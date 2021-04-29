@@ -152,6 +152,42 @@ a {
   pointer-events: none;
 }
 
+.stamp.ready:after {
+  text-align: center;
+  opacity: 1;
+  transform: rotate(35deg) scale(0.8);
+}
+
+.stamp[data-type="fake"]:after {
+  color: #dc3434;
+  border-color: #dc3434;
+  content: "Notícia Falsa";
+}
+
+.stamp[data-type="genuine"]:after {
+  color: #279841;
+  border-color: #279841;
+  content: "Notícia Verídica";
+}
+
+.sm-stamp[data-type="genuine"]:after {
+  width: 65%;
+  top: -2.5rem;
+  left: -30%;
+  transform: rotate(-30deg) scale(0.5);
+  content: "Notícias Verídicas";
+  z-index: 4;
+}
+
+.sm-stamp[data-type="fake"]:after {
+  width: 65%;
+  top: -2.5rem;
+  right: -30%;
+  transform: rotate(30deg) scale(0.5);
+  content: "Notícias Falsas";
+  z-index: 4;
+}
+
 .no-pointer-events {
   pointer-events: none;
 }
@@ -192,24 +228,6 @@ a {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-}
-
-.stamp.ready:after {
-  text-align: center;
-  opacity: 1;
-  transform: rotate(35deg) scale(0.8);
-}
-
-.stamp[data-type="fake"]:after {
-  color: #dc3434;
-  border-color: #dc3434;
-  content: "Notícia Falsa";
-}
-
-.stamp[data-type="genuine"]:after {
-  color: #279841;
-  border-color: #279841;
-  content: "Notícia Verídica";
 }
 
 .div-bottom {

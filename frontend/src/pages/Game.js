@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import TinderCard from 'react-tinder-card';
 import '../styling/Game.css';
 import CardContent from '../components/CardContent';
@@ -12,6 +12,7 @@ const debug = false;
 const Game = () => {
   const [activeNews, setActiveNews] = useState([]);
   const history = useHistory();
+  let startTime;
 
   const fetchNews = () => {
     NewsService.fetchNews()
@@ -19,7 +20,7 @@ const Game = () => {
       const news = response.data;
       const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
       setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
-      NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
+      startTime = performance.now();
     })
     .catch((error) => {
       console.log(error);
@@ -27,13 +28,16 @@ const Game = () => {
   }
 
   const gotoEndGame = () => {
+
+    NewsService.setNewsAsSeen(alreadyRemoved);
     
-    const allNewStr = JSON.stringify(activeNews)
-    const removedStr = JSON.stringify(alreadyRemoved)
+    const allNewStr = JSON.stringify(activeNews);
+    const removedStr = JSON.stringify(alreadyRemoved);
+    const gameDuration = performance.now() - startTime;
 
     history.push({
       pathname: '/fim-jogo',
-      state: { allNewStr, removedStr }
+      state: { allNewStr, removedStr, gameDuration }
     });
 
   }
@@ -58,11 +62,13 @@ const Game = () => {
 
   const swipe = (dir, isFake) => {
     const cardsLeft = activeNews.filter(news => !alreadyRemoved.includes(news._id))
-    const toBeRemoved = cardsLeft[cardsLeft.length - 1]._id // Find the card object to be removed
-    const index = activeNews.map(news => news._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
-
+    
     if (cardsLeft.length) {
+      const toBeRemoved = cardsLeft[cardsLeft.length - 1]._id // Find the card object to be removed
+      const index = activeNews.map(news => news._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
+  
       if (isFake != cardsLeft[cardsLeft.length - 1].isFake && !debug) {
+        alreadyRemoved.push(toBeRemoved)
         gotoEndGame();
       }
       else if (!alreadyRemoved.includes(toBeRemoved)) {
@@ -78,11 +84,11 @@ const Game = () => {
 
   if (activeNews.length === 0) {
     return (
-      <div className="container container-game d-block mb-3">
-        <div className=" center">
+      <div className='container container-game d-block mb-3'>
+        <div className=' center'>
           <div className='cardContainer mt-2'>
               <div className='tinder-card card-shadow p-2 position-absolute align-items-center d-flex justify-content-center'>
-                <div className="spinner-border" role="status"/>
+                <div className='spinner-border' role='status'/>
               </div>
           </div>
         </div>
@@ -93,9 +99,11 @@ const Game = () => {
   else {
 
     return (
-      <div className="container container-game d-block mb-3">
-        <div className=" center">
+      <div className='container container-game d-block mb-3'>
+        <div className=' center'>
           <div className='cardContainer mt-2'>
+              {/* <div className='green-overlay' />
+              <div className='red-overlay' /> */}
               <div className='tinder-card card-shadow p-2 position-absolute' />
               {activeNews.map((news, index) => {
                 if (!alreadyRemoved.includes(news._id)) {
