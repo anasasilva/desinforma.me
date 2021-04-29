@@ -141,7 +141,8 @@
 }
 
 .img-div-sm {
-  height: 5rem;  
+  min-height: 5rem;  
+  max-height: 5rem;  
   min-width: 7.5rem;
   overflow-x: hidden;
 }
@@ -174,13 +175,13 @@
   height: 80vh;
 }
 
-.red-shadow {
+/* .red-shadow {
   box-shadow: 0px 0px 7px 0px rgba(255, 0, 0, 0.6);
 }
 
 .green-shadow {
   box-shadow: 0px 0px 7px 0px rgba(0, 153, 36, 0.6);
-}
+} */
 
 .green-overlay {
   position: absolute;
@@ -200,4 +201,20 @@
   height: 100vh;
   width: 5rem;
   background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 0, 0, 0.5) 100%);
+}
+
+.w-podium {
+  width: 30%;
+}
+#podium0 { /* gold */
+  height: 150px;
+  background: linear-gradient(180deg, rgba(44, 82, 130, 1) 0%, rgba(255, 255, 255, 1) 90%);
+}
+#podium1 { /* silver */
+  height: 125px;
+  background: linear-gradient(180deg, rgba(66, 153, 225, 1) 0%, rgba(255, 255, 255, 1) 85%);
+}
+#podium2 { /* bronze */
+  height: 100px;
+  background: linear-gradient(180deg, rgba(66, 153, 225, 1) 0%, rgba(255, 255, 255, 1) 80%);
 }

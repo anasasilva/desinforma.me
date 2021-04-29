@@ -11,7 +11,7 @@ function SmallCard(props) {
 
   if (news.isFake) {
     return (
-      <div className="card my-3 red-shadow">
+      <div className="card my-3 nice-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
             <img src={news.fakeDetails.fakeImageUrl?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
@@ -26,7 +26,7 @@ function SmallCard(props) {
   }
   else {
     return (
-      <div className="card my-3 green-shadow">
+      <div className="card my-3 nice-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
             <img src={news.imageUrl?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")}  onLoad={imageSuccessHandler}/>

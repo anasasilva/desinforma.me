@@ -29,7 +29,7 @@ const NavbarItem = ({ children, isFirst, isLast, to = '/' }) => {
     }
 }
 
-const Navbar = props => {
+const Navbar = () => {
 
     return (
         <nav className="navbar navbar-expand-md navbar-light top-navbar" data-toggle="sticky-onscroll">
