@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 function SmallCard(props) {
@@ -7,22 +7,14 @@ function SmallCard(props) {
   const { news } = props;
   const [showDefaultImage, setShowDefaultImage] = useState(false)
 
-  const imageFirstFailHandler = (e) => {
-    e.target.src = e.target.src.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")
-    e.target.onError = imageSecondFailHandler;
-  }
-
-  const imageSecondFailHandler = (e) => {
-    e.target.onError = null;
-    setShowDefaultImage(true)
-  }
+  const imageSuccessHandler = () => setShowDefaultImage(false)
 
   if (news.isFake) {
     return (
       <div className="card my-3 red-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-            <img src={news.fakeDetails.fakeImageUrl} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")}  onError={imageFirstFailHandler}/>
+            <img src={news.fakeDetails.fakeImageUrl.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
             <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")}/>
           </div>
           <div className="d-flex align-items-center justify-content-center">
@@ -37,7 +29,7 @@ function SmallCard(props) {
       <div className="card my-3 green-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-            <img src={news.imageUrl} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onError={imageFirstFailHandler} />
+            <img src={news.imageUrl.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")}  onLoad={imageSuccessHandler}/>
             <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")}/>
           </div>
           <div className="d-flex align-items-center">

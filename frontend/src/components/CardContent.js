@@ -1,27 +1,18 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function CardContent(props) {
 
   const { news } = props;
-  const [showDefaultImage, setShowDefaultImage] = useState(false)
-  
-  const imageFirstFailHandler = (e) => {
-    e.target.src = e.target.src.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")
-    e.target.onError = imageSecondFailHandler;
-  }
+  const [showDefaultImage, setShowDefaultImage] = useState(true)
 
-  const imageSecondFailHandler = (e) => {
-    e.target.onError = null;
-    setShowDefaultImage(true)
-  }
-
+  const imageSuccessHandler = () => setShowDefaultImage(false)
 
   if (news.isFake) {
     return (
       <div className='tinder-card p-2'>
         <div className="img-div h-100">
-          <img src={news.fakeDetails.fakeImageUrl} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")} onError={imageFirstFailHandler}/>
+          <img src={news.fakeDetails.fakeImageUrl.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler}/>
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")}/>
         </div>
         <h4 className="my-4">{news.fakeDetails.fakeTitle}</h4>
@@ -33,7 +24,7 @@ function CardContent(props) {
     return (
       <div className='tinder-card p-2'>
         <div className="img-div h-100">
-          <img src={news.imageUrl} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onError={imageFirstFailHandler}/>
+          <img src={news.imageUrl.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler}/>
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")}/>
         </div>
         <h4 className="my-4">{news.title}</h4>
