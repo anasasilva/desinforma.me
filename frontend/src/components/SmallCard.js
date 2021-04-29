@@ -14,7 +14,7 @@ function SmallCard(props) {
       <div className="card my-3 red-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-            <img src={news.fakeDetails.fakeImageUrl.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
+            <img src={news.fakeDetails.fakeImageUrl?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fakeDetails.fakeTitle} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
             <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")}/>
           </div>
           <div className="d-flex align-items-center justify-content-center">
@@ -29,7 +29,7 @@ function SmallCard(props) {
       <div className="card my-3 green-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-            <img src={news.imageUrl.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")}  onLoad={imageSuccessHandler}/>
+            <img src={news.imageUrl?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")}  onLoad={imageSuccessHandler}/>
             <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")}/>
           </div>
           <div className="d-flex align-items-center">
