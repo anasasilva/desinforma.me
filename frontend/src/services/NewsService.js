@@ -18,6 +18,11 @@ class NewsService {
         const allIds = [...newsIds, ...previousGameNewsIds];
         localStorage.setItem("previously-seen", JSON.stringify(allIds))
     }
+
+    
+    static async clearSeenNews() {
+        localStorage.setItem("previously-seen", JSON.stringify([]))
+    }
 }
 
 export default NewsService;

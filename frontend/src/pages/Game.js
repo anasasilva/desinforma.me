@@ -16,10 +16,16 @@ const Game = () => {
   const fetchNews = () => {
     NewsService.fetchNews()
     .then((response) => {
-      const news = response.data;
-      const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
-      setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
-      NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
+        const news = response.data;
+        if (news.length == 0) {
+            NewsService.clearSeenNews()
+            console.log('wow')
+            fetchNews();
+        } else {        
+            const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef() }));
+            setActiveNews(oldActiveNews => [...newsWithChildRef, ...oldActiveNews]);
+            NewsService.setNewsAsSeen(news.map((seenNew) => seenNew._id));
+        }
     })
     .catch((error) => {
       console.log(error);
