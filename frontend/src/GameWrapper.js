@@ -10,7 +10,6 @@ const GameWrapper = ({ children }) => {
     const [gameStartTime, setGameStartTime] = useState(0);
     const [gameDuration, setGameDuration] = useState(0);
     const [allNewsIDs, setAllNewsIDs] = useState([]);
-    const [swipedNews, setSwipedNews] = useState([]);
     const [activeNews, setActiveNews] = useState([]);
 
     // RETRIEVE NEWS ON START.
@@ -64,23 +63,21 @@ const GameWrapper = ({ children }) => {
             }
             return news;
         },
-        getSwippedNews: () => swipedNews,
-        addNewsToSwippedList: (newsId) => {
-            const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
-            localStorage.setItem('previously-seen', JSON.stringify([...previousGameNewsIds, newsId]));
-            setSwipedNews([...swipedNews, newsId]);
-        },
         getActiveNews: () => activeNews,
         setActiveNews: setActiveNews,
         startGame: () => {
+            localStorage.setItem('previously-seen', '[]');
             setGameState('INGAME');
             setGameStartTime(performance.now());
-            setSwipedNews([]);
+            activeNews.length = 0;
+            setActiveNews([]);
         },
         endGame: () => {
             setGameState('GAME_OVER');
             setGameDuration(Math.floor((performance.now() - gameStartTime) / 1000));
-            setActiveNews([]);
+            const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
+            const newsIds = activeNews.filter(_new => _new.isOutOfScreen || _new.wasSwiped).map(_new => _new.id);
+            localStorage.setItem('previously-seen', JSON.stringify([...previousGameNewsIds, ...newsIds]));
         }
     }
 

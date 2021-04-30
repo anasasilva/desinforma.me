@@ -7,13 +7,13 @@ import SocialButtons from "../components/SocialButtons";
 
 const EndGame = () => {
 
-    const { getGameState, getGameDuration, getSwippedNews } = useContext(GameContext);
+    const { getGameState, getActiveNews, getGameDuration } = useContext(GameContext);
 
     if (getGameState() !== "GAME_OVER") {
         return <Redirect to='/' />
     }
 
-    const answeredNews = getSwippedNews();
+    const answeredNews = getActiveNews().filter(_new => _new.isOutOfScreen || _new.wasSwiped);
     const trueNews = answeredNews.filter(news => !news.isFake);
     const fakeNews = answeredNews.filter(news => news.isFake);
 

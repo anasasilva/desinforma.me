@@ -7,7 +7,7 @@ import CardContent from '../components/CardContent';
 import GameContext from '../GameContext';
 
 const debug = false;
-const MAX_NEWS_TO_SHOW = 5;
+const MAX_NEWS_TO_SHOW = 2;
 let isFetching = false;
 
 const Game = (props) => {
@@ -17,7 +17,6 @@ const Game = (props) => {
     getNews,
     startGame,
     endGame,
-    addNewsToSwippedList,
     setActiveNews,
     getActiveNews
   } = useContext(GameContext);
@@ -27,7 +26,7 @@ const Game = (props) => {
       isFetching = true;
       const news = getNews({ count: MAX_NEWS_TO_SHOW });
       const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef(), wasSwiped: false, isOutOfScreen: false }));
-      setActiveNews(newsWithChildRef);
+      setActiveNews([...getActiveNews(), ...newsWithChildRef]);
       isFetching = false;
     }
   }
@@ -50,7 +49,6 @@ const Game = (props) => {
   }
 
   const swiped = (dir, _new) => {
-    addNewsToSwippedList(_new);
     const index = getActiveNews().map(_newIter => _newIter.id).indexOf(_new.id);
     const activeNews = getActiveNews();
     activeNews[index].wasSwiped = true;
@@ -61,7 +59,7 @@ const Game = (props) => {
       //setIsGoingToLose(true);
       setTimeout(() => {
         gotoEndGame();
-      }, 50);
+      }, 250);
     }
     // RIGHT
   };
@@ -147,7 +145,7 @@ const Game = (props) => {
               </div>
             </div>
             {
-              getActiveNews().map(_new => (
+              getActiveNews().filter(_new => !_new.isOutOfScreen).map(_new => (
                 <TinderCard key={_new.id} ref={_new.childRef} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, _new)} onCardLeftScreen={() => outOfFrame(_new)}>
                   <CardContent news={_new} />
                 </TinderCard>
