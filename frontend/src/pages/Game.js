@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
 import TinderCard from 'react-tinder-card';
 import '../styling/Game.css';
@@ -6,6 +7,8 @@ import CardContent from '../components/CardContent';
 import GameContext from '../GameContext';
 
 const debug = false;
+const MAX_NEWS_TO_SHOW = 5;
+let isFetching = false;
 
 const Game = (props) => {
   const history = useHistory();
@@ -16,73 +19,72 @@ const Game = (props) => {
     endGame,
     addNewsToSwippedList,
     setActiveNews,
-    getActiveNews } = useContext(GameContext);
+    getActiveNews
+  } = useContext(GameContext);
 
-  const [allowSwipping, setAllowSwipping] = useState(false)
-  const [isGoingToLose, setIsGoingToLose] = useState(false)
-  const [refToCard, setRefToCard] = useState(null);
-
-
-  const updateCardRef = () => {
-    setRefToCard(React.createRef());
-  }
-
-  const updateActiveNew = () => {
-    const _new = getNews({ count: 1 })[0];
-    setActiveNews(_new);
-    updateCardRef();
-    setAllowSwipping(true);
+  const updateActiveNews = () => {
+    if (!isFetching) {
+      isFetching = true;
+      const news = getNews({ count: MAX_NEWS_TO_SHOW });
+      const newsWithChildRef = news.map(obj => ({ ...obj, childRef: React.createRef(), wasSwiped: false, isOutOfScreen: false }));
+      setActiveNews(newsWithChildRef);
+      isFetching = false;
+    }
   }
 
   useEffect(() => {
-    if (getGameState() !== "INGAME") {
-      startGame();
-      updateActiveNew();
+    if (getGameState() === "LOADING_DATA") {
+      history.push('/');
     }
-    else {
-      setAllowSwipping(true);
+    else if (getGameState() !== "INGAME") {
+      startGame();
+      updateActiveNews();
     }
   }, []);
-
-  useEffect(() => {
-    updateCardRef()
-  }, [getActiveNews()]);
 
   const gotoEndGame = () => {
     endGame();
     history.push({
       pathname: '/fim-jogo',
     });
-
   }
 
-  const swiped = (dir) => {
-    const news = getActiveNews();
-    addNewsToSwippedList(news);
+  const swiped = (dir, _new) => {
+    addNewsToSwippedList(_new);
+    const index = getActiveNews().map(_newIter => _newIter.id).indexOf(_new.id);
+    const activeNews = getActiveNews();
+    activeNews[index].wasSwiped = true;
+    setActiveNews(activeNews);
     // left = fake news; right = true news
     // LOSS
-    if (((dir === 'left' && !news.isFake) || (dir === 'right' && news.isFake)) && !debug) {
-      setIsGoingToLose(true);
+    if (((dir === 'left' && !_new.isFake) || (dir === 'right' && _new.isFake)) && !debug) {
+      //setIsGoingToLose(true);
       setTimeout(() => {
         gotoEndGame();
-      }, 250);
+      }, 50);
     }
     // RIGHT
   };
 
-  const outOfFrame = () => {
-    if (!isGoingToLose)
-      updateActiveNew();
-  }
-
-  const swipe = (dir) => {
-    if (allowSwipping) {
-      refToCard.current.swipe(dir)
-      setAllowSwipping(false);
+  const outOfFrame = (_new) => {
+    const index = getActiveNews().map(_newIter => _newIter.id).indexOf(_new.id);
+    const activeNews = getActiveNews();
+    activeNews[index].isOutOfScreen = true;
+    if (_.sum(activeNews.map(_new => Number(_new.isOutOfScreen))) === activeNews.length) {
+      updateActiveNews();
+    }
+    else {
+      setActiveNews(activeNews);
     }
   }
 
-  if (!getActiveNews()) {
+  const swipe = (dir) => {
+    const _newsNotSwipped = getActiveNews().filter(_iterNew => !_iterNew.wasSwiped)
+    if (_newsNotSwipped.length > 0)
+      _newsNotSwipped[_newsNotSwipped.length - 1].childRef.current.swipe(dir)
+  }
+
+  if (getActiveNews().length === 0) {
     return (
       <div className='container container-game d-block mb-3'>
         <div className='center'>
@@ -127,12 +129,10 @@ const Game = (props) => {
               <div className='red-overlay' /> */}
             <div className="card p-0 h-100 overflow-hidden w-100 nice-shadow position-absolute">
               <div className="placeholder w-100 mb-4" style={{ minHeight: "38%" }} />{/* "208.531px" */}
-
               <div className="mx-4 mb-4">
                 <div className="placeholder text-title-placeholder" />
                 <div className="placeholder w-50 text-title-placeholder" />
               </div>
-
               <div className="mx-4 mb-4">
                 <div className="placeholder text-placeholder" />
                 <div className="placeholder text-placeholder" />
@@ -145,15 +145,17 @@ const Game = (props) => {
                 <div className="placeholder text-placeholder w-25" />
               </div>
             </div>
-            <div key={getActiveNews().id}>
-              <TinderCard ref={refToCard} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={swiped} onCardLeftScreen={outOfFrame}>
-                <CardContent news={getActiveNews()} />
-              </TinderCard>
-            </div>
+            {
+              getActiveNews().map(_new => (
+                <TinderCard key={_new.id} ref={_new.childRef} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, _new)} onCardLeftScreen={() => outOfFrame(_new)}>
+                  <CardContent news={_new} />
+                </TinderCard>
+              ))
+            }
           </div>
           <div className='buttons d-none d-md-block'>
-            <button onClick={() => swipe('left', true)}>Falsa</button>
-            <button onClick={() => swipe('right', false)}>Verdadeira</button>
+            <button onClick={() => swipe('left')}>Falsa</button>
+            <button onClick={() => swipe('right')}>Verdadeira</button>
           </div>
         </div>
       </div>

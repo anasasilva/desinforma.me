@@ -139,6 +139,7 @@
 .img-div > img {
   width: 100%;
   height: auto;
+  background: #b0c0c7;
 }
 
 .img-div-sm {
@@ -173,7 +174,7 @@
 }
 
 .h-end-game {
-  height: 80vh;
+  /* height: 80vh; */
 }
 
 /* .red-shadow {

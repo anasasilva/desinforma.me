@@ -43,7 +43,7 @@ const Navbar = () => {
         else
             btnText = 'Voltar ao Jogo'
     }
-    else if (getGameState() === 'ENDGAME')
+    else if (getGameState() === 'GAME_OVER')
         btnText = 'Novo Jogo'
     else
         btnText = 'Jogar'

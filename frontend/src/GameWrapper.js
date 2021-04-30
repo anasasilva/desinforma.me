@@ -11,7 +11,7 @@ const GameWrapper = ({ children }) => {
     const [gameDuration, setGameDuration] = useState(0);
     const [allNewsIDs, setAllNewsIDs] = useState([]);
     const [swipedNews, setSwipedNews] = useState([]);
-    const [activeNews, setActiveNews] = useState(null);
+    const [activeNews, setActiveNews] = useState([]);
 
     // RETRIEVE NEWS ON START.
     useEffect(() => {
@@ -48,12 +48,11 @@ const GameWrapper = ({ children }) => {
         getGameState: () => gameState,
         getGameDuration: () => gameDuration,
         getNews: ({ count = 1 } = {}) => {
-            let previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
+            const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
             let newsIdsWithoutPreviousSeens = _.without(allNewsIDs, previousGameNewsIds);
             if (newsIdsWithoutPreviousSeens.length < count) {
                 localStorage.setItem('previously-seen', '[]');
                 newsIdsWithoutPreviousSeens = allNewsIDs;
-                previousGameNewsIds = [];
             }
             const newsIds = _.sampleSize(newsIdsWithoutPreviousSeens, count);
             let news = [];
@@ -63,11 +62,12 @@ const GameWrapper = ({ children }) => {
                 _new.id = newsId;
                 news.push(_new);
             }
-            localStorage.setItem('previously-seen', JSON.stringify([...previousGameNewsIds, ...newsIds]));
             return news;
         },
         getSwippedNews: () => swipedNews,
         addNewsToSwippedList: (newsId) => {
+            const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
+            localStorage.setItem('previously-seen', JSON.stringify([...previousGameNewsIds, newsId]));
             setSwipedNews([...swipedNews, newsId]);
         },
         getActiveNews: () => activeNews,
@@ -76,11 +76,11 @@ const GameWrapper = ({ children }) => {
             setGameState('INGAME');
             setGameStartTime(performance.now());
             setSwipedNews([]);
-            setActiveNews({});
         },
         endGame: () => {
             setGameState('GAME_OVER');
             setGameDuration(Math.floor((performance.now() - gameStartTime) / 1000));
+            setActiveNews([]);
         }
     }
 
