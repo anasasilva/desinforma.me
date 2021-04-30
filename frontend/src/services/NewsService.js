@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 class NewsService {
+
     static fetchNews({ countReal = 10, countFake = 10, currentNewsIds = [] } = {}) {
 
         const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
@@ -19,7 +20,7 @@ class NewsService {
         localStorage.setItem("previously-seen", JSON.stringify(allIds))
     }
 
-    
+
     static async clearSeenNews() {
         localStorage.setItem("previously-seen", JSON.stringify([]))
     }

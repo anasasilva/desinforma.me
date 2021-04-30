@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from './Logo';
-import { Link as ReactLink, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import GameContext from '../../GameContext';
 
 
 const NavbarItem = ({ children, isFirst, isLast, to = '/' }) => {
@@ -13,8 +14,8 @@ const NavbarItem = ({ children, isFirst, isLast, to = '/' }) => {
     if (isLast) {
         return (
             <li className="nav-item active my-auto ml-md-4 pl-md-3 ml-lg-5 pl-lg-3">
-                <ReactLink className="px-0 btn btn-outline-dark p-2 px-3 d-md-none" to={to}>{children}</ReactLink>
-                <ReactLink className="px-0 btn btn-primary p-2 px-3 d-none d-md-block" to={to}>{children}</ReactLink>
+                <Link className="px-0 btn btn-outline-dark p-2 px-3 d-md-none" to={to}>{children}</Link>
+                <Link className="px-0 btn btn-primary p-2 px-3 d-none d-md-block" to={to}>{children}</Link>
                 <div className="active-underline" style={{ backgroundColor: "#3182CE", width: "100%", height: (isActive ? "2px" : "0px") }} />
             </li>
         );
@@ -22,14 +23,16 @@ const NavbarItem = ({ children, isFirst, isLast, to = '/' }) => {
     else {
         return (
             <li className={"nav-item active my-auto " + (!isFirst ? "ml-md-4 pl-md-3 ml-lg-5 pl-lg-3" : "")}>
-                <ReactLink className="px-0 nav-link" to={to}>{children}</ReactLink>
+                <Link className="px-0 nav-link" to={to}>{children}</Link>
                 <div className="active-underline" style={{ backgroundColor: "#3182CE", width: "100%", height: (isActive ? "2px" : "0px") }} />
             </li>
         );
     }
 }
 
-const Navbar = props => {
+const Navbar = () => {
+
+    const { getGameState } = useContext(GameContext);
 
     return (
         <nav className="navbar navbar-expand-md navbar-light top-navbar" data-toggle="sticky-onscroll">
@@ -42,7 +45,11 @@ const Navbar = props => {
                     <ul className="navbar-nav pull-right nav-stacked row no-gutters justify-content-between justify-content-between justify-content-md-end">
                         <NavbarItem to="/como-jogar" isFirst>Como Jogar</NavbarItem>
                         <NavbarItem to="/sobre" >Sobre</NavbarItem>
-                        <NavbarItem to="/jogo" isLast>Jogar</NavbarItem>
+                        <NavbarItem to="/jogo" isLast>
+                            {
+                                getGameState() === 'INGAME' ? 'Voltar ao Jogo' : 'Jogar'
+                            }
+                        </NavbarItem>
                     </ul>
                 </div>
             </div>

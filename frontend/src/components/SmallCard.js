@@ -9,10 +9,10 @@ function SmallCard(props) {
       <div className="card my-3 red-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-            <img src={news.fakeDetails.fakeImageUrl} />
+            <img src={news.fake_details.fake_image_url} />
           </div>
           <div className="d-flex align-items-center justify-content-center">
-            <p className="m-0 px-3">{news.fakeDetails.fakeTitle}</p>
+            <p className="m-0 px-3">{news.fake_details.fake_title}</p>
           </div>
         </div>
       </div>
@@ -23,11 +23,11 @@ function SmallCard(props) {
       <div className="card my-3 green-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-          <img src={news.imageUrl} />
+            <img src={news.image_url} />
           </div>
           <div className="d-flex align-items-center">
-          <p className="m-0 px-3">{news.title}</p>
-        </div>
+            <p className="m-0 px-3">{news.title}</p>
+          </div>
         </div>
       </div>
     )

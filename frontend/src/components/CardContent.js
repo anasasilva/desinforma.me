@@ -8,10 +8,10 @@ function CardContent(props) {
     return (
       <div className='tinder-card p-2'>
         <div className="img-div">
-          <img src={news.fakeDetails.fakeImageUrl} alt={news.fakeDetails.fakeTitle} />
+          <img src={news.fake_details.fake_image_url} alt={news.fake_details.fake_title} />
         </div>
-        <h4 className="my-4">{news.fakeDetails.fakeTitle}</h4>
-        <p className="text-justify px-2">{news.fakeDetails.fakeSummary}</p>
+        <h4 className="my-4">{news.fake_details.fake_title}</h4>
+        <p className="text-justify px-2">{news.fake_details.fake_summary}</p>
       </div>
     )
   }
@@ -19,10 +19,10 @@ function CardContent(props) {
     return (
       <div className='tinder-card p-2'>
         <div className="img-div">
-          <img src={news.imageUrl} alt={news.title} />
+          <img src={news.image_url} alt={news.title} />
         </div>
         <h4 className="my-4">{news.title}</h4>
-        <p className="text-justify px-2">{news.textSummary}</p>
+        <p className="text-justify px-2">{news.summary}</p>
       </div>
     )
   }
