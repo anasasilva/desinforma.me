@@ -68,10 +68,32 @@ const Game = () => {
   if (!getActiveNews()) {
     return (
       <div className='container container-game d-block mb-3'>
-        <div className=' center'>
+        <div className='center'>
           <div className='cardContainer mt-2'>
-            <div className='tinder-card card-shadow p-2 position-absolute align-items-center d-flex justify-content-center'>
-              <div className='spinner-border' role='status' />
+            <div className="no-select" />
+            <div className="card p-0 h-100 overflow-hidden w-100 nice-shadow">
+              <div className="placeholder w-100 mb-4" style={{ minHeight: "38%" }} />{/* "208.531px" */}
+
+              <div className="mx-4 mb-4">
+                <div className="placeholder text-title-placeholder" />
+                <div className="placeholder w-50 text-title-placeholder" />
+              </div>
+
+              <div className="mx-4 mb-4">
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder" />
+                <div className="placeholder text-placeholder w-25" />
+              </div>
+            </div>
+            <div className='buttons d-none d-md-block'>
+              <button disabled>Falsa</button>
+              <button disabled>Verdadeira</button>
             </div>
           </div>
         </div>

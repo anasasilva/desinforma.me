@@ -25,19 +25,19 @@ function SocialButtons(props) {
 
     return (
         <>
-            <FacebookShareButton quote={text} url={url} resetButtonStyle="false" >
+            <FacebookShareButton className="mx-2" quote={text} url={url} resetButtonStyle="false" >
                 <FacebookIcon size={iconSize} round={true} />
             </FacebookShareButton>
             
-            <TwitterShareButton url={url} title={text} resetButtonStyle="false">
+            <TwitterShareButton className="mx-2" url={url} title={text} resetButtonStyle="false">
                 <TwitterIcon size={iconSize} round={true} />
             </TwitterShareButton>
 
-            <LinkedinShareButton url={url} source={url}  title={"desinforma.me"} summary={text} resetButtonStyle="false" >
+            <LinkedinShareButton className="mx-2" url={url} source={url}  title={"desinforma.me"} summary={text} resetButtonStyle="false" >
                 <LinkedinIcon size={iconSize} round={true} />
             </LinkedinShareButton>
 
-            <WhatsappShareButton url={url} source={url}  title={"desinforma.me | " + text} resetButtonStyle="false" >
+            <WhatsappShareButton className="mx-2" url={url} source={url}  title={"desinforma.me | " + text} resetButtonStyle="false" >
                 <WhatsappIcon size={iconSize} round={true} />
             </WhatsappShareButton>
         </>
