@@ -29,7 +29,7 @@ function SmallCard(props) {
       <div className="card my-3 nice-shadow">
         <div className="d-flex">
           <div className="img-div-sm">
-            <img src={news.image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
+            <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
             <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
           </div>
           <div className="d-flex align-items-center">
