@@ -15,8 +15,8 @@ function CardContent(props) {
           <img src={news.fake_details.fake_image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fake_details.fake_title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")} />
         </div>
-        <h4 className="my-4">{news.fake_details.fake_title}</h4>
-        <p className="text-justify px-2">{news.fake_details.fake_summary}</p>
+        <h4 className="my-4 text-left px-4">{news.fake_details.fake_title}</h4>
+        <p className="text-justify px-4">{news.fake_details.fake_summary}</p>
       </div>
     )
   }
@@ -27,8 +27,8 @@ function CardContent(props) {
           <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")} />
         </div>
-        <h4 className="my-4">{news.title}</h4>
-        <p className="text-justify px-2">{news.summary}</p>
+        <h4 className="my-4 text-left px-4">{news.title}</h4>
+        <p className="text-justify px-4">{news.summary}</p>
       </div>
     )
   }
