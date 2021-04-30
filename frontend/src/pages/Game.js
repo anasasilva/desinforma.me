@@ -7,7 +7,7 @@ import CardContent from '../components/CardContent';
 import GameContext from '../GameContext';
 
 const debug = false;
-const MAX_NEWS_TO_SHOW = 2;
+const MAX_NEWS_TO_SHOW = 5;
 let isFetching = false;
 
 const Game = (props) => {
