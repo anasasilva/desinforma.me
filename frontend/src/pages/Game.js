@@ -128,7 +128,8 @@ const Game = (props) => {
             {/* <div className='green-overlay' />
               <div className='red-overlay' /> */}
             <div className="card p-0 h-100 overflow-hidden w-100 nice-shadow position-absolute">
-              <div className="placeholder w-100 mb-4" style={{ minHeight: "38%" }} />{/* "208.531px" */}
+              <div className="placeholder w-100 mb-4" style={{ minHeight: "44%" }} />{/* "208.531px" */}
+
               <div className="mx-4 mb-4">
                 <div className="placeholder text-title-placeholder" />
                 <div className="placeholder w-50 text-title-placeholder" />

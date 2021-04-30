@@ -66,6 +66,8 @@
   max-width: 500px;
   height: 34em;
   overflow-y: scroll;
+  border-radius: 4px;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 768px) {
@@ -242,4 +244,29 @@
     rgba(66, 153, 225, 1) 0%,
     rgba(255, 255, 255, 1) 80%
   );
+}
+
+
+
+.tinder-card::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+.tinder-card::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 0px 4px 4px 0px ;
+}
+
+/* Handle */
+.tinder-card::-webkit-scrollbar-thumb {
+    background: #ccc; 
+    border-radius: 0px 4px 4px 0px ;
+}
+
+/* Handle on hover */
+.tinder-card::-webkit-scrollbar-thumb:hover {
+    
+    display: flex;
+    background: #999; 
 }

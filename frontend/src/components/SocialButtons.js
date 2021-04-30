@@ -18,26 +18,26 @@ function SocialButtons(props) {
 
     const { 
         url = "https://www.desinforma.me/", 
-        text="Olhem o meu novo score!", 
+        text= "Olhem o meu novo score!", 
         iconSize=32 
     } = props;
 
 
     return (
         <>
-            <FacebookShareButton className="mx-2" quote={text} url={url} resetButtonStyle="false" >
+            <FacebookShareButton className="mx-2 social-buttons-shadow" quote={text} url={url} resetButtonStyle="false" >
                 <FacebookIcon size={iconSize} round={true} />
             </FacebookShareButton>
             
-            <TwitterShareButton className="mx-2" url={url} title={text} resetButtonStyle="false">
+            <TwitterShareButton className="mx-2 social-buttons-shadow" url={url} title={text} resetButtonStyle="false">
                 <TwitterIcon size={iconSize} round={true} />
             </TwitterShareButton>
 
-            <LinkedinShareButton className="mx-2" url={url} source={url}  title={"desinforma.me"} summary={text} resetButtonStyle="false" >
+            <LinkedinShareButton className="mx-2 social-buttons-shadow" url={url} source={url}  title={"desinforma.me"} summary={text} resetButtonStyle="false" >
                 <LinkedinIcon size={iconSize} round={true} />
             </LinkedinShareButton>
 
-            <WhatsappShareButton className="mx-2" url={url} source={url}  title={"desinforma.me | " + text} resetButtonStyle="false" >
+            <WhatsappShareButton className="mx-2 social-buttons-shadow" url={url} source={url}  title={"desinforma.me | " + text} resetButtonStyle="false" >
                 <WhatsappIcon size={iconSize} round={true} />
             </WhatsappShareButton>
         </>
