@@ -35,7 +35,7 @@ const EndGame = () => {
     }
 
     return (
-        <div className="d-flex align-items-center flex-column justify-content-start h-end-game">
+        <div className="d-flex align-items-center flex-column justify-content-start h-end-game my-3">
             <h1>Fim do Jogo</h1>
             <div className="row w-100 mt-3">
                 {/* <div className="col-12 my-1">

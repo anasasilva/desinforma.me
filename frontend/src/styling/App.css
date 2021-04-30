@@ -38,13 +38,31 @@
 }
 
 .nice-shadow {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 50px -12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 50px -12px;
 }
 
 #landing-title {
   font-size: min(3.6rem, 10vw);
   text-shadow: 1px 1px 0 #cccccc70, 2px 2px 0 #ccc, 3px 3px 0 #4444442e,
     2px 2px 0 #44444452, 2px 2px 0 #4444441f;
+}
+
+#hero-img {
+  height: max(calc(100vh - 610px), 200px);
+  background: url(https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)
+    no-repeat center / cover;
+  position: relative;
+}
+
+#hero-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {
@@ -75,7 +93,7 @@
 }
 
 .buttons button:disabled {
-    background-color: rgba(63, 69, 77, 0.9);
+  background-color: rgba(63, 69, 77, 0.9);
 }
 
 .buttons button:hover:not(:disabled) {
@@ -201,31 +219,31 @@ a {
 }
 
 .placeholder {
-    background-color: #b0c0c7;
-    animation-name: shine;
-    animation-duration: 2.4s;
-    animation-iteration-count: infinite;
+  background-color: #b0c0c7;
+  animation-name: shine;
+  animation-duration: 2.4s;
+  animation-iteration-count: infinite;
 }
 .text-title-placeholder {
-    height: 15px;
-    margin-bottom: 15px;
+  height: 15px;
+  margin-bottom: 15px;
 }
 
 .text-placeholder {
-    height: 10px;
-    margin-bottom: 10px;
+  height: 10px;
+  margin-bottom: 10px;
 }
 
 @keyframes shine {
-    0% { 
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.35;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .no-select {
@@ -285,5 +303,5 @@ a {
 }
 
 .social-buttons-shadow {
-    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.4));
 }

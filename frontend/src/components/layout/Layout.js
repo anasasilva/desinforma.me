@@ -6,9 +6,9 @@ import Navbar from "./Navbar";
 const Layout = (props) => {
 
     return (
-        <div className="d-flex flex-column justify-content-between h-100">
+        <div className="d-flex flex-column justify-content-start justify-content-md-between h-100">
             <Navbar />
-            <div className="container">
+            <div className="container flex-grow-1 d-flex align-items-center justify-content-center">
                 {props.children}
             </div>
             <Footer />

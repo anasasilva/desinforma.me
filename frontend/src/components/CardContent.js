@@ -5,35 +5,35 @@ function CardContent(props) {
 
   const { news } = props;
   const [showDefaultImage, setShowDefaultImage] = useState(true)
-  
+
   let cardRef = React.createRef()
 
   let scroll;
 
   const scrollY = (y_dist) => {
-    cardRef.current.scrollBy({ 
+    cardRef.current.scrollBy({
       top: y_dist,
-      behavior: 'smooth' 
+      behavior: 'smooth'
     });
   }
-  
+
   const startScroll = (e) => {
     if (!cardRef.current) return;
     var rect = cardRef.current.getBoundingClientRect();
     var y = null;
     if (e.clientY) {
       y = e.clientY - rect.top;  //y position within the element.
-    } else if (e.touches)  {
-      y = e.touches[0].clientY - rect.top;  
+    } else if (e.touches) {
+      y = e.touches[0].clientY - rect.top;
     }
 
     let threshold = cardRef.current.offsetHeight * .5;
     if (y >= threshold) {
       scrollY(18);
-      scroll = setTimeout(() => startScroll(e),100);
+      scroll = setTimeout(() => startScroll(e), 100);
     } else if ((y <= cardRef.current.offsetHeight - threshold)) {
       scrollY(-18);
-      scroll = setTimeout(() => startScroll(e),100);
+      scroll = setTimeout(() => startScroll(e), 100);
     }
   }
 
@@ -57,7 +57,7 @@ function CardContent(props) {
   }
   else {
     return (
-      <div  ref={cardRef} className='tinder-card' onTouchStart={startScroll} onTouchEnd={stopScroll}>
+      <div ref={cardRef} className='tinder-card' onTouchStart={startScroll} onTouchEnd={stopScroll}>
         <div className="img-div h-100">
           <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")} />
