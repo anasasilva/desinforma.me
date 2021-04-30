@@ -35,10 +35,7 @@ const Game = (props) => {
   }
 
   useEffect(() => {
-    if (getGameState() === "LOADING_DATA") {
-      history.push('/');
-    }
-    else if (getGameState() !== "INGAME") {
+    if (getGameState() !== "INGAME") {
       startGame();
       updateActiveNew();
     }
@@ -63,15 +60,18 @@ const Game = (props) => {
     const news = getActiveNews();
     addNewsToSwippedList(news);
     // left = fake news; right = true news
+    // LOSS
     if (((dir === 'left' && !news.isFake) || (dir === 'right' && news.isFake)) && !debug) {
       setIsGoingToLose(true);
+      setTimeout(() => {
+        gotoEndGame();
+      }, 250);
     }
+    // RIGHT
   };
 
   const outOfFrame = () => {
-    if (isGoingToLose)
-      gotoEndGame();
-    else
+    if (!isGoingToLose)
       updateActiveNew();
   }
 
