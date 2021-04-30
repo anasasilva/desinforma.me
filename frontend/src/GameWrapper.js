@@ -21,7 +21,7 @@ const GameWrapper = ({ children }) => {
             const minutesElapsedSinceLastNewsUpdate = ((new Date()) - lastNewsUpdateOnAsDateOBject) / 1000 / 60
             if (minutesElapsedSinceLastNewsUpdate > 1440 || !lastNewsUpdateOn) { // Refresh news for updates.
                 try {
-                    const updatedNews = (await axios.get('https://desinforma.me/news.json')).data;
+                    const updatedNews = (await axios.get('news.json')).data;
                     const updatedNewsIDs = [...Array(updatedNews.length).keys()]; // Ids are in range [0, news.length[ 
                     updatedNews.forEach((newNew, index) => {
                         localStorage.setItem(`new_${index}`, JSON.stringify(newNew));
