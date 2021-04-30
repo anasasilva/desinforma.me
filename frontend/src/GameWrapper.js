@@ -48,11 +48,12 @@ const GameWrapper = ({ children }) => {
         getGameState: () => gameState,
         getGameDuration: () => gameDuration,
         getNews: ({ count = 1 } = {}) => {
-            const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
+            let previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
             let newsIdsWithoutPreviousSeens = _.without(allNewsIDs, previousGameNewsIds);
             if (newsIdsWithoutPreviousSeens.length < count) {
                 localStorage.setItem('previously-seen', '[]');
                 newsIdsWithoutPreviousSeens = allNewsIDs;
+                previousGameNewsIds = [];
             }
             const newsIds = _.sampleSize(newsIdsWithoutPreviousSeens, count);
             let news = [];
@@ -62,6 +63,7 @@ const GameWrapper = ({ children }) => {
                 _new.id = newsId;
                 news.push(_new);
             }
+            localStorage.setItem('previously-seen', JSON.stringify([...previousGameNewsIds, ...newsIds]));
             return news;
         },
         getSwippedNews: () => swipedNews,
