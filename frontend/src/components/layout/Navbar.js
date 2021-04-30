@@ -34,6 +34,20 @@ const Navbar = () => {
 
     const { getGameState } = useContext(GameContext);
 
+    let currentPath = useLocation();
+
+    let btnText = '';
+    if (getGameState() === 'INGAME') {
+        if (currentPath.pathname === '/jogo')
+            btnText = 'Jogar'
+        else
+            btnText = 'Voltar ao Jogo'
+    }
+    else if (getGameState() === 'ENDGAME')
+        btnText = 'Novo Jogo'
+    else
+        btnText = 'Jogar'
+
     return (
         <nav className="navbar navbar-expand-md navbar-light top-navbar" data-toggle="sticky-onscroll">
             <div className="container">
@@ -45,11 +59,7 @@ const Navbar = () => {
                     <ul className="navbar-nav pull-right nav-stacked row no-gutters justify-content-between justify-content-between justify-content-md-end">
                         <NavbarItem to="/como-jogar" isFirst>Como Jogar</NavbarItem>
                         <NavbarItem to="/sobre" >Sobre</NavbarItem>
-                        <NavbarItem to="/jogo" isLast>
-                            {
-                                getGameState() === 'INGAME' ? 'Voltar ao Jogo' : 'Jogar'
-                            }
-                        </NavbarItem>
+                        <NavbarItem to="/jogo" isLast>{btnText}</NavbarItem>
                     </ul>
                 </div>
             </div>

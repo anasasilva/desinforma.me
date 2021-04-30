@@ -7,7 +7,7 @@ import GameContext from '../GameContext';
 
 const debug = false;
 
-const Game = () => {
+const Game = (props) => {
   const history = useHistory();
 
   const { getGameState,
@@ -20,11 +20,17 @@ const Game = () => {
 
   const [allowSwipping, setAllowSwipping] = useState(false)
   const [isGoingToLose, setIsGoingToLose] = useState(false)
+  const [refToCard, setRefToCard] = useState(null);
+
+
+  const updateCardRef = () => {
+    setRefToCard(React.createRef());
+  }
 
   const updateActiveNew = () => {
     const _new = getNews({ count: 1 })[0];
-    const _newWithChildRef = { ..._new, childRef: React.createRef() };
-    setActiveNews(_newWithChildRef);
+    setActiveNews(_new);
+    updateCardRef();
     setAllowSwipping(true);
   }
 
@@ -36,7 +42,14 @@ const Game = () => {
       startGame();
       updateActiveNew();
     }
+    else {
+      setAllowSwipping(true);
+    }
   }, []);
+
+  useEffect(() => {
+    updateCardRef()
+  }, [getActiveNews()]);
 
   const gotoEndGame = () => {
     endGame();
@@ -64,7 +77,7 @@ const Game = () => {
 
   const swipe = (dir) => {
     if (allowSwipping) {
-      getActiveNews().childRef.current.swipe(dir)
+      refToCard.current.swipe(dir)
       setAllowSwipping(false);
     }
   }
@@ -133,7 +146,7 @@ const Game = () => {
               </div>
             </div>
             <div key={getActiveNews().id}>
-              <TinderCard ref={getActiveNews().childRef} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={swiped} onCardLeftScreen={() => outOfFrame()}>
+              <TinderCard ref={refToCard} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={swiped} onCardLeftScreen={outOfFrame}>
                 <CardContent news={getActiveNews()} />
               </TinderCard>
             </div>
@@ -143,7 +156,7 @@ const Game = () => {
             <button onClick={() => swipe('right', false)}>Verdadeira</button>
           </div>
         </div>
-      </div >
+      </div>
     )
   }
 }
