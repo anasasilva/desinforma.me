@@ -6,6 +6,7 @@ import '../styling/Game.css';
 import CardContent from '../components/CardContent';
 import GameContext from '../GameContext';
 import Score from '../components/game/Score';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const debug = false;
 const MAX_NEWS_TO_SHOW = 5;
@@ -13,6 +14,8 @@ let isFetching = false;
 
 const Game = (props) => {
   const history = useHistory();
+  
+  let refConfetti = React.createRef()
 
   const { getGameState,
     getNews,
@@ -78,6 +81,8 @@ const Game = (props) => {
       setTimeout(() => {
         gotoEndGame();
       }, 250);
+    } else {
+        refConfetti?.current.confetti()  
     }
     // RIGHT
   };
@@ -136,43 +141,56 @@ const Game = (props) => {
 
   else {
     return (
-      <div>
-        <div className='cardContainer mt-2'>
-          <Score />
-          {/* <div className='green-overlay' />
-              <div className='red-overlay' /> */}
-          <div className="card p-0 overflow-hidden w-100 nice-shadow position-absolute card-placeholder" style={{ height: '544px' }}>
-            <div className="placeholder w-100 mb-4" style={{ minHeight: "44%" }} />{/* "208.531px" */}
+        <>
+            <ReactCanvasConfetti
+                className="no-pointer-events position-fixed w-100 h-100"
+                ref={refConfetti}
+                style={{zIndex: 1000}}
+                origin={{x: 0.5, y: 0.5}}
+                particleCount={100}
+                startVelocity={60}
+                gravity={1.2}
+                angle={90}
+                spread={360}
+            />
+            <div>
+                <div className='cardContainer mt-2'>
+                    <Score />
+                    {/* <div className='green-overlay' />
+                        <div className='red-overlay' /> */}
+                    <div className="card p-0 overflow-hidden w-100 nice-shadow position-absolute card-placeholder" style={{ height: '544px' }}>
+                    <div className="placeholder w-100 mb-4" style={{ minHeight: "44%" }} />{/* "208.531px" */}
 
-            <div className="mx-4 mb-4">
-              <div className="placeholder text-title-placeholder" />
-              <div className="placeholder w-50 text-title-placeholder" />
+                    <div className="mx-4 mb-4">
+                        <div className="placeholder text-title-placeholder" />
+                        <div className="placeholder w-50 text-title-placeholder" />
+                    </div>
+                    <div className="mx-4 mb-4">
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder" />
+                        <div className="placeholder text-placeholder w-25" />
+                    </div>
+                    </div>
+                    {
+                    getActiveNews().filter(_new => !_new.isOutOfScreen).map(_new => (
+                        <TinderCard key={_new.id} ref={_new.childRef} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, _new)} onCardLeftScreen={() => outOfFrame(_new)}>
+                        <CardContent news={_new} />
+                        </TinderCard>
+                    ))
+                    }
+                </div>
+                <div className='buttons d-none d-md-block text-center'>
+                    <button onClick={() => swipe('left')}>Falsa</button>
+                    <button onClick={() => swipe('right')}>Verdadeira</button>
+                </div>
             </div>
-            <div className="mx-4 mb-4">
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder" />
-              <div className="placeholder text-placeholder w-25" />
-            </div>
-          </div>
-          {
-            getActiveNews().filter(_new => !_new.isOutOfScreen).map(_new => (
-              <TinderCard key={_new.id} ref={_new.childRef} className='position-absolute' preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, _new)} onCardLeftScreen={() => outOfFrame(_new)}>
-                <CardContent news={_new} />
-              </TinderCard>
-            ))
-          }
-        </div>
-        <div className='buttons d-none d-md-block text-center'>
-          <button onClick={() => swipe('left')}>Falsa</button>
-          <button onClick={() => swipe('right')}>Verdadeira</button>
-        </div>
-      </div>
+      </>
     )
   }
 }
