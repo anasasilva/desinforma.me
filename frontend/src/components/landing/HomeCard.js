@@ -8,6 +8,8 @@ import catSleeping from '../../assets/cat-sleeping.gif'
 const HomeCard = () => {
 
     const [showFakeStamp, setShowFakeStamp] = useState(false)
+    const [marceloLoaded, setMarceloLoaded] = useState(false)
+    const [ronaldoLoaded, setRonaldoLoaded] = useState(false)
     const cardRef = useRef();
 
     //const showFakeStamp = () => document.querySelector('.stamp[data-type="fake"]').classList.add('ready');
@@ -44,8 +46,9 @@ const HomeCard = () => {
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
                 <div className="hover-show ready stamp" data-type="genuine" style={{ zIndex: 1 }} />
                 <div className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
-                    <img className="hover-hide img-fluid" src={mrs} alt="Marcelo Rebelo de Sousa" />
-                    <img className="hover-show img-fluid" src={cr7} alt="Cristiano Ronaldo" />
+                    <img className={"hover-hide img-fluid w-100 " + ((marceloLoaded && ronaldoLoaded) ? "" : "d-none")} src={mrs} alt="Marcelo Rebelo de Sousa" onLoad={() => setMarceloLoaded(true)}/>
+                    <div className={"placeholder w-100 " + (!(marceloLoaded && ronaldoLoaded) ? "" : "d-none")} style={{height: '35.5%'}}/>
+                    <img className={"hover-show img-fluid w-100 " + ((marceloLoaded && ronaldoLoaded) ? "" : "d-none")} src={cr7} alt="Cristiano Ronaldo" onLoad={() =>  setRonaldoLoaded(true)}/>
                     <h5 className="text-left mt-4 mb-3 px-4 news-title serif-font">«<ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" />? Se voltasse atrás no tempo faria a mesma coisa»</h5>
                     <p className="text-justify px-4 smallish">
                         Com a Juventus a protagonizar época aquém das expectativas, Andrea Agnelli, presidente do clube de Turim, veio a terreiro garantir que
@@ -54,34 +57,10 @@ const HomeCard = () => {
                         entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
                     </p>
                     <div className="div-bottom w-100 pb-1" style={{ zIndex: 100 }}>
-                        <small className="d-block text-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" className="d-inline" target="_blank">Jornal Record</a> </small>
+                        <small className="d-block text-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" rel="noreferrer" className="d-inline" target="_blank">Jornal Record</a> </small>
                     </div>
                 </div>
             </TinderCard>
-
-
-
-            {/* <div className="no-select"/>
-                <div className="card p-0 h-100 overflow-hidden  w-100" style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 10px 50px -12px" }}>
-                    <div className="placeholder w-100 mb-4" style={{minHeight: "208.531px"}}/>
-
-                    <div className="mx-3 mb-4">
-                        <div className="placeholder text-title-placeholder" />
-                        <div className="placeholder w-50 text-title-placeholder" />
-                    </div>
-
-                    <div className="mx-3 mb-4">
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder" />
-                        <div className="placeholder text-placeholder w-25" />
-                    </div>
-                </div> */}
         </div>
     )
 }
