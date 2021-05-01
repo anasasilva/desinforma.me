@@ -22,6 +22,8 @@ const Game = (props) => {
     getActiveNews
   } = useContext(GameContext);
 
+  const [renderId, setRenderId] = useState(0);
+
   const updateActiveNews = () => {
     if (!isFetching) {
       isFetching = true;
@@ -39,6 +41,19 @@ const Game = (props) => {
     else if (getGameState() !== "INGAME") {
       startGame();
       updateActiveNews();
+    }
+    else if (getGameState() === "INGAME") {
+      let activeNews = getActiveNews();
+      for (const activeNew of activeNews) {
+        if (activeNew.wasSwiped) {
+          activeNew.isOutOfScreen = true;
+        }
+      }
+      setActiveNews(activeNews);
+      setRenderId(renderId + 1);
+      if (_.sum(getActiveNews().map(_new => _new.isOutOfScreen)) === getActiveNews().length) {
+        updateActiveNews();
+      }
     }
   }, []);
 
@@ -59,7 +74,7 @@ const Game = (props) => {
     if (((dir === 'left' && !_new.isFake) || (dir === 'right' && _new.isFake)) && !debug) {
       //setIsGoingToLose(true);
       setTimeout(() => {
-        gotoEndGame();
+        //gotoEndGame();
       }, 250);
     }
     // RIGHT
