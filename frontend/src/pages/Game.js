@@ -80,7 +80,7 @@ const Game = (props) => {
         gotoEndGame();
       }, 250);
     } else {
-        refConfetti.current.confetti()  
+        refConfetti?.current.confetti()  
     }
     // RIGHT
   };
