@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import GameContext from "../../GameContext";
 import { FaTrophy, FaHourglass } from "react-icons/fa";
+import _ from "lodash";
 
 const Score = () => {
 
@@ -14,7 +15,7 @@ const Score = () => {
             const timeElapsedSec = Math.floor((performance.now() - getGameStartTime()) / 1000);
             const minutes = Math.floor(timeElapsedSec / 60);
             const seconds = timeElapsedSec % 60;
-            const points = getActiveNews().filter(_new => _new.isOutOfScreen || _new.wasSwiped).length;
+            const points = getActiveNews().filter(_new => (_new.isOutOfScreen || _new.wasSwiped) && _new.wasAnsweredRight).length;
             setTimeMsg(`${minutes} min ${seconds} seg`)
             setPointsMsg(`${points} pontos`)
         }, 50);

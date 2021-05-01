@@ -2,8 +2,8 @@
 import React from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import Particles from 'react-particles-js';
-import ParticlesConfig from './particles.json';
+// import Particles from 'react-particles-js';
+// import ParticlesConfig from './particles.json';
 
 
 const Layout = (props) => {
