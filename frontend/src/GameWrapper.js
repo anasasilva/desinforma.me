@@ -46,6 +46,7 @@ const GameWrapper = ({ children }) => {
     const contextInterface = {
         getGameState: () => gameState,
         getGameDuration: () => gameDuration,
+        getGameStartTime: () => gameStartTime,
         getNews: ({ count = 1 } = {}) => {
             const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
             let newsIdsWithoutPreviousSeens = _.without(allNewsIDs, previousGameNewsIds);

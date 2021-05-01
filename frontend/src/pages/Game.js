@@ -5,6 +5,7 @@ import TinderCard from 'react-tinder-card';
 import '../styling/Game.css';
 import CardContent from '../components/CardContent';
 import GameContext from '../GameContext';
+import Score from '../components/game/Score';
 
 const debug = false;
 const MAX_NEWS_TO_SHOW = 5;
@@ -66,6 +67,8 @@ const Game = (props) => {
 
   const outOfFrame = (_new) => {
     const index = getActiveNews().map(_newIter => _newIter.id).indexOf(_new.id);
+    if (index === -1)
+      return;
     const activeNews = getActiveNews();
     activeNews[index].isOutOfScreen = true;
     if (_.sum(activeNews.map(_new => Number(_new.isOutOfScreen))) === activeNews.length) {
@@ -86,7 +89,7 @@ const Game = (props) => {
     return (
       <div className='cardContainer mt-2'>
         <div className="no-select" />
-        <div className="card p-0 h-100 overflow-hidden w-100 nice-shadow">
+        <div className="card p-0 h-100 overflow-hidden w-100 nice-shadow" style={{ height: '544px' }}>
           <div className="placeholder w-100 mb-4" style={{ minHeight: "38%" }} />{/* "208.531px" */}
 
           <div className="mx-4 mb-4">
@@ -118,9 +121,10 @@ const Game = (props) => {
     return (
       <div>
         <div className='cardContainer mt-2'>
+          <Score />
           {/* <div className='green-overlay' />
               <div className='red-overlay' /> */}
-          <div className="card p-0 h-100 overflow-hidden w-100 nice-shadow position-absolute">
+          <div className="card p-0 overflow-hidden w-100 nice-shadow position-absolute card-placeholder" style={{ height: '544px' }}>
             <div className="placeholder w-100 mb-4" style={{ minHeight: "44%" }} />{/* "208.531px" */}
 
             <div className="mx-4 mb-4">

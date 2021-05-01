@@ -15,8 +15,7 @@ const HeroText = () => {
 
     return (
         <div className="col-xl-7 col-12 w-100 m-0">
-            <div class="d-md-none w-100 nice-shadow mb-3" id="hero-img">
-
+            <div class="d-xl-none w-100 nice-shadow mb-3" id="hero-img">
             </div>
             <h1 className="my-2 my-md-3 text-md-left" id="landing-title">
                 <span className="blue-secondary">Des</span>
