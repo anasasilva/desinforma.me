@@ -25,10 +25,8 @@ const Score = () => {
 
     return (
         <div class="game-score w-100 d-flex">
-            <div className="badge badge-secondary p-2 mr-2">
-                <FaTrophy /> &nbsp;{pointsMsg}
-            </div>
-            <div className="badge badge-secondary p-2">
+            <div className="badge badge-secondary p-2 px-3 mr-2 no-select">
+                <FaTrophy /> &nbsp;{pointsMsg}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                 <FaHourglass /> &nbsp;{timeMsg}
             </div>
         </div>

@@ -67,6 +67,12 @@
   border-radius: 5px;
 }
 
+@media (max-width: 350px) {
+  #hero-img {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   #landing-title {
     text-shadow: 1px 1px 0 #cccccc3a, 2px 2px 0 rgba(204, 204, 204, 0.575),

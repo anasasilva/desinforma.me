@@ -284,13 +284,11 @@
 .game-score {
   height: 1.9rem;
   justify-content: center;
-  padding-right: 0.5em;
   position: relative;
   bottom: 8px;
 }
 
 .game-score .badge {
-  width: 130px;
   padding-top: 0.65em !important;
   font-size: 0.8em;
 }
