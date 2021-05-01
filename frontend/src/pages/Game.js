@@ -74,7 +74,7 @@ const Game = (props) => {
     if (((dir === 'left' && !_new.isFake) || (dir === 'right' && _new.isFake)) && !debug) {
       //setIsGoingToLose(true);
       setTimeout(() => {
-        //gotoEndGame();
+        gotoEndGame();
       }, 250);
     }
     // RIGHT
