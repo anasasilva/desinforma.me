@@ -67,7 +67,6 @@ const GameWrapper = ({ children }) => {
         getActiveNews: () => activeNews,
         setActiveNews: setActiveNews,
         startGame: () => {
-            localStorage.setItem('previously-seen', '[]');
             setGameState('INGAME');
             setGameStartTime(performance.now());
             activeNews.length = 0;
