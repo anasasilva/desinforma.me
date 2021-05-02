@@ -92,13 +92,13 @@ function SmallCard(props) {
                 </div>
 
                 <div id={"collapse_" + news.id} className={(index === 0 ? "show " : "") + "collapse border-top"} aria-labelledby={"heading_" + news.id} data-parent="#accordion" style={{ backgroundColor: '#fafcff99' }}>
-                    <div className="card-body text-justify">
+                    <div className="card-body pb-2 text-justify">
                         {getFalseSummaryFormated(news.fake_details.fake_summary).map((e, index) => {
                             if (typeof e == "string") return (e)
                             else return (<ChangedEntity original={e[0]} created={e[1]} key={index} />)
                         })}
                     </div>
-                    <div className="w-100 text-center">
+                    <div className="w-100 text-center pb-2">
                         <span className="small text-muted">Adaptado: <a className="d-inline" rel="noreferrer" href={news.url} target="_blank">{hostnameNoWww}</a></span>
                     </div>
                 </div>
@@ -125,8 +125,8 @@ function SmallCard(props) {
                 </div>
 
                 <div id={"collapse_" + news.id} className={(index === 0 ? "show " : "") + "collapse border-top"} aria-labelledby={"heading_" + news.id} data-parent="#accordion" style={{ backgroundColor: '#fafcff99' }}>
-                    <div className="card-body text-justify">{news.summary}</div>
-                    <div className="w-100 text-center">
+                    <div className="card-body pb-2 text-justify">{news.summary}</div>
+                    <div className="w-100 text-center pb-2">
                         <span className="small text-muted mx-auto">Fonte: <a className="d-inline" href={news.url} rel="noreferrer" target="_blank">{hostnameNoWww}</a></span>
                     </div>
                 </div>
