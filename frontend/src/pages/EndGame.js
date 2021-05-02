@@ -83,7 +83,7 @@ const EndGame = () => {
                 <h5 className="my-2 mb-md-3">Resposta Errada</h5>
                 <SmallCard news={failedNew} index={0} />
                 <h5 className="my-2 mt-md-4 mb-md-3">Respostas Corretas</h5>
-                {rightNews.length === 0 && <div class="text-muted small text-center mt-2 mb-3">Parece que não acertaste nenhuma...</div>}
+                {rightNews.length === 0 && <div className="text-muted small text-center mt-2 mb-3">Parece que não acertaste nenhuma...</div>}
                 {rightNews.map((news, index) => {
                     return (
                         <SmallCard news={news} index={index + 1} key={index} />
@@ -108,9 +108,9 @@ const EndGame = () => {
                 spread={360}
             />
             <div>
-                <h1 class="mt-5 mb-4 my-md-5 text-center" id="landing-title">
-                    <span class="blue-secondary">Fim de</span>
-                    <span class="text-primary"> Jogo</span>
+                <h1 className="mt-5 mb-4 my-md-5 text-center" id="landing-title">
+                    <span className="blue-secondary">Fim de</span>
+                    <span className="text-primary"> Jogo</span>
                 </h1>
                 <div className="row align-items-start mx-auto w-100">
                     <div className="col-md-5 col-12 border-right border-hide-phone">

@@ -203,7 +203,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
     
     element.current.addEventListener(('touchmove'), (ev) => {
       const normal_move = () => {
-        ev.preventDefault();
+        if (ev.cancelable) ev.preventDefault();
         const newLocation = dragableTouchmove(touchCoordinatesFromEvent(ev), element.current, offset, lastLocation)
         speed = calcSpeed(lastLocation, newLocation)
         lastLocation = newLocation
