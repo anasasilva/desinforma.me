@@ -68,6 +68,7 @@ const Game = (props) => {
   }
 
   const swiped = (dir, _new) => {
+    if (dir === "down" || dir === "up") return;
     const index = getActiveNews().map(_newIter => _newIter.id).indexOf(_new.id);
     if (index === -1)
       return;
