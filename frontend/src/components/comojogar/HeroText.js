@@ -30,10 +30,10 @@ const HeroText = () => {
             {/* LONG VERSION*/}
             <p className="lead text-justify text-lg-left d-none d-md-block">
                 Arrasta uma notícia para a <strong>direita</strong> se achares que é <strong>verdadeira</strong> e para a <strong>esquerda</strong> se te parecer <strong>falsa</strong>
-                , ou carrega nos botões de baixo do cartão.            
+                , ou carrega nos botões de baixo da notícia.            
             </p>
             <p className="lead text-justify text-lg-left">
-                Se acertares o jogo continua e a tua pontuação vai aumentando.
+                Se acertares, o jogo continua e a tua pontuação vai aumentando.
                 Prova que consegues encontrar a verdade e vê em quantas notícias consegues acertar corretamente!
             </p>
             <div className="d-flex flex-column flex-md-row flex-md-row mt-md-0 mt-2">
