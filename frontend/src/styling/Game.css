@@ -297,3 +297,8 @@
   position: relative;
   bottom: 1px;
 }
+
+#end-game-info .badge svg {
+  position: relative;
+  bottom: 1px;
+}
