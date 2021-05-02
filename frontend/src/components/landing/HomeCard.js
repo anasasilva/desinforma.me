@@ -5,7 +5,7 @@ import cr7 from '../../assets/cr7.jpg';
 import ChangedEntity from '../ChangedEntity';
 import catSleeping from '../../assets/cat-sleeping.gif'
 
-const HomeCard = () => {
+const InstructionsCard = () => {
 
     const [showFakeStamp, setShowFakeStamp] = useState(false)
     const [marceloLoaded, setMarceloLoaded] = useState(false)
@@ -65,4 +65,4 @@ const HomeCard = () => {
     )
 }
 
-export default HomeCard;
+export default InstructionsCard;
