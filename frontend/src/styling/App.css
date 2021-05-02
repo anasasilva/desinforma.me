@@ -209,17 +209,16 @@ a {
   top: -2.5rem;
   left: -30%;
   transform: rotate(-30deg) scale(0.5);
-  content: "Notícias Verídicas";
   z-index: 4;
 }
 
 .sm-stamp[data-type="fake"]:after {
-  width: 65%;
-  top: -2.5rem;
-  right: -30%;
-  transform: rotate(30deg) scale(0.5);
-  content: "Notícias Falsas";
-  z-index: 4;
+    width: 43%;
+    top: -4.5rem;
+    right: -18.5%;
+    transform: rotate(20deg) scale(0.5);
+    z-index: 4;
+    font-variant: all-small-caps;
 }
 
 .no-pointer-events {
@@ -324,4 +323,17 @@ a {
 
 .low-zindex {
   z-index: -1;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+
+.red-gradiant-overlay {
+    background: linear-gradient(to left, rgb(255, 0, 0, 3%), rgba(0, 0, 0, 0));
+}
+
+.green-gradiant-overlay {
+    background: linear-gradient(to left, rgb(0, 255, 0, 3%), rgba(0, 0, 0, 0));
 }

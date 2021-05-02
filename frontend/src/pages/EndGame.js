@@ -1,125 +1,110 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect  } from "react";
 import { Redirect } from "react-router";
-import SmallCard from '../components/SmallCard';
-import { GiSandsOfTime, GiTrophyCup, GiCheckMark, GiCrossMark } from "react-icons/gi";
 import GameContext from "../GameContext";
+import SmallCard from "../components/SmallCard"
 import SocialButtons from "../components/SocialButtons";
+import { FaTrophy, FaHourglass, GrPowerReset } from "react-icons/fa";
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const EndGame = () => {
 
     const { getGameState, getActiveNews, getGameDuration } = useContext(GameContext);
 
-    if (getGameState() !== "GAME_OVER") {
-        return <Redirect to='/' />
-    }
-
     const answeredNews = getActiveNews().filter(_new => _new.isOutOfScreen || _new.wasSwiped);
-    const trueNews = answeredNews.filter(news => !news.isFake);
-    const fakeNews = answeredNews.filter(news => news.isFake);
 
     const points = answeredNews.length;
     const maxPoints = parseInt(localStorage.getItem('record-points')) || 0;
 
-    const minutes = Math.floor(getGameDuration() / 60);
-    const seconds = getGameDuration() % 60;
+    const hours   = Math.floor(getGameDuration() / 3600)
+    const minutes = Math.floor((getGameDuration() - (hours * 3600)) / 60);
+    const seconds = getGameDuration() - (hours * 3600) - (minutes * 60);
+    let stringTime = "";
+    if (hours > 0) stringTime = hours.toString().padStart(2, "0") + " h e " + minutes.toString().padStart(2, "0") + " min";
+    else stringTime = minutes.toString().padStart(2, "0") + " min e " + seconds.toString().padStart(2, "0") + " seg";
 
-    if (points > maxPoints) {
+    const brokeRecord = points > maxPoints;
+
+    if (brokeRecord) {
         localStorage.setItem('record-points', points);
     }
 
-    let maxPointsMessage = "";
-    if (points > maxPoints) {
-        maxPointsMessage = "Novo Recorde!";
-    } else {
-        maxPointsMessage = "Recorde: " + maxPoints;
+
+    let refConfetti = React.createRef()
+    useEffect(() => {
+        if (brokeRecord) {
+            setTimeout(() => refConfetti?.current.confetti(), 800);
+        }
+    });
+
+    if (getGameState() !== "GAME_OVER") {
+        return <Redirect to='/' />
     }
 
-    return (
-        <div className="d-flex align-items-center flex-column justify-content-start h-end-game my-3">
-            <h1>Fim do Jogo</h1>
-            <div className="row w-100 mt-3">
-                {/* <div className="col-12 my-1">
-                    <h5 className="text-center mx-auto"> 4 certas, {maxPointsMessage}</h5>
-                </div> */}
-                {/* <div className="col-12 my-1">
-                    <h5 className="text-center mx-auto">
-                        {minutes > 0 ? (minutes + " min " + seconds + " s") : ("Tempo gasto: " + seconds + " seg")}
-                    </h5>
-                </div> */}
-                <div className="col-12 text-center mt-2 mb-5">
-                    <h5 className="mx-auto pb-2">Partilha a tua pontuação:
-                    </h5>
-                    <SocialButtons />
+    
+        
+    
+    const infoSection = () => {
+        return (
+            <div>   
+                <h1 className="text-center  my-4 my-md-5">Fim do Jogo</h1>
+                <div className="text-center my-4 my-md-5">
+                    <h5 className="mx-auto pb-2"><FaTrophy/> Pontuação</h5>
+                    <h5 className="mx-auto pb-2">{points} certas</h5>
                 </div>
-                {/* <div className="col-12 my-3 pb-5">
-                    <div class="d-flex justify-content-between align-items-end">
-                        <div className="w-podium d-flex flex-column align-items-baseline h-100">
-                            <h4 className="text-center mx-auto"><GiSandsOfTime className="mr-2" />
-                            { minutes > 0 ? (minutes + " min " + seconds + " s") : (seconds + " s")}</h4>
-                            <div id="podium1" className="d-flex justify-content-center w-100">
-                            </div>
-                        </div>
-                        <div className="w-podium d-flex flex-column align-items-baseline">
-                            <h2 className="text-center mx-auto">4 certas</h2>
-                            <div id="podium0" className="d-flex justify-content-center w-100">
-                                <h5 className="text-white mt-3" ><GiTrophyCup className="mr-2 text-white" /> {maxPointsMessage}</h5>
-                            </div>
-                        </div>
-                        <div className="w-podium d-flex flex-column align-items-baseline">
-                            <h4 className="text-center mx-auto">Partilha o resultado</h4>
-                            <div id="podium2" className="d-flex justify-content-center w-100">
-                                <SocialButtons />
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
-                {/* <div className="col-6 text-center">
-                    <h1>
-                        <span className="blue-secondary">Partilha</span>
-                        <span className="text-primary"> o teu </span>
-                        <span className="blue-secondary">resultado</span>
-                    </h1>
-                    <div className="my-3" >
-                    </div>
-                    <div className="d-flex justify-content-around mt-4 mb-2">
-                        <h5><GiSandsOfTime className="mr-2" />Tempo: {minutes}:{seconds}</h5>
-                        <h5><GiTrophyCup className="mr-2" /> {maxPointsMessage}</h5>
-                    </div>
+                <div className="text-center my-4 my-md-5">
+                    <h5 className="mx-auto pb-2"><FaHourglass/> Tempo Total</h5>
+                    <h5 className="mx-auto pb-2">{ stringTime} </h5>
                 </div>
-                <div className="col-6 text-center">
-                    <h3>
-                        <span className="blue-secondary">Partilha</span>
-                        <span className="text-primary"> o teu </span>
-                        <span className="blue-secondary">resultado</span>
-                    </h3>
-                    <div className="my-3" >
-                    </div>
-                    <div className="d-flex justify-content-center mt-4 mb-2">
-                        <SocialButtons />
-                    </div>
-                </div> */}
-                <div className="col-6" >
-                    <h4 className="text-center mb-4 pb-2">Notícias verdadeiras</h4>
-                    {/* <div className="hover-show ready stamp sm-stamp" data-type="genuine" /> */}
-                    {trueNews.map((news, index) => {
-                        return (
-                            <SmallCard news={news} key={index} />
-                        )
-                    })}
+                <div className="text-center my-4 my-md-5">
+                    <h5 className="mx-auto pb-2">Partilha a tua pontuação</h5>
+                    <SocialButtons text={
+                        (brokeRecord ? "Bati o meu record! " : "") + 
+                        (hours === 0 && minutes > 1 ?
+                            "Consegui acertar " + points + " noticias em " + minutes + " minutos! ":
+                            "Consegui acertar em " + points + " noticias! ") +
+                        "Achas que consegues fazer melhor? " } 
+                    iconSize="45"/>
                 </div>
-                <div className="col-6" >
-                    <h4 className="text-center mb-4 pb-2">Notícias falsas</h4>
-                    {/* <div className="hover-show ready stamp sm-stamp" data-type="fake" /> */}
-                    {fakeNews.map((news, index) => {
-                        return (
-                            <SmallCard news={news} key={index} />
-                        )
-                    })}
-                </div>
-
             </div>
-        </div>
+        )
+    }
+
+    const newsSection = () => {
+        return (
+                <div id="accordion">
+                {answeredNews.map((news, index) => {
+                    return (
+                        <SmallCard news={news} index={index}/>
+                    )
+                })}
+                </div>
+        )
+    }
+
+
+    return (
+        <>
+            <ReactCanvasConfetti
+            className="no-pointer-events position-fixed w-100 h-100"
+            ref={refConfetti}
+            style={{ zIndex: 1000 }}
+            origin={{ x: 0.5, y: 0.5 }}
+            particleCount={100}
+            startVelocity={60}
+            gravity={1.2}
+            angle={90}
+            spread={360}
+            />
+            <div className="row align-items-center mx-auto w-100">
+                <div className="col-md-5 col-12">
+                    {infoSection()}
+                </div>
+                
+                <div className="col-md-7 col-12">
+                    {newsSection()}
+                </div>
+            </div>
+        </>
     )
 
 }
