@@ -68,15 +68,15 @@ function SmallCard(props) {
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
                     <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
-                        <div class="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
-                            <span class="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>&nbsp;
-                            <span class="small text-muted">Adaptado: <a class="d-inline" href={news.url} target="_blank">Publico.pt</a></span>
+                        <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
+                            <span className="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>&nbsp;
+                            <span className="small text-muted">Adaptado: <a className="d-inline" href={news.url} target="_blank">Publico.pt</a></span>
                         </div>
                         <p className="m-0 px-3 pb-0 serif-font font-weight-600 text-justify w-100">
                             {
-                                getFalseSummaryFormated(news.fake_details.fake_title).map((e) => {
+                                getFalseSummaryFormated(news.fake_details.fake_title).map((e, index) => {
                                     if (typeof e == "string") return (e)
-                                    else return (<ChangedEntity original={e[0]} created={e[1]} />)
+                                    else return (<ChangedEntity original={e[0]} created={e[1]} key={index} />)
                                 })
                             }
                         </p>
@@ -85,9 +85,9 @@ function SmallCard(props) {
 
                 <div id={"collapse_" + news.id} className={(index === 0 ? "show " : "") + "collapse border-top"} aria-labelledby={"heading_" + news.id} data-parent="#accordion" style={{ backgroundColor: '#fafcff99' }}>
                     <div className="card-body text-justify">
-                        {getFalseSummaryFormated(news.fake_details.fake_summary).map((e) => {
+                        {getFalseSummaryFormated(news.fake_details.fake_summary).map((e, index) => {
                             if (typeof e == "string") return (e)
-                            else return (<ChangedEntity original={e[0]} created={e[1]} />)
+                            else return (<ChangedEntity original={e[0]} created={e[1]} key={index} />)
                         })}
                     </div>
                 </div>
@@ -105,9 +105,9 @@ function SmallCard(props) {
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
                     <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
-                        <div class="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
-                            <span class="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>&nbsp;
-                            <span class="small text-muted">Fonte: <a class="d-inline" href={news.url} target="_blank">Publico.pt</a></span>
+                        <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
+                            <span className="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>&nbsp;
+                            <span className="small text-muted">Fonte: <a className="d-inline" href={news.url} target="_blank">Publico.pt</a></span>
                         </div>
                         <p className="m-0 px-3 pb-0 serif-font font-weight-600 text-justify w-100">{news.title}</p>
                     </div>
