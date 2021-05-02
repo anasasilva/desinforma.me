@@ -15,7 +15,8 @@ const EndGame = () => {
     const points = answeredNews.filter(_new => _new.wasAnsweredRight).length;
 
     const failedNews = answeredNews.filter(_new => !_new.wasAnsweredRight);
-    const failedNew = failedNews[failedNews.length-1]
+    const failedNew = failedNews[failedNews.length-1];
+    const rightNews = answeredNews.filter(_new => _new.wasAnsweredRight);
 
     const hours = Math.floor(getGameDuration() / 3600)
     const minutes = Math.floor((getGameDuration() - (hours * 3600)) / 60);
@@ -82,7 +83,8 @@ const EndGame = () => {
                 <h5 className="my-2 mb-md-3">Resposta Errada</h5>
                 <SmallCard news={failedNew} index={0} />
                 <h5 className="my-2 mt-md-4 mb-md-3">Respostas Corretas</h5>
-                {answeredNews.filter(_new => _new.wasAnsweredRight).map((news, index) => {
+                {rightNews.length === 0 && <div class="text-muted small text-center mt-2">Parece que não acertaste em nenhuma notícia...</div>}
+                {rightNews.map((news, index) => {
                     return (
                         <SmallCard news={news} index={index+1} key={index} />
                     )
