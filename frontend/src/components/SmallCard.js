@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import ChangedEntity from './ChangedEntity';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 
 function SmallCard(props) {
@@ -61,7 +64,8 @@ function SmallCard(props) {
             <div className="card my-3 p-0 nice-shadow hover-toggle " id={"heading_" + news.id}>
 
                 <div className="hover-hide ready d-none d-lg-flex" data-type="fake" />
-                <div className="d-flex" data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
+                <div className={(index === 0 ? "" : "collapsed ") + "d-flex"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
+                    
                     <div className="img-div-sm d-none d-md-flex align-items-center">
                         <img src={news.fake_details.fake_image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "") + "hover-hide"} onLoad={imageSuccessHandler} />
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={"hover-show"} />
@@ -69,8 +73,10 @@ function SmallCard(props) {
                     </div>
                     <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
-                            <span className="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>&nbsp;
-                            <span className="small text-muted">Adaptado: <a className="d-inline" href={news.url} target="_blank">Publico.pt</a></span>
+                            
+                            <span className="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>
+                            <span className="small text-muted">Adaptado: <a className="d-inline" rel="noreferrer" href={news.url} target="_blank">Publico.pt</a></span>
+                            <FontAwesomeIcon icon={faChevronUp}/>
                         </div>
                         <p className="m-0 px-3 pb-0 serif-font font-weight-600 text-justify w-100">
                             {
@@ -99,15 +105,16 @@ function SmallCard(props) {
 
             <div className="card my-3 p-0 nice-shadow " id={"heading_" + news.id}>
 
-                <div className="d-flex" data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
+                <div className={(index === 0 ? "" : "collapsed ") + "d-flex"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
                     <div className="img-div-sm d-none d-md-flex align-items-center">
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
                     <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
-                            <span className="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>&nbsp;
-                            <span className="small text-muted">Fonte: <a className="d-inline" href={news.url} target="_blank">Publico.pt</a></span>
+                            <span className="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>
+                            <span className="small text-muted">Fonte: <a className="d-inline" href={news.url} rel="noreferrer" target="_blank">Publico.pt</a></span>
+                            <FontAwesomeIcon icon={faChevronUp} />
                         </div>
                         <p className="m-0 px-3 pb-0 serif-font font-weight-600 text-justify w-100">{news.title}</p>
                     </div>
