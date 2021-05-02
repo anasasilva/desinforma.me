@@ -346,3 +346,7 @@ a {
 [data-toggle="collapse"].collapsed svg{
     transform: rotate(180deg);
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

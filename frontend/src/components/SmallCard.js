@@ -64,7 +64,7 @@ function SmallCard(props) {
             <div className="card my-3 p-0 nice-shadow hover-toggle " id={"heading_" + news.id}>
 
                 <div className="hover-hide ready d-none d-lg-flex" data-type="fake" />
-                <div className={(index === 0 ? "" : "collapsed ") + "d-flex"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
+                <div className={(index === 0 ? "" : "collapsed ") + "d-flex cursor-pointer"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
                     
                     <div className="img-div-sm d-none d-md-flex align-items-center">
                         <img src={news.fake_details.fake_image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "") + "hover-hide"} onLoad={imageSuccessHandler} />
@@ -105,7 +105,7 @@ function SmallCard(props) {
 
             <div className="card my-3 p-0 nice-shadow " id={"heading_" + news.id}>
 
-                <div className={(index === 0 ? "" : "collapsed ") + "d-flex"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
+                <div className={(index === 0 ? "" : "collapsed ") + "d-flex cursor-pointer"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
                     <div className="img-div-sm d-none d-md-flex align-items-center">
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
