@@ -339,13 +339,5 @@ a {
 }
 
 .green-gradiant-overlay {
-  background: linear-gradient(to left, rgb(0, 255, 0, 3%), rgba(0, 0, 0, 0));
-}
-
-.badge-danger-fake-news {
-  background-color: #dc3434;
-}
-
-.badge-success-true-news {
-  background-color: #279841;
+    background: linear-gradient(to left, rgb(0, 255, 0, 3%), rgba(0, 0, 0, 0));
 }
