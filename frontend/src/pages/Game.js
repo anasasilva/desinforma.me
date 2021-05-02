@@ -78,7 +78,6 @@ const Game = (props) => {
     // LOSS
     if (((dir === 'left' && !_new.isFake) || (dir === 'right' && _new.isFake)) && !debug) {
       activeNews[index].wasAnsweredRight = false;
-      //setIsGoingToLose(true);
       setTimeout(() => {
         gotoEndGame();
       }, 400);

@@ -11,6 +11,7 @@ const GameWrapper = ({ children }) => {
     const [gameDuration, setGameDuration] = useState(0);
     const [allNewsIDs, setAllNewsIDs] = useState([]);
     const [activeNews, setActiveNews] = useState([]);
+    const [isNewRecord, setIsNewRecord] = useState(false);
 
     // RETRIEVE NEWS ON START.
     useEffect(() => {
@@ -71,6 +72,7 @@ const GameWrapper = ({ children }) => {
             setGameStartTime(performance.now());
             activeNews.length = 0;
             setActiveNews([]);
+            setIsNewRecord(false);
         },
         endGame: () => {
             setGameState('GAME_OVER');
@@ -78,7 +80,16 @@ const GameWrapper = ({ children }) => {
             const previousGameNewsIds = JSON.parse(localStorage.getItem("previously-seen") || '[]');
             const newsIds = activeNews.filter(_new => _new.isOutOfScreen || _new.wasSwiped).map(_new => _new.id);
             localStorage.setItem('previously-seen', JSON.stringify([...previousGameNewsIds, ...newsIds]));
-        }
+            // Points
+            const points = activeNews.filter(_new => (_new.isOutOfScreen || _new.wasSwiped) && _new.wasAnsweredRight).length;
+            const maxPoints = parseInt(localStorage.getItem('record-points')) || 0;
+            if (points > maxPoints){ 
+                localStorage.setItem('record-points', points);
+                setIsNewRecord(true);
+            }
+            else setIsNewRecord(false);
+        },
+        isNewRecord: () => isNewRecord
     }
 
     return (
