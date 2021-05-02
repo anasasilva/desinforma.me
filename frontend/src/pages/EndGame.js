@@ -25,7 +25,6 @@ const EndGame = () => {
 
     useEffect(() => {
         if (isNewRecord()) {
-            console.log(refConfetti.current);
             setTimeout(() => refConfetti?.current?.confetti(), 800);
         }
     }, []);
