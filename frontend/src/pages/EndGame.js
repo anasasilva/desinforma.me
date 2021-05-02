@@ -117,7 +117,7 @@ const EndGame = () => {
                         {infoSection()}
                     </div>
 
-                    <div className="offset-lg-1 col-md-6 col-12 px-lg-0">
+                    <div className="offset-lg-1 col-md-6 col-12 px-0 px-md-3 px-lg-0">
                         {newsSection()}
                     </div>
                 </div>
