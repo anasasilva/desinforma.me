@@ -81,10 +81,10 @@ const Game = (props) => {
       //setIsGoingToLose(true);
       setTimeout(() => {
         gotoEndGame();
-      }, 250);
+      }, 400);
     } else {
       activeNews[index].wasAnsweredRight = true;
-      refConfetti?.current.confetti()
+      refConfetti?.current?.confetti()
     }
     // RIGHT
   };
