@@ -14,6 +14,9 @@ const EndGame = () => {
     const answeredNews = getActiveNews().filter(_new => (_new.isOutOfScreen || _new.wasSwiped));
     const points = answeredNews.filter(_new => _new.wasAnsweredRight).length;
 
+    const failedNews = answeredNews.filter(_new => !_new.wasAnsweredRight);
+    const failedNew = failedNews[failedNews.length-1]
+
     const hours = Math.floor(getGameDuration() / 3600)
     const minutes = Math.floor((getGameDuration() - (hours * 3600)) / 60);
     const seconds = getGameDuration() - (hours * 3600) - (minutes * 60);
@@ -76,9 +79,12 @@ const EndGame = () => {
         return (
             <div id="accordion">
                 <h2 className="text-center my-4 my-md-5 h1 font-weight-light">Notícias</h2>
-                {answeredNews.map((news, index) => {
+                <h5 className="my-2 mb-md-3">Resposta Errada</h5>
+                <SmallCard news={failedNew} index={0} />
+                <h5 className="my-2 mt-md-4 mb-md-3">Respostas Corretas</h5>
+                {answeredNews.filter(_new => _new.wasAnsweredRight).map((news, index) => {
                     return (
-                        <SmallCard news={news} index={index} key={index} />
+                        <SmallCard news={news} index={index+1} key={index} />
                     )
                 })}
             </div>
