@@ -219,9 +219,9 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
           // do nothing; allow scroll.
         }
         else {
-          console.log('STOP!');
-          console.log('norm', norm);
-          console.log('speed.y', Math.abs(speed.y))
+          // console.log('STOP!');
+          // console.log('norm', norm);
+          // console.log('speed.y', Math.abs(speed.y))
           didCardDragStart = true;
           normal_move();
         }
