@@ -74,7 +74,7 @@ function SmallCard(props) {
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={"hover-show"} />
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
-                    <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
+                    <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
                             
                             <span className="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>&nbsp;
@@ -115,7 +115,7 @@ function SmallCard(props) {
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
-                    <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
+                    <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
                             <span className="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>&nbsp;
                             <FontAwesomeIcon icon={faChevronUp} />
