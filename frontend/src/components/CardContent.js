@@ -45,7 +45,7 @@ function CardContent(props) {
 
   if (news.isFake) {
     return (
-      <div ref={cardRef} className='tinder-card' onTouchStart={startScroll} onTouchEnd={stopScroll}>
+      <div ref={cardRef} className='tinder-card'>
         <div className="img-div h-100">
           <img src={news.fake_details.fake_image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.fake_details.fake_title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")} />
@@ -57,7 +57,7 @@ function CardContent(props) {
   }
   else {
     return (
-      <div ref={cardRef} className='tinder-card' onTouchStart={startScroll} onTouchEnd={stopScroll}>
+      <div ref={cardRef} className='tinder-card'>
         <div className="img-div h-100">
           <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt={news.title} className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
           <div className={"placeholder w-100 h-100 mb-4 " + (showDefaultImage ? "" : "d-none")} />

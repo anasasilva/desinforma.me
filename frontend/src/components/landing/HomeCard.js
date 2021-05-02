@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import TinderCard from "react-tinder-card";
+import TinderCard from "../../external_modules/tinder-card";
 import mrs from '../../assets/mrs.jpg';
 import cr7 from '../../assets/cr7.jpg';
 import ChangedEntity from '../ChangedEntity';

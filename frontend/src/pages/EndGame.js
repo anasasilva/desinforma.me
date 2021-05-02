@@ -15,7 +15,7 @@ const EndGame = () => {
     const points = answeredNews.filter(_new => _new.wasAnsweredRight).length;
 
     const failedNews = answeredNews.filter(_new => !_new.wasAnsweredRight);
-    const failedNew = failedNews[failedNews.length-1];
+    const failedNew = failedNews[failedNews.length - 1];
     const rightNews = answeredNews.filter(_new => _new.wasAnsweredRight);
 
     const hours = Math.floor(getGameDuration() / 3600)
@@ -39,8 +39,8 @@ const EndGame = () => {
 
     const infoSection = () => {
         return (
-            <div id="end-game-info">
-                <h1 className="text-center  my-4 my-md-5 display-4">Fim do Jogo</h1>
+            <div id="end-game-info border">
+                <h1 className="text-center mt-1 mt-md-3 mb-4 display-5 d-none">Estatísticas</h1>
                 <div className="text-center my-4 my-md-5">
                     <h5 className="mx-auto pb-2">
                         <div className="badge badge-dark p-2 px-3 no-select">
@@ -79,14 +79,14 @@ const EndGame = () => {
     const newsSection = () => {
         return (
             <div id="accordion">
-                <h2 className="text-center my-4 my-md-5 h1 font-weight-light">Notícias</h2>
+                <h2 className="text-center mt-3 mt-md-3 mb-4 display-5 d-none">Notícias</h2>
                 <h5 className="my-2 mb-md-3">Resposta Errada</h5>
                 <SmallCard news={failedNew} index={0} />
                 <h5 className="my-2 mt-md-4 mb-md-3">Respostas Corretas</h5>
-                {rightNews.length === 0 && <div class="text-muted small text-center mt-2">Parece que não acertaste em nenhuma notícia...</div>}
+                {rightNews.length === 0 && <div class="text-muted small text-center mt-2 mb-3">Parece que não acertaste nenhuma...</div>}
                 {rightNews.map((news, index) => {
                     return (
-                        <SmallCard news={news} index={index+1} key={index} />
+                        <SmallCard news={news} index={index + 1} key={index} />
                     )
                 })}
             </div>
@@ -107,13 +107,19 @@ const EndGame = () => {
                 angle={90}
                 spread={360}
             />
-            <div className="row align-items-start mx-auto w-100">
-                <div className="col-md-5 col-12">
-                    {infoSection()}
-                </div>
+            <div>
+                <h1 class="mt-5 mb-4 my-md-5 text-center" id="landing-title">
+                    <span class="blue-secondary">Fim de</span>
+                    <span class="text-primary"> Jogo</span>
+                </h1>
+                <div className="row align-items-start mx-auto w-100">
+                    <div className="col-md-5 col-12 border-right border-hide-phone">
+                        {infoSection()}
+                    </div>
 
-                <div className="col-md-7 col-12">
-                    {newsSection()}
+                    <div className="offset-lg-1 col-md-6 col-12 px-lg-0">
+                        {newsSection()}
+                    </div>
                 </div>
             </div>
         </>

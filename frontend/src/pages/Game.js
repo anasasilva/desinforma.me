@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
-import TinderCard from 'react-tinder-card';
+import TinderCard from '../external_modules/tinder-card';
 import '../styling/Game.css';
 import CardContent from '../components/CardContent';
 import GameContext from '../GameContext';

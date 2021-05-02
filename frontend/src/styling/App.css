@@ -78,6 +78,9 @@
     text-shadow: 1px 1px 0 #cccccc3a, 2px 2px 0 rgba(204, 204, 204, 0.575),
       3px 3px 0 #44444410, 2px 2px 0 #44444419, 2px 2px 0 #4444440b;
   }
+  .border-hide-phone {
+    border: 0 !important;
+  }
 }
 
 .buttons {
@@ -349,4 +352,10 @@ a {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.display-5 {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.2;
 }
