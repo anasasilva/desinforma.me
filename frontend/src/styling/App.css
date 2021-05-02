@@ -193,6 +193,7 @@ a {
   text-align: center;
   opacity: 1;
   transform: rotate(35deg) scale(0.8);
+  z-index: 1000;
 }
 
 .stamp[data-type="fake"]:after {

@@ -13,6 +13,9 @@ function SmallCard(props) {
 
     const imageSuccessHandler = () => setShowDefaultImage(false)
 
+    const { hostname} = new URL(news.original_url);
+    let hostnameNoWww =  hostname.replace('www.', '')
+    
     if (news.isFake) {
 
 
@@ -71,11 +74,10 @@ function SmallCard(props) {
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={"hover-show"} />
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
-                    <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
+                    <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
                             
-                            <span className="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>
-                            <span className="small text-muted">Adaptado: <a className="d-inline" rel="noreferrer" href={news.url} target="_blank">Publico.pt</a></span>
+                            <span className="badge badge-danger badge-danger-fake-news font-weight-normal">Notícia Falsa</span>&nbsp;
                             <FontAwesomeIcon icon={faChevronUp}/>
                         </div>
                         <p className="m-0 px-3 pb-0 serif-font font-weight-600 text-justify w-100">
@@ -90,11 +92,14 @@ function SmallCard(props) {
                 </div>
 
                 <div id={"collapse_" + news.id} className={(index === 0 ? "show " : "") + "collapse border-top"} aria-labelledby={"heading_" + news.id} data-parent="#accordion" style={{ backgroundColor: '#fafcff99' }}>
-                    <div className="card-body text-justify">
+                    <div className="card-body pb-2 text-justify">
                         {getFalseSummaryFormated(news.fake_details.fake_summary).map((e, index) => {
                             if (typeof e == "string") return (e)
                             else return (<ChangedEntity original={e[0]} created={e[1]} key={index} />)
                         })}
+                    </div>
+                    <div className="w-100 text-center pb-2">
+                        <span className="small text-muted">Adaptado: <a className="d-inline" rel="noreferrer" href={news.url} target="_blank">{hostnameNoWww}</a></span>
                     </div>
                 </div>
             </div>
@@ -110,10 +115,9 @@ function SmallCard(props) {
                         <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
                         <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
                     </div>
-                    <div className="d-flex flex-column align-items-center justify-content-center w-100 py-2">
+                    <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
-                            <span className="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>
-                            <span className="small text-muted">Fonte: <a className="d-inline" href={news.url} rel="noreferrer" target="_blank">Publico.pt</a></span>
+                            <span className="badge badge-success badge-success-true-news font-weight-normal">Notícia Verdadeira</span>&nbsp;
                             <FontAwesomeIcon icon={faChevronUp} />
                         </div>
                         <p className="m-0 px-3 pb-0 serif-font font-weight-600 text-justify w-100">{news.title}</p>
@@ -121,7 +125,10 @@ function SmallCard(props) {
                 </div>
 
                 <div id={"collapse_" + news.id} className={(index === 0 ? "show " : "") + "collapse border-top"} aria-labelledby={"heading_" + news.id} data-parent="#accordion" style={{ backgroundColor: '#fafcff99' }}>
-                    <div className="card-body text-justify">{news.summary}</div>
+                    <div className="card-body pb-2 text-justify">{news.summary}</div>
+                    <div className="w-100 text-center pb-2">
+                        <span className="small text-muted mx-auto">Fonte: <a className="d-inline" href={news.url} rel="noreferrer" target="_blank">{hostnameNoWww}</a></span>
+                    </div>
                 </div>
             </div>
 

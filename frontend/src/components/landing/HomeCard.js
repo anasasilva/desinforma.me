@@ -44,8 +44,8 @@ const InstructionsCard = () => {
                 className="no-select" style={{ zIndex: 1 }}>
 
                 <div className={"hover-hide stamp " + (showFakeStamp ? "ready" : "")} data-type="fake" style={{ zIndex: 1 }} />
-                <div className="hover-show ready stamp" data-type="genuine" style={{ zIndex: 1 }} />
-                <div className="card p-0 h-100 overflow-hidden" style={{ zIndex: -1, boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
+                <div className="hover-show ready stamp " data-type="genuine" style={{ zIndex: 1 }} />
+                <div className="card p-0 h-100 overflow-hidden" style={{ boxShadow: '0 10px 50px -12px rgb(0 0 0 / 25%)' }}>
                     <img className={"hover-hide img-fluid w-100 " + ((marceloLoaded && ronaldoLoaded) ? "" : "d-none")} src={mrs} alt="Marcelo Rebelo de Sousa" onLoad={() => setMarceloLoaded(true)}/>
                     <div className={"placeholder w-100 " + (!(marceloLoaded && ronaldoLoaded) ? "" : "d-none")} style={{height: '35.5%'}}/>
                     <img className={"hover-show img-fluid w-100 " + ((marceloLoaded && ronaldoLoaded) ? "" : "d-none")} src={cr7} alt="Cristiano Ronaldo" onLoad={() =>  setRonaldoLoaded(true)}/>
@@ -56,8 +56,8 @@ const InstructionsCard = () => {
                         por verba a rondar os €100 milhões. «Nunca me arrependi de contratar <ChangedEntity created="Marcelo Rebelo de Sousa" original="Cristiano Ronaldo" />. Se pudesse voltar atrás no tempo, voltaria a contratá-lo», afiançou o dirigente, em
                         entrevista aos jornais italianos ‘Corriere dello Sport’ e ‘La Repubblica’.
                     </p>
-                    <div className="div-bottom w-100 pb-1" style={{ zIndex: 100 }}>
-                        <small className="d-block text-center text-bottom" >Fonte: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" rel="noreferrer" className="d-inline" target="_blank">Jornal Record</a> </small>
+                    <div className="w-100 pb-1">
+                        <small className="d-block text-center text-muted" style={{font: "small-caption"}} >Adaptado: <a href="https://www.abola.pt/nnh/2021-04-21/juventus-ronaldo-se-voltasse-atras-no-tempo-faria-a-mesma-coisa/887380" rel="noreferrer" className="d-inline" target="_blank">Jornal Record</a> </small>
                     </div>
                 </div>
             </TinderCard>
