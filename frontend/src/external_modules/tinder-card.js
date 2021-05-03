@@ -122,7 +122,7 @@ const dragableTouchmove = (coordinates, element, offset, lastLocation) => {
   const translation = translationString(pos.x, pos.y)
   const rotCalc = calcSpeed(lastLocation, newLocation).x / 1000
   const rotation = rotationString(rotCalc * settings.maxTilt)
-  element.style.transform = translation + rotation
+  if (element) element.style.transform = translation + rotation
   return newLocation
 }
 
@@ -238,7 +238,6 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
     element.current.addEventListener(('mousedown'), (ev) => {
       const btnCode = ev.button;
       if (btnCode !== 0) return; // !== right click
-      console.log("here");
 
       ev.preventDefault()
       mouseIsClicked = true
