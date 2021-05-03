@@ -360,3 +360,12 @@ a {
   font-weight: 300;
   line-height: 1.2;
 }
+
+.icon-size {
+  font-size: 20px;
+  margin-left: 0.6rem;
+}
+
+.linkedin-color {
+  color: #0e76a8
+}

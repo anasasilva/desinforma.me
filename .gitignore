@@ -107,3 +107,4 @@ data_extraction/.ipynb_checkpoints/
 
 data_extraction/__pycache__/
 frontend/package-lock.json
+frontend/src/assets/.DS_Store
