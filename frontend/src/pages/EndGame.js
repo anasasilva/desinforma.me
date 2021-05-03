@@ -1,13 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, createRef } from "react";
 import { Redirect } from "react-router";
 import GameContext from "../GameContext";
 import SmallCard from "../components/SmallCard"
 import SocialButtons from "../components/SocialButtons";
-import { FaTrophy, FaHourglass, GrPowerReset } from "react-icons/fa";
+import { FaTrophy, FaHourglass, FaEye, FaEyeSlash } from "react-icons/fa";
 import ReactCanvasConfetti from 'react-canvas-confetti';
 import { Link } from "react-router-dom";
+import recordGif from '../assets/record.gif';
+
 
 const EndGame = () => {
+
+     
+    const eyeRef = createRef()
+    const eyeSlashRef = createRef()
 
     const { getGameState, getActiveNews, getGameDuration, isNewRecord } = useContext(GameContext);
 
@@ -57,9 +63,61 @@ const EndGame = () => {
     }
 
     const infoSection = () => {
+
+        const showNewRecordSection = () => {
+            if (isNewRecord()) {
+                return (
+                    <div className="d-flex align-items-center no-select justify-content-center row">
+                        <h3 className="col-12 col-lg-8 mt-2 order-lg-12  text-center">Novo Record!</h3>
+                        <img className="col-6 col-lg-4 order-lg-1 " src={recordGif} alt="Novo recorde." style={{width: '100px'}}/>  
+                    </div>
+                )
+            }
+            return (<></>)
+        }
+
         return (
             <div id="end-game-info border">
                 <h1 className="text-center mt-1 mt-md-3 mb-4 display-5 d-none">Estatísticas</h1>
+                {/* <div className="d-flex">
+
+                    <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5" style={{display: 'grid'}}>
+                        <div className="badge badge-dark p-2 px-3 no-select border-right" style={{borderRadius: '.25rem 0 0 0'}}>
+                            <FaTrophy />&nbsp;&nbsp;Pontuação
+                        </div>
+                        <div className="text-center py-3 border h5"  style={{borderRadius: '0 0 0 .25rem'}}>
+                            {points} pontos
+                        </div>
+                    </div>
+                    <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5" style={{display: 'grid'}}>
+                        <div className="badge badge-dark p-2 px-3 no-select" style={{borderRadius: '0 .25rem 0 0'}}>
+                            <FaHourglass />&nbsp;&nbsp;Tempo Gasto
+                        </div>
+                        <div className="text-center py-3 border h5"  style={{borderRadius: '0 0 .25rem 0'}}>
+                            {stringTime}
+                        </div>
+                        
+                    </div>
+                </div> */}
+                { showNewRecordSection() }
+                
+                <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5" style={{display: 'grid'}}>
+                        <div className="badge badge-dark p-2 px-3 no-select border-right" style={{borderRadius: '.25rem .25rem 0 0'}}>
+                            <FaTrophy />&nbsp;&nbsp;Pontuação
+                        </div>
+                        <div className="text-center py-3 border h5"  style={{borderRadius: '0 0 .25rem .25rem'}}>
+                            {points} pontos
+                        </div>
+                    </div>
+                    <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5" style={{display: 'grid'}}>
+                        <div className="badge badge-dark p-2 px-3 no-select" style={{borderRadius: '.25rem .25rem 0 0'}}>
+                            <FaHourglass />&nbsp;&nbsp;Tempo Gasto
+                        </div>
+                        <div className="text-center py-3 border h5"  style={{borderRadius: '0 0 .25rem .25rem'}}>
+                            {stringTime}
+                        </div>
+                        
+                    </div>
                 <div className="text-center my-4 my-md-5">
                     <h5 className="mx-auto pb-2">
                         <div className="badge badge-dark p-2 px-3 no-select">
@@ -112,9 +170,30 @@ const EndGame = () => {
         )
     }
 
+   
+    const phoneToggleFake = (e) => {
+        eyeRef.current.classList.toggle('d-none');
+        eyeSlashRef.current.classList.toggle('d-none');
+        document.querySelectorAll('.hover-toggle').forEach(e => {
+            e.classList.toggle('simulated-hover');
+        })
+    }
+    
 
     return (
         <>
+            <div className="no-underline create-ticket-button action-button" onClick={phoneToggleFake} style={{zIndex: 100, opacity: .7}}>
+                <button className="btn btn-circle d-flex d-md-none  center" >
+                    <div  className="row mx-auto center">
+                        <div ref={eyeSlashRef}>
+                            <FaEyeSlash />
+                        </div>
+                        <div className="d-none" ref={eyeRef} >
+                            <FaEye/>
+                        </div>
+                    </div>
+                </button>
+            </div>
             <ReactCanvasConfetti
                 className="no-pointer-events position-fixed w-100 h-100"
                 ref={refConfetti}
