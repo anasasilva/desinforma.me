@@ -72,7 +72,7 @@ function SmallCard(props) {
                 <div className="hover-hide ready d-none d-lg-flex" data-type="fake" />
                 <div className={(index === 0 ? "" : "collapsed ") + "d-flex cursor-pointer"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
                     
-                    <div className="d-none d-md-block">
+                    <div className="d-none d-lg-block">
                         <div className="img-endgame-card-news hover-hide h-100" style={{ backgroundImage: `url(${imgSrcFake})` }}>
                         </div>
                         <div className="img-endgame-card-news hover-show h-100" style={{ backgroundImage: `url(${imgSrc})` }}>
@@ -117,7 +117,7 @@ function SmallCard(props) {
             <div className="card my-3 p-0 nice-shadow " id={"heading_" + news.id}>
 
                 <div className={(index === 0 ? "" : "collapsed ") + "d-flex cursor-pointer"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
-                    <div className="d-none d-md-block img-endgame-card-news" style={{ backgroundImage: `url(${imgSrc})` }}>
+                    <div className="d-none d-lg-block img-endgame-card-news" style={{ backgroundImage: `url(${imgSrc})` }}>
                     </div>
                     <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">

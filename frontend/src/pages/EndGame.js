@@ -123,8 +123,8 @@ const EndGame = () => {
                     <SocialButtons text={
                         (isNewRecord() ? "Bati o meu record! " : "") +
                         (hours === 0 && minutes > 1 ?
-                            "Consegui acertar " + points + " noticias em " + minutes + " minutos! " :
-                            "Consegui acertar em " + points + " noticias! ") +
+                            "Consegui acertar " + points + " notícias em " + minutes + " minutos! " :
+                            "Consegui acertar em " + points + " notícias! ") +
                         "Achas que consegues fazer melhor? "}
                         iconSize="45" />
                 </div>
