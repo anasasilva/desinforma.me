@@ -107,7 +107,7 @@ const EndGame = () => {
                 angle={90}
                 spread={360}
             />
-            <div>
+            <div className="w-100">
                 <h1 className="mt-5 mb-4 my-md-5 text-center" id="landing-title">
                     <span className="blue-secondary">Fim de</span>
                     <span className="text-primary"> Jogo</span>
