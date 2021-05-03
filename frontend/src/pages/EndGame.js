@@ -124,9 +124,7 @@ const EndGame = () => {
                     <h5 className="mx-auto pb-2">Partilha a tua pontuação!</h5>
                     <SocialButtons text={
                         (isNewRecord() ? "Bati o meu record! " : "") +
-                        (hours === 0 && minutes > 1 ?
-                            "Consegui acertar " + points + " notícias em " + minutes + " minutos! " :
-                            "Consegui acertar em " + points + " notícias! ") +
+                        "Consegui acertar " + points + " notícia" + (points === 1 ? "" : "s") + " em " + stringTime + "! " +
                         "Achas que consegues fazer melhor? "}
                         iconSize="45" />
                 </div>
