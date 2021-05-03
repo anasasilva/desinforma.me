@@ -14,7 +14,7 @@ const HeroText = () => {
         btnText = 'Novo Jogo';
 
     return (
-        <div className="col-lg-7 col-12  w-100 m-0 p-0">
+        <div className="col-lg-6 col-12  w-100 m-0 p-0">
             <h1 className="mt-2 mb-4 my-md-5 text-md-left" id="landing-title">
                 <span className="blue-secondary">Como </span>
                 <span className="text-primary">Jogar?</span>
