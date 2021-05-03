@@ -411,6 +411,18 @@ a {
     color: white;
 }
 
+.h-logo {
+  height: 220px;
+}
+
+.holder-video {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 550px;
+  width: 80%;
+}
+
 .at-color {
     color: #6c757d !important;
 }

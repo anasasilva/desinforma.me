@@ -27,9 +27,11 @@ const EndGame = () => {
     const hours = Math.floor(getGameDuration() / 3600)
     const minutes = Math.floor((getGameDuration() - (hours * 3600)) / 60);
     const seconds = getGameDuration() - (hours * 3600) - (minutes * 60);
+
     let stringTime = "";
-    if (hours > 0) stringTime = hours.toString().padStart(2, "0") + " h e " + minutes.toString().padStart(2, "0") + " min";
-    else stringTime = minutes.toString().padStart(2, "0") + " min e " + seconds.toString().padStart(2, "0") + " seg";
+    if (hours > 0) stringTime = hours.toString() + " hora" + (hours === 1 ? "" : "s");
+    else if(minutes > 0) stringTime = minutes.toString() + " minuto" + (minutes === 1 ? "" : "s");
+    else stringTime = seconds.toString() + " segundo" + (seconds === 1 ? "" : "s");
 
     const refConfetti = React.createRef();
 
@@ -122,9 +124,7 @@ const EndGame = () => {
                     <h5 className="mx-auto pb-2">Partilha a tua pontuação!</h5>
                     <SocialButtons text={
                         (isNewRecord() ? "Bati o meu record! " : "") +
-                        (hours === 0 && minutes > 1 ?
-                            "Consegui acertar " + points + " notícias em " + minutes + " minutos! " :
-                            "Consegui acertar em " + points + " notícias! ") +
+                        "Consegui acertar " + points + " notícia" + (points === 1 ? "" : "s") + " em " + stringTime + "! " +
                         "Achas que consegues fazer melhor? "}
                         iconSize="45" />
                 </div>
