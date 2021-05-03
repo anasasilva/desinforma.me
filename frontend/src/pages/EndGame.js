@@ -27,9 +27,28 @@ const EndGame = () => {
 
     const refConfetti = React.createRef();
 
+    const getFireworkSettings = (minX, maxX) => {
+        return {
+            startVelocity: 30,
+            spread: 360,
+            ticks: 60,
+            zIndex: 0,
+            particleCount: 50,
+            origin: {
+                x: Math.random() * (maxX - minX) + minX,
+                y: Math.random() * (0.9 - 0.1) + 0.1
+            }
+        }
+    };
+
     useEffect(() => {
         if (isNewRecord()) {
-            setTimeout(() => refConfetti?.current?.confetti(), 800);
+            for (let i = 1; i <= 6; i++) {
+                setTimeout(() => {
+                    refConfetti?.current?.confetti(getFireworkSettings(0.2, 0.4))
+                    refConfetti?.current?.confetti(getFireworkSettings(0.6, 0.9))
+                } , i*800);
+            }
         }
     }, []);
 
@@ -99,7 +118,7 @@ const EndGame = () => {
             <ReactCanvasConfetti
                 className="no-pointer-events position-fixed w-100 h-100"
                 ref={refConfetti}
-                style={{ zIndex: 1000, top: '10em' }}
+                style={{ zIndex: 1000,  top: '0em' }}
                 origin={{ x: 0.5, y: 0.5 }}
                 particleCount={100}
                 startVelocity={60}
@@ -107,7 +126,7 @@ const EndGame = () => {
                 angle={90}
                 spread={360}
             />
-            <div>
+            <div className="w-100">
                 <h1 className="mt-5 mb-4 my-md-5 text-center" id="landing-title">
                     <span className="blue-secondary">Fim de</span>
                     <span className="text-primary"> Jogo</span>
