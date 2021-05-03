@@ -109,7 +109,7 @@ const EndGame = () => {
                         {points} pontos
                         </div>
                 </div>
-                <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5 nice-shadow" style={{ display: 'grid' }}>
+                <div className="w-lg-50 w-75 d-bock mx-auto mt-4 mb-5 my-md-5 nice-shadow" style={{ display: 'grid' }}>
                     <div className="badge badge-dark p-2 px-3 no-select" style={{ borderRadius: '.25rem .25rem 0 0' }}>
                         <FaHourglass />&nbsp;&nbsp;Tempo Gasto
                         </div>

@@ -14,9 +14,9 @@ const AuthorsCard = () => {
                         <img className={"w-75 px-4"} src={LogoImg} alt="Logo desinforma-me" />
                     </div>
                     <h5 className="text-center my-3 px-4 news-title serif-font mb-3">Autores</h5>
-                    <AuthorsInfo name="Ricardo Moura" linkedin="rmoura98" mail="ricardo.sanfinsmoura@gmail.com" github="RMoura98" />
-                    <AuthorsInfo name="Fábio Oliveira" linkedin="fabio-vilela-oliveira" mail="dev.foliveira@gmail.com" github="Erroler" />
                     <AuthorsInfo name="Ana Sá Silva" linkedin="anasasilva" mail="anasasousasilva@gmail.com" github="anasasilva" />
+                    <AuthorsInfo name="Fábio Oliveira" linkedin="fabio-vilela-oliveira" mail="dev.foliveira@gmail.com" github="Erroler" />
+                    <AuthorsInfo name="Ricardo Moura" linkedin="rmoura98" mail="ricardo.sanfinsmoura@gmail.com" github="RMoura98" />
                     <small className="text-center px-4 mt-5 mb-2">Projeto disponível em </small>
                 </div>
             </div>
