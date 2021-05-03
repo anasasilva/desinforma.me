@@ -63,17 +63,20 @@ function SmallCard(props) {
         }
 
 
+        const imgSrc = news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "");
+        const imgSrcFake = news.fake_details.fake_image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "");
+
         return (
             <div className="card my-3 p-0 nice-shadow hover-toggle " id={"heading_" + news.id}>
 
                 <div className="hover-hide ready d-none d-lg-flex" data-type="fake" />
                 <div className={(index === 0 ? "" : "collapsed ") + "d-flex cursor-pointer"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
                     
-                    <div className="img-div-sm d-none d-md-flex align-items-center">
-                        <img src={news.fake_details.fake_image_url?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "") + "hover-hide"} onLoad={imageSuccessHandler} />
-                        <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={"hover-show"} />
-                        <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
+                    <div className="d-none d-md-block img-endgame-card-news hover-hide" style={{ backgroundImage: `url(${imgSrcFake})` }}>
                     </div>
+                    <div className="d-none d-md-block img-endgame-card-news hover-show" style={{ backgroundImage: `url(${imgSrc})` }}>
+                    </div>
+
                     <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">
                             
@@ -106,14 +109,13 @@ function SmallCard(props) {
         )
     }
     else {
+        const imgSrc = news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "");
         return (
 
             <div className="card my-3 p-0 nice-shadow " id={"heading_" + news.id}>
 
                 <div className={(index === 0 ? "" : "collapsed ") + "d-flex cursor-pointer"} data-toggle="collapse" href={"#collapse_" + news.id} role="button" aria-expanded="false" aria-controls={"collapse_" + news.id}>
-                    <div className="img-div-sm d-none d-md-flex align-items-center">
-                        <img src={news.image?.replace(/(^https?:\/\/)?(www.)?arquivo\.pt\/noFrame\/replay\/\d+\//g, "")} alt="" className={(showDefaultImage ? "d-none" : "")} onLoad={imageSuccessHandler} />
-                        <div className={"placeholder h-100 " + (showDefaultImage ? "" : "d-none")} />
+                    <div className="d-none d-md-block img-endgame-card-news" style={{ backgroundImage: `url(${imgSrc})` }}>
                     </div>
                     <div className="d-flex flex-column align-items-center justify-content-start w-100 py-2">
                         <div className="px-3 w-100 d-flex align-items-baseline justify-content-between mb-1">

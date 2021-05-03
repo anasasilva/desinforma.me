@@ -157,12 +157,12 @@ a {
 
 .hover-toggle:hover .hover-hide,
 .hover-toggle .hover-show {
-  display: none;
+  display: none !important;
 }
 
 .hover-toggle .hover-hide,
 .hover-toggle:hover .hover-show {
-  display: inline-block;
+  display: inline-block !important;
 }
 
 .border-5 {

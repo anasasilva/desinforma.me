@@ -149,8 +149,9 @@
 
 .img-div > img {
   width: 100%;
-  height: auto;
   background: #b0c0c7;
+  height: 15rem;
+  object-fit: cover
 }
 
 .img-div-sm {
@@ -301,4 +302,11 @@
 #end-game-info .badge svg {
   position: relative;
   bottom: 1px;
+}
+
+.img-endgame-card-news {
+  width: 8.5rem;
+  background-size: cover;
+  background-position: center;
+  background-color: #b0c0c7;
 }
