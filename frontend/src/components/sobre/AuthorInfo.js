@@ -13,7 +13,7 @@ const AuthorsInfo = (props) => {
 
     return (
         <div className="d-flex justify-content-between w-100 px-4 my-2">
-            <p className="text-left mb-0">{name}</p>
+            <p className="text-left mb-0 my-auto">{name}</p>
             <div className="d-flex">
                 <a href={"mailto:" + mail} className="icon-size text-muted" target="_blank"><FontAwesomeIcon size="1x" icon={faAt}/></a>
                 <a href={"https://www.linkedin.com/in/" + linkedin} className="icon-size linkedin-color" target="_blank"><FontAwesomeIcon size="1x" icon={faLinkedin}/></a>

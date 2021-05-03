@@ -67,9 +67,9 @@ const EndGame = () => {
         const showNewRecordSection = () => {
             if (isNewRecord()) {
                 return (
-                    <div className="d-flex align-items-center no-select justify-content-center row">
-                        <h3 className="col-12 col-lg-8 mt-2 order-lg-12  text-center">Novo Record!</h3>
-                        <img className="col-6 col-lg-4 order-lg-1 " src={recordGif} alt="Novo recorde." style={{ width: '100px' }} />
+                    <div className="d-flex align-items-center no-select justify-content-center row mx-lg-5">
+                        <h4 className=" col-12 col-lg-7 mt-2 order-lg-12 text-center text-lg-left p-0 my-0">Novo Record!</h4>
+                        <img className=" col-6 col-lg-4 order-lg-1 p-0" src={recordGif} alt="Novo recorde." style={{ width: '100px' }} />
                     </div>
                 )
             }
