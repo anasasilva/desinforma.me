@@ -9,7 +9,7 @@ const Footer = () => {
     let ricardoProfile = "https://www.linkedin.com/in/rmoura98/";
 
     return (
-        <nav id="footer" className="navbar transparent navbar-light text-center d-none d-md-block">
+        <nav id="footer" className="navbar transparent navbar-light text-center d-none d-md-block no-select">
             <small className="font-weight-light mx-auto mb-0">
                 Em colaboração com o <a href="https://arquivo.pt/" className="d-inline" target="_blank" rel="noreferrer">Arquivo.pt</a>. <br className="d-md-none" /> Made with <FontAwesomeIcon icon={faHeart} color="red" /> by <a href={anaProfile} className="d-inline" target="_blanck">Ana</a>
                 , <a href={fabioProfile} className="d-inline" target="_blank" rel="noreferrer">Fábio</a>

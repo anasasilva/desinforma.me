@@ -422,3 +422,11 @@ a {
   height: 550px;
   width: 80%;
 }
+
+.at-color {
+    color: #6c757d !important;
+}
+
+.at-color:hover {
+    color: #585e63 !important
+}
