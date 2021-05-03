@@ -410,3 +410,11 @@ a {
 .btn-circle:hover {
     color: white;
 }
+
+.at-color {
+    color: #6c757d !important;
+}
+
+.at-color:hover {
+    color: #585e63 !important
+}
