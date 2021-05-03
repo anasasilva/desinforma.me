@@ -294,7 +294,7 @@
   font-size: 0.8em;
 }
 
-.game-score svg {
+.game-score svg, #end-game-info .badge svg  {
   position: relative;
   bottom: 1px;
 }
@@ -305,7 +305,8 @@
 }
 
 .img-endgame-card-news {
-  width: 8.5rem;
+  min-width: 8.5rem;
+  max-width: 8.5rem;
   background-size: cover;
   background-position: center;
   background-color: #b0c0c7;

@@ -11,7 +11,7 @@ import recordGif from '../assets/record.gif';
 
 const EndGame = () => {
 
-     
+
     const eyeRef = createRef()
     const eyeSlashRef = createRef()
 
@@ -53,7 +53,7 @@ const EndGame = () => {
                 setTimeout(() => {
                     refConfetti?.current?.confetti(getFireworkSettings(0.2, 0.4))
                     refConfetti?.current?.confetti(getFireworkSettings(0.6, 0.9))
-                } , i*800);
+                }, i * 800);
             }
         }
     }, []);
@@ -69,7 +69,7 @@ const EndGame = () => {
                 return (
                     <div className="d-flex align-items-center no-select justify-content-center row">
                         <h3 className="col-12 col-lg-8 mt-2 order-lg-12  text-center">Novo Record!</h3>
-                        <img className="col-6 col-lg-4 order-lg-1 " src={recordGif} alt="Novo recorde." style={{width: '100px'}}/>  
+                        <img className="col-6 col-lg-4 order-lg-1 " src={recordGif} alt="Novo recorde." style={{ width: '100px' }} />
                     </div>
                 )
             }
@@ -77,7 +77,7 @@ const EndGame = () => {
         }
 
         return (
-            <div id="end-game-info border">
+            <div id="end-game-info">
                 <h1 className="text-center mt-1 mt-md-3 mb-4 display-5 d-none">Estatísticas</h1>
                 {/* <div className="d-flex">
 
@@ -99,40 +99,24 @@ const EndGame = () => {
                         
                     </div>
                 </div> */}
-                { showNewRecordSection() }
-                
-                <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5" style={{display: 'grid'}}>
-                        <div className="badge badge-dark p-2 px-3 no-select border-right" style={{borderRadius: '.25rem .25rem 0 0'}}>
-                            <FaTrophy />&nbsp;&nbsp;Pontuação
+                { showNewRecordSection()}
+
+                <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5 nice-shadow" style={{ display: 'grid' }}>
+                    <div className="badge badge-dark p-2 px-3 no-select border-right" style={{ borderRadius: '.25rem .25rem 0 0' }}>
+                        <FaTrophy />&nbsp;&nbsp;Pontuação
                         </div>
-                        <div className="text-center py-3 border h5"  style={{borderRadius: '0 0 .25rem .25rem'}}>
-                            {points} pontos
+                    <div className="text-center py-3 border h5 mb-0" style={{ borderRadius: '0 0 .25rem .25rem' }}>
+                        {points} pontos
                         </div>
-                    </div>
-                    <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5" style={{display: 'grid'}}>
-                        <div className="badge badge-dark p-2 px-3 no-select" style={{borderRadius: '.25rem .25rem 0 0'}}>
-                            <FaHourglass />&nbsp;&nbsp;Tempo Gasto
-                        </div>
-                        <div className="text-center py-3 border h5"  style={{borderRadius: '0 0 .25rem .25rem'}}>
-                            {stringTime}
-                        </div>
-                        
-                    </div>
-                <div className="text-center my-4 my-md-5">
-                    <h5 className="mx-auto pb-2">
-                        <div className="badge badge-dark p-2 px-3 no-select">
-                            <FaTrophy />&nbsp;&nbsp;Pontuação
-                        </div>
-                    </h5>
-                    <h5 className="mx-auto pb-2">{points} pontos</h5>
                 </div>
-                <div className="text-center my-4 my-md-5">
-                    <h5 className="mx-auto pb-2">
-                        <div className="badge badge-dark p-2 px-3 no-select">
-                            <FaHourglass />&nbsp;&nbsp;Tempo Gasto
+                <div className="w-lg-50 w-75 d-bock mx-auto my-4 my-md-5 nice-shadow" style={{ display: 'grid' }}>
+                    <div className="badge badge-dark p-2 px-3 no-select" style={{ borderRadius: '.25rem .25rem 0 0' }}>
+                        <FaHourglass />&nbsp;&nbsp;Tempo Gasto
                         </div>
-                    </h5>
-                    <h5 className="mx-auto pb-2">{stringTime} </h5>
+                    <div className="text-center py-3 border h5 mb-0" style={{ borderRadius: '0 0 .25rem .25rem' }}>
+                        {stringTime}
+                    </div>
+
                 </div>
                 <div className="text-center my-4 my-md-5">
                     <h5 className="mx-auto pb-2">Partilha a tua pontuação!</h5>
@@ -170,7 +154,7 @@ const EndGame = () => {
         )
     }
 
-   
+
     const phoneToggleFake = (e) => {
         eyeRef.current.classList.toggle('d-none');
         eyeSlashRef.current.classList.toggle('d-none');
@@ -178,18 +162,18 @@ const EndGame = () => {
             e.classList.toggle('simulated-hover');
         })
     }
-    
+
 
     return (
         <>
-            <div className="no-underline create-ticket-button action-button" onClick={phoneToggleFake} style={{zIndex: 100, opacity: .7}}>
+            <div className="no-underline create-ticket-button action-button" onClick={phoneToggleFake} style={{ zIndex: 100, opacity: .7 }}>
                 <button className="btn btn-circle d-flex d-md-none  center" >
-                    <div  className="row mx-auto center">
+                    <div className="row mx-auto center">
                         <div ref={eyeSlashRef}>
                             <FaEyeSlash />
                         </div>
                         <div className="d-none" ref={eyeRef} >
-                            <FaEye/>
+                            <FaEye />
                         </div>
                     </div>
                 </button>
@@ -197,7 +181,7 @@ const EndGame = () => {
             <ReactCanvasConfetti
                 className="no-pointer-events position-fixed w-100 h-100"
                 ref={refConfetti}
-                style={{ zIndex: 1000,  top: '0em' }}
+                style={{ zIndex: 1000, top: '0em' }}
                 origin={{ x: 0.5, y: 0.5 }}
                 particleCount={100}
                 startVelocity={60}
