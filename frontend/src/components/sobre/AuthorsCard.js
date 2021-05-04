@@ -20,7 +20,7 @@ const AuthorsCard = () => {
                     <AuthorsInfo name="Ana Sá Silva" linkedin="anasasilva" mail="anasasousasilva@gmail.com" github="anasasilva" />
                     <AuthorsInfo name="Fábio Oliveira" linkedin="fabio-vilela-oliveira" mail="dev.foliveira@gmail.com" github="Erroler" />
                     <AuthorsInfo name="Ricardo Moura" linkedin="rmoura98" mail="ricardo.sanfinsmoura@gmail.com" github="RMoura98" />
-                    <small className="text-center px-4 mt-5 mb-2">Projeto disponível em </small>
+                    <small className="text-center px-4 mt-5 mb-2">Projeto disponível em <a className="d-inline" href="https://github.com/anasasilva/desinforma.me" target="_blank">aqui</a></small>
                 </div>
             </div>
         </div>
