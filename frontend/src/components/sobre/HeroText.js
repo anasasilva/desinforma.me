@@ -38,12 +38,12 @@ const HeroText = () => {
                     de entidades organizadas por tipo para serem usadas posteriormente. 
                     De seguida, para cada notícia procurou-se uma entidade presente nela. E finalmente trocou-se a entidade encontrada por outra extraída no primeiro passo.
                 </p>
-                <h3 className="my-2 mb-md-4 mt-md-5 text-md-left">
+                {/* <h3 className="my-2 mb-md-4 mt-md-5 text-md-left">
                     <span className="text-primary">Detetar notícias falsas</span>
                 </h3>
                 <p className="lead text-justify ">
                     
-                </p>
+                </p> */}
             </div>
     )
 }
