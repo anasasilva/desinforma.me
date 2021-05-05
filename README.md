@@ -25,7 +25,7 @@ Para mais informações sobre o projeto remetemos para o [documento de submissã
 
 ## Stack Tecnológica
 
-As notícias reais foram extraídas a partir da API pública do [Arquivo.pt](https://arquivo.pt/) usando (principalmente) [Python](https://www.python.org/), [Jupyter Notebook](https://jupyter.org) e a biblioteca [Newspaper](https://newspaper.readthedocs.io/en/latest/). Consequentemente procedeu-se à criação das notícias falsas a partir da verdadeiras também em Python.
+As notícias reais foram extraídas a partir da API pública do [Arquivo.pt](https://arquivo.pt/) usando (principalmente) [Python](https://www.python.org/), [Jupyter Notebook](https://jupyter.org) e a biblioteca [Newspaper](https://newspaper.readthedocs.io/en/latest/). Consequentemente procedeu-se à criação das notícias falsas a partir da verdadeiras também em Python utilizando a biblioteca [spaCy](https://spacy.io/models/pt).
 
 A aplicação web foi criada usando a framework [React](https://reactjs.org/) e é alimentada pelo conjunto de notícias criado no passo anterior.
 
