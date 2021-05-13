@@ -1,6 +1,13 @@
 
 
-<p align="center"><img src="https://i.imgur.com/FwIeNCM.gif" alt="Logo" width="225"/></p>
+<p align="center">
+  <img src="https://i.imgur.com/FwIeNCM.gif" alt="Logo" width="225"/> 
+  <br>
+  <a href="README.md">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/320px-Flag_of_Portugal.svg.png" width="15px"/> Versão Portuguesa
+  </a>
+  <br><br>
+</p>
 
 Desinforma.me is a computer and mobile game that seeks to teach people to distinguish fake news from genuine news.
 
@@ -9,8 +16,6 @@ Project used as submission for [Arquivo.pt Competition 2021](https://sobre.arqui
 Presentation: [Youtube](https://www.youtube.com/watch?v=LBZ2CsDuhKg)
 
 Project Link: [desinforma.me](https://www.desinforma.me/)
-
-[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/320px-Flag_of_Portugal.svg.png" width="15px"/> Versão Portuguesa](README.md)
 
 ## Description
 
