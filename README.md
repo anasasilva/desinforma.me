@@ -1,6 +1,6 @@
-# Desinforma.me
 
-<img src="https://i.imgur.com/6YFM0oZ.png" alt="Logo" width="600"/>
+
+<p align="center"><img src="https://i.imgur.com/FwIeNCM.gif" alt="Logo" width="225"/></p>
 
 O Desinforma.me é um jogo para computador e telemóvel que procura ensinar as pessoas a distinguir notícias falsas de genuínas.
 
