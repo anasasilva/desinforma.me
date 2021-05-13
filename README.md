@@ -1,6 +1,13 @@
 
 
-<p align="center"><img src="https://i.imgur.com/FwIeNCM.gif" alt="Logo" width="225"/></p>
+<p align="center">
+  <img src="https://i.imgur.com/FwIeNCM.gif" alt="Logo" width="225"/> 
+  <br>
+  <a href="README.en.md">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/English_language.svg/320px-English_language.svg.png" width="20px" height="13px"/> English Version
+  </a>
+  <br><br>
+</p>
 
 O Desinforma.me é um jogo para computador e telemóvel que procura ensinar as pessoas a distinguir notícias falsas de genuínas.
 
@@ -9,6 +16,7 @@ Projeto usado como submissão para a [Competição Arquivo.pt 2021](https://sobr
 Apresentação: [Youtube](https://www.youtube.com/watch?v=LBZ2CsDuhKg)
 
 Link do Projeto: [desinforma.me](https://www.desinforma.me/)
+
 
 ## Descrição
 
