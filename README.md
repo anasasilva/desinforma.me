@@ -25,8 +25,6 @@ Vivemos na era da informação. Temos um mundo à distância de um clique, mas n
 Estar informado é um direito e um dever. É imperativo procurarmos ser cidadãos educados e garantirmos que temos uma visão fiel à realidade. Afinal de tudo, o combate à desinformação passa por cada um de nós. Assegurar um futuro melhor implica estar consciente do presente.
 Introduzimos o Desinforma.me, uma ferramenta de sensibilização sobre as fake news no formato de um jogo divertido. Neste jogo, os utilizadores têm que distinguir notícias genuínas de notícias falsas.
 
-Introduzimos o Desinforma.me, uma ferramente de sensibilização sobre as fake news no formato de um jogo divertido. Neste jogo, os utilizadores têm que distinguir notícias genuínas de notícias falsas.
-
 Todas as notícias verdadeiras foram extraídas do Arquivo.pt o que permitiu obter uma grande variedade de temáticas, fontes e notícias de diferentes anos. As notícias falsas foram geradas a partir das verdadeiras, substituindo as entidades nelas presentes (por exemplo, alterar Cristiano Ronaldo para Marcelo Rebelo de Sousa).
 
 Para mais informações sobre o projeto remetemos para o [documento de submissão para a competição Arquivo.pt 2021.](https://drive.google.com/file/d/1-WiZT_NodREeGf3-rSSuxRoIO61uuKJQ/view?usp=sharing)
