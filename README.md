@@ -15,7 +15,7 @@ Projeto usado como submissão para a [Competição Arquivo.pt 2021](https://sobr
 
 Apresentação: [Youtube](https://www.youtube.com/watch?v=LBZ2CsDuhKg)
 
-Link do Projeto: [desinforma.me](https://www.desinforma.me/)
+Link do Projeto: [desinforma.me](https://desinformame.vercel.app/)
 
 
 ## Descrição
