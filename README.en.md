@@ -15,7 +15,7 @@ Project used as submission for [Arquivo.pt Competition 2021](https://sobre.arqui
 
 Presentation: [Youtube](https://www.youtube.com/watch?v=LBZ2CsDuhKg)
 
-Project Link: [desinforma.me](https://www.desinforma.me/)
+Project Link: [desinforma.me](https://desinformame.vercel.app/)
 
 ## Description
 
